@@ -19,11 +19,11 @@ const mix = require('laravel-mix');
     ], 'public/css/plantilladocum.css')
     
     .scripts([
-        'resources/plantilla/js/bootstrap.min.js',
-        'resources/plantilla/js/chart.min.js',
         'resources/plantilla/js/jquery.min.js',
-        'resources/plantilla/js/pace.min.js',
         'resources/plantilla/js/popper.min.js',
+        'resources/plantilla/js/bootstrap.min.js',
+        'resources/plantilla/js/chart.min.js',      
+        'resources/plantilla/js/pace.min.js',      
         'resources/plantilla/js/template.js'
     ], 'public/js/plantilladocum.js')
 
