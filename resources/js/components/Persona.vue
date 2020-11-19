@@ -10,7 +10,7 @@
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> Categorías
+                <i class="fa fa-align-justify"></i> Personas
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button>
@@ -33,12 +33,15 @@
                         <tr>
                             <th>Opciones</th>
                             <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Estado</th>
+                            <th>Tipo de documento</th>
+                            <th>Número de documento</th>
+                            <th>Dirección</th>
+                            <th>Telefono</th>
+                            <th>Email</th> 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr v-for= "persona in arrayPersona" :key="persona.id" >
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
                                     <i class="icon-pencil"></i>
@@ -47,72 +50,15 @@
                                     <i class="icon-trash"></i>
                                 </button>
                             </td>
-                            <td>Equipos</td>
-                            <td>Dispositivos electrónicos</td>
-                            <td>
-                                <span class="badge badge-success">Activo</span>
-                            </td>
+                            <td v-text="persona.nombre"></td>
+                            <td v-text="persona.tipo_documento"></td>
+                            <td v-text="persona.num_documento"></td>
+                            <td v-text="persona.direccion"></td>
+                            <td v-text="persona.telefono"></td>
+                            <td v-text="persona.email"></td>
+                            
                         </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
-                                    <i class="icon-pencil"></i>
-                                </button> &nbsp;
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminar">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                            <td>Equipos</td>
-                            <td>Dispositivos electrónicos</td>
-                            <td>
-                                <span class="badge badge-success">Activo</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
-                                    <i class="icon-pencil"></i>
-                                </button> &nbsp;
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminar">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                            <td>Equipos</td>
-                            <td>Dispositivos electrónicos</td>
-                            <td>
-                                <span class="badge badge-secondary">Inactivo</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
-                                    <i class="icon-pencil"></i>
-                                </button> &nbsp;
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminar">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                            <td>Equipos</td>
-                            <td>Dispositivos electrónicos</td>
-                            <td>
-                                <span class="badge badge-secondary">Inactivo</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
-                                    <i class="icon-pencil"></i>
-                                </button>&nbsp;
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminar">
-                                    <i class="icon-trash"></i>
-                                </button>
-                            </td>
-                            <td>Equipos</td>
-                            <td>Dispositivos electrónicos</td>
-                            <td>
-                                <span class="badge badge-success">Activo</span>
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 <nav>
@@ -207,8 +153,36 @@
 
 <script>
 export default {
+
+    data(){
+        return{
+            nombre: '',
+            tipo_documento:'',
+            num_documento:'',
+            direccion: '',
+            telefono: '',
+            email: '',
+            arrayPersona: [],
+
+        }
+    },
+    methods: {
+        listarPersona(){
+            let me = this;
+            axios.get('/persona').then(function (response) {
+                // handle success
+                me.arrayPersona =  response.data;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+         }
+    },
     mounted() {
         console.log('Component mounted.')
     }
 }
 </script>
+
+

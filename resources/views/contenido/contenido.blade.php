@@ -2,7 +2,7 @@
  @section('contenido')
  <!-- Contenido Principal -->
         <template  v-if="menu==0">
-            <example-component></example-component>
+           
         </template>
        
         <template  v-if="menu==1">
@@ -10,7 +10,7 @@
         </template>
 
         <template  v-if="menu==2">
-            <h1>Contenido Nº 2 </h1>
+           <persona></persona>
         </template>
 
         <template  v-if="menu==3">
