@@ -19,3 +19,5 @@ Route::get('/', function () {
 
 
 Route::get('/nosotros', 'RecetaController@hola');
+
+Route::get('/oficina', 'OficinaController@index');

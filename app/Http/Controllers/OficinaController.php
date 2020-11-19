@@ -14,7 +14,7 @@ class OficinaController extends Controller
      */
     public function index()
     {
-        //
+        return view('oficina.index');
     }
 
     /**
