@@ -15,6 +15,14 @@ class CreateExpedientesTable extends Migration
     {
         Schema::create('expedientes', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo_expediente',45);
+            $table->string('cabecera_documento',45);
+            $table->string('tipo_documento',45);
+            $table->string('asunto',45);
+            $table->string('prioridad',45);
+            $table->smallInteger('nro_folios');
+            $table->string('file',45);
+            $table->dateTime('fecha_tramite');
             $table->timestamps();
         });
     }

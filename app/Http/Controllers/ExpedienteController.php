@@ -14,7 +14,8 @@ class ExpedienteController extends Controller
      */
     public function index()
     {
-        //
+        $expedientes = Expediente::all();
+        return $expedientes;
     }
 
     /**

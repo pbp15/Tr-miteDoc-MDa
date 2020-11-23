@@ -2,15 +2,15 @@
  @section('contenido')
  <!-- Contenido Principal -->
         <template  v-if="menu==0">
-            <example-component></example-component>
+            <h1>Contenido del menú 0</h1>
         </template>
        
         <template  v-if="menu==1">
-            <h1>Contenido Nº 1 </h1>
+            <oficina></oficina>
         </template>
 
         <template  v-if="menu==2">
-            <h1>Contenido Nº 2 </h1>
+            <h1>Contenido Nº3 </h1>
         </template>
 
         <template  v-if="menu==3">
@@ -22,7 +22,7 @@
         </template>
 
         <template  v-if="menu==5">
-            <h1>Contenido Nº5 </h1>
+            <expediente></expediente>
         </template>
 
         <template  v-if="menu==6">

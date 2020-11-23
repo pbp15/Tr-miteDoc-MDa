@@ -14,17 +14,8 @@ class OficinaController extends Controller
      */
     public function index()
     {
-        return view('oficina.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $oficinas = Oficina::all();
+        return $oficinas;
     }
 
     /**
@@ -35,31 +26,12 @@ class OficinaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $oficinas = new Oficina();
+        $oficinas-> nombre_oficina = $request-> nombre_oficina;
+        $oficinas-> responsable = $request-> responsable;
+        $oficinas->save();
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Oficina  $oficina
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Oficina $oficina)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Oficina  $oficina
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Oficina $oficina)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -67,9 +39,12 @@ class OficinaController extends Controller
      * @param  \App\Oficina  $oficina
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Oficina $oficina)
+    public function update(Request $request)
     {
-        //
+        $oficinas = Oficina::findOrFail($request->id);
+        $oficinas-> nombre_oficina = $request-> nombre_oficina;
+        $oficinas-> responsable = $request-> responsable;
+        $oficinas->save();
     }
 
     /**

@@ -12,7 +12,7 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wallet"></i> Areas/Oficinas</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=1" class="nav-item">
-                        <a  class="nav-link" href="#"><i class="icon-wallet"></i> Unidades Organicas</a>
+                        <a  class="nav-link" href="/oficina"><i class="icon-wallet"></i> Unidades Organicas</a>
                     </li>
                 </ul>
             </li>
