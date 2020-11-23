@@ -9,7 +9,7 @@
     <meta name="author" content="Incanatoit.com">
     <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sistema de Mesa de Partes - MDA </title>
+    <title>Sistema de Mesa de Partes Virtual- MDA </title>
     <!-- Icons -->
     <link href="css/plantilladocum.css" rel="stylesheet">
 </head>
