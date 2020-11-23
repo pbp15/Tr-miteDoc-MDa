@@ -2,84 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Persona;
+
 use Illuminate\Http\Request;
+use App\Persona;
 
 class PersonaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
-        //
+        $personas =  Persona::all();
+        return $personas;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        $persona =  new Persona();
+        $persona->nombre = $request->nombre;
+        $persona->tipo_documento = $request->tipo_documento;
+        $persona->num_documento = $request->num_documento;
+        $persona->direccion = $request->direccion;
+        $persona->telefono = $request->telefono;
+        $persona->email = $request->email;
+        $persona->usuario = $request->usuario;
+        $persona->password = $request->password;
+        $persona->idrol = $request->idrol;
+        $persona->save();
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Persona  $persona
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Persona $persona)
+ 
+    public function update(Request $request)
     {
-        //
+        $persona =  Persona::findOrFail($request->id);
+        $persona->nombre = $request->nombre;
+        $persona->tipo_documento = $request->tipo_documento;
+        $persona->num_documento = $request->num_documento;
+        $persona->direccion = $request->direccion;
+        $persona->telefono = $request->telefono;
+        $persona->email = $request->email;
+        $persona->usuario = $request->usuario;
+        $persona->password = $request->password;
+        $persona->idrol = $request->idrol;
+        $persona->save();
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Persona  $persona
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Persona $persona)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Persona  $persona
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Persona $persona)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Persona  $persona
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Persona $persona)
-    {
-        //
-    }
 }

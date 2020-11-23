@@ -10,7 +10,7 @@
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> Personas
+                <i class="fa fa-align-justify"></i> Usuarios
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button>
@@ -32,12 +32,15 @@
                     <thead>
                         <tr>
                             <th>Opciones</th>
+                            <th>Usuario</th> 
+                            <th>Rol</th> 
                             <th>Nombre</th>
                             <th>Tipo de documento</th>
                             <th>Número de documento</th>
                             <th>Dirección</th>
                             <th>Telefono</th>
                             <th>Email</th> 
+                      
                         </tr>
                     </thead>
                     <tbody>
@@ -50,12 +53,15 @@
                                     <i class="icon-trash"></i>
                                 </button>
                             </td>
+                            <td v-text="persona.usuario"></td>
+                            <td v-text="persona.rol"></td>
                             <td v-text="persona.nombre"></td>
                             <td v-text="persona.tipo_documento"></td>
                             <td v-text="persona.num_documento"></td>
                             <td v-text="persona.direccion"></td>
                             <td v-text="persona.telefono"></td>
                             <td v-text="persona.email"></td>
+                           
                             
                         </tr>
                         
@@ -162,7 +168,11 @@ export default {
             direccion: '',
             telefono: '',
             email: '',
+            usuario: '',
+            password: '',
+            idrol: 0,
             arrayPersona: [],
+
 
         }
     },
@@ -180,10 +190,10 @@ export default {
          }
     },
     mounted() {
-        //invoca el metodo listarpersona
-        this.listarPersona();
+        console.log('Component mounted.')
     }
 }
 </script>
+
 
 

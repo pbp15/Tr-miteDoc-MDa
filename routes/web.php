@@ -18,4 +18,18 @@ Route::get('/', function () {
 });
 
 
-Route::get('/nosotros', 'RecetaController@hola');
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/persona', 'PersonaController@index');
+Route::post('/persona/registrar', 'PersonaController@store');
+Route::put('/persona/actualizar', 'PersonaController@update');
+

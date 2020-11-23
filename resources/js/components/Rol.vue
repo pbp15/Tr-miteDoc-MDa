@@ -10,10 +10,7 @@
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> Personas
-                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
-                    <i class="icon-plus"></i>&nbsp;Nuevo
-                </button>
+                <i class="fa fa-align-justify"></i> Roles
             </div>
             <div class="card-body">
                 <div class="form-group row">
@@ -31,31 +28,25 @@
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
-                            <th>Opciones</th>
+               
                             <th>Nombre</th>
-                            <th>Tipo de documento</th>
-                            <th>Número de documento</th>
-                            <th>Dirección</th>
-                            <th>Telefono</th>
-                            <th>Email</th> 
+                            <th>Descripcion</th>
+                            <th>Estado</th> 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for= "persona in arrayPersona" :key="persona.id" >
+                        <tr v-for= "rol in arrayRol" :key="rol.id" >
+                            
+                            <td v-text="rol.nombre"></td>
+                            <td v-text="rol.descripcion"></td>
                             <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
-                                    <i class="icon-pencil"></i>
-                                </button> &nbsp;
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalEliminar">
-                                    <i class="icon-trash"></i>
-                                </button>
+                                <div v-if="rol.condicion">
+                                    <span class="badge badge-success">Activo</span>
+                                </div>
+                                <div v-else>
+                                     <span class="badge badge-danger">Desactivo</span>
+                                </div>
                             </td>
-                            <td v-text="persona.nombre"></td>
-                            <td v-text="persona.tipo_documento"></td>
-                            <td v-text="persona.num_documento"></td>
-                            <td v-text="persona.direccion"></td>
-                            <td v-text="persona.telefono"></td>
-                            <td v-text="persona.email"></td>
                             
                         </tr>
                         
@@ -156,13 +147,11 @@ export default {
 
     data(){
         return{
+            rol_id: 0,
             nombre: '',
-            tipo_documento:'',
-            num_documento:'',
-            direccion: '',
-            telefono: '',
-            email: '',
-            arrayPersona: [],
+            descripcion:'',
+            arrayRol: [],
+            modal : 0 
 
         }
     },
@@ -180,8 +169,7 @@ export default {
          }
     },
     mounted() {
-        //invoca el metodo listarpersona
-        this.listarPersona();
+        console.log('Component mounted.')
     }
 }
 </script>
