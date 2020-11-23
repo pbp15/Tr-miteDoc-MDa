@@ -12,7 +12,7 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wallet"></i> Areas/Oficinas</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=1" class="nav-item">
-                        <a  class="nav-link" href="#"><i class="icon-wallet"></i> Unidades Organicas</a>
+                        <a  class="nav-link" href="/oficina"><i class="icon-wallet"></i> Unidades Organicas</a>
                     </li>
                 </ul>
             </li>
@@ -75,6 +75,9 @@
             </li>
             <li @click="menu=12" class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-info"></i> Acerca de...<span class="badge badge-info">IT</span></a>
+            </li>
+            <li @click="menu=13" class="nav-item">
+                <a class="nav-link" href="#"><i class="icon-info"></i> Todos Usuarios</a>
             </li>
         </ul>
     </nav>
