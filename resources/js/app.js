@@ -28,6 +28,13 @@ Vue.component('expediente', require('./components/Expediente.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
+Vue.component('persona', require('./components/Persona.vue').default);
+Vue.component('rol', require('./components/Rol.vue').default);
+Vue.component('user', require('./components/User.vue').default);
+
+
+
 const app = new Vue({
     el: '#app',
     data:{

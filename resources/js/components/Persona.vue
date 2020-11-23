@@ -10,11 +10,7 @@
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
             <div class="card-header">
-<<<<<<< HEAD:resources/js/components/Expediente.vue
-                <i class="fa fa-align-justify"></i> Expedientes
-=======
-                <i class="fa fa-align-justify"></i> Usuarios
->>>>>>> prueba2x:resources/js/components/User.vue
+                <i class="fa fa-align-justify"></i> Personas
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalNuevo">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button>
@@ -24,8 +20,8 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <select class="form-control col-md-3" id="opcion" name="opcion">
-                                <option value="nombre">Cód. expediente</option>
-                                <option value="prioridad">Remitente</option>
+                                <option value="nombre">Nombre</option>
+                                <option value="descripcion">Descripción</option>
                             </select>
                             <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -35,45 +31,17 @@
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
-                            <th>Código</th>
-                            <th>Remitente</th>
-                            <th>Cabecera</th>
-                            <th>Tipo de documento</th>
-                            <th>Asunto</th>
-                            <th>Prioridad</th>
-                            <th>N° folio</th>
-                            <th>Documento</th>
-                            <th>Fecha</th>
                             <th>Opciones</th>
-<<<<<<< HEAD:resources/js/components/Expediente.vue
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="expediente in arrayExpediente" :key="expediente.id">
-                            <td v-text="expediente.codigo_expediente"></td>
-                            <td v-text="expediente.codigo_expediente"></td>
-                            <td v-text="expediente.cabecera_documento"></td>
-                            <td v-text="expediente.tipo_documento"></td>
-                            <td v-text="expediente.asunto"></td>
-                            <td v-text="expediente.prioridad"></td>
-                            <td v-text="expediente.nro_folios"></td>
-                            <td v-text="expediente.file"></td>
-                            <td v-text="expediente.fecha_tramite"></td>
-=======
-                            <th>Usuario</th> 
-                            <th>Rol</th> 
                             <th>Nombre</th>
                             <th>Tipo de documento</th>
                             <th>Número de documento</th>
                             <th>Dirección</th>
                             <th>Telefono</th>
                             <th>Email</th> 
-                      
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for= "persona in arrayPersona" :key="persona.id" >
->>>>>>> prueba2x:resources/js/components/User.vue
                             <td>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalNuevo">
                                     <i class="icon-pencil"></i>
@@ -82,19 +50,13 @@
                                     <i class="icon-trash"></i>
                                 </button>
                             </td>
-<<<<<<< HEAD:resources/js/components/Expediente.vue
-=======
-                            <td v-text="persona.usuario"></td>
-                            <td v-text="persona.rol"></td>
                             <td v-text="persona.nombre"></td>
                             <td v-text="persona.tipo_documento"></td>
                             <td v-text="persona.num_documento"></td>
                             <td v-text="persona.direccion"></td>
                             <td v-text="persona.telefono"></td>
                             <td v-text="persona.email"></td>
-                           
                             
->>>>>>> prueba2x:resources/js/components/User.vue
                         </tr>
                         
                     </tbody>
@@ -130,7 +92,7 @@
         <div class="modal-dialog modal-primary modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Agregar expedientes</h4>
+                    <h4 class="modal-title">Agregar categoría</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -138,53 +100,16 @@
                 <div class="modal-body">
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Código</label>
+                            <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                             <div class="col-md-9">
-                                <input type="text" id="codigo" name="codigo" class="form-control" disabled>
+                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre de categoría">
+                                <span class="help-block">(*) Ingrese el nombre de la categoría</span>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Remitente</label>
+                            <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
                             <div class="col-md-9">
-                                <input type="text" id="remitente" name="remitente" class="form-control" aria-disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Cabecera</label>
-                            <div class="col-md-9">
-                                <input type="text" id="cabecera" name="cabecera" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Tipo de documento</label>
-                            <div class="col-md-9">
-                                <input type="text" id="tipo" name="tipo" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Asunto</label>
-                            <div class="col-md-9">
-                                <input type="text" id="asunto" name="asunto" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Prioridad</label>
-                            <div class="col-md-9">
-                                <input type="text" id="prioridad" name="prioridad" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">N° de folios</label>
-                            <div class="col-md-9">
-                                <input type="text" id="folio" name="folio" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Documento</label>
-                            <div class="col-md-9">
-                                <input type="text" id="documento" name="documento" class="form-control">
-                                <span class="help-block">(*) Ingrese el el archivo a enviar</span>
-                                <button>Cargar archivo...</button>
+                                <input type="email" id="descripcion" name="descripcion" class="form-control" placeholder="Enter Email">
                             </div>
                         </div>
                     </form>
@@ -204,13 +129,13 @@
         <div class="modal-dialog modal-danger" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar expediente</h4>
+                    <h4 class="modal-title">Eliminar Categoría</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Estas seguro de eliminar este expediente?</p>
+                    <p>Estas seguro de eliminar la categoría?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -228,31 +153,6 @@
 
 <script>
 export default {
-<<<<<<< HEAD:resources/js/components/Expediente.vue
-    data(){
-        return {
-            codigo_expediente: '',
-            cabecera_documento: '',
-            tipo_documento: '',
-            asunto: '',
-            prioridad: '',
-            nro_folios: '',
-            file: '',
-            fecha_tramite: '',
-            arrayExpediente : []
-        }
-    },
-    methods : {
-        listarExpediente(){
-            let me = this;
-            axios.get('/expediente').then(function (response){
-                me.arrayExpediente = response.data;
-            })
-            .catch(function (error){
-                console.log(error);
-            });
-        }
-=======
 
     data(){
         return{
@@ -262,11 +162,7 @@ export default {
             direccion: '',
             telefono: '',
             email: '',
-            usuario: '',
-            password: '',
-            idrol: 0,
             arrayPersona: [],
-
 
         }
     },
@@ -282,13 +178,12 @@ export default {
                 console.log(error);
             });
          }
->>>>>>> prueba2x:resources/js/components/User.vue
     },
     mounted() {
-        this.listarExpediente();
+        //invoca el metodo listarpersona
+        this.listarPersona();
     }
 }
 </script>
-
 
 

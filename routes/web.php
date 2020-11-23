@@ -27,3 +27,18 @@ Route::put('/oficina/actualizar', 'OficinaController@update');
 Route::get('/expediente', 'ExpedienteController@index');
 Route::post('/expediente/registrar', 'ExpedienteController@store');
 Route::put('/expediente/actualizar', 'ExpedienteController@update');
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/persona', 'PersonaController@index');
+Route::post('/persona/registrar', 'PersonaController@store');
+Route::put('/persona/actualizar', 'PersonaController@update');
+
