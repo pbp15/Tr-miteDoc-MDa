@@ -23,6 +23,7 @@ class CreateExpedientesTable extends Migration
             $table->smallInteger('nro_folios');
             $table->string('file',45);
             $table->dateTime('fecha_tramite');
+            $table->boolean('condicion')->default(1);
             $table->timestamps();
         });
     }

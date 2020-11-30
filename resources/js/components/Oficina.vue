@@ -22,31 +22,48 @@
                             <select class="form-control col-md-3" id="opcion" name="opcion">
                                 <option value="nombre">Nombre</option>
                                 <option value="responsable">Responsable</option>
+                                <option value="condicion">Estado</option>
                             </select>
                             <input type="text" id="texto" name="texto" class="form-control" placeholder="Texto a buscar">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>Buscar</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                         </div>
                     </div>
                 </div>
                 <table class="table table-bordered table-striped table-sm">
                     <thead>
                         <tr>
+                            <th>Opciones</th>
                             <th>Nombre</th>
                             <th>Responsable</th>
-                            <th>Opciones</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="oficina in arrayOficina" :key="oficina.id">
-                            <td v-text="oficina.nombre_oficina"></td>
-                            <td v-text="oficina.responsable"></td>
                             <td>
                                 <button type="button" @click="abrirModal('oficina','actualizar', oficina)" class="btn btn-warning btn-sm">
                                     <i class="icon-pencil"></i>
                                 </button> &nbsp;
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <i class="icon-trash"></i>
-                                </button>
+                                <template v-if="oficina.condicion">
+                                    <button type="button" class="btn btn-danger btn-sm" @click="desactivarOficina(oficina.id)">
+                                        <i class="icon-trash"></i>
+                                    </button>
+                                </template>
+                                <template v-else>
+                                    <button type="button" class="btn btn-info btn-sm" @click="activarOficina(oficina.id)">
+                                        <i class="icon-check"></i>
+                                    </button>
+                                </template>
+                            </td>
+                            <td v-text="oficina.nombre_oficina"></td>
+                            <td v-text="oficina.responsable"></td>
+                            <td>
+                                <div v-if="oficina.condicion">
+                                    <span class="badge badge-success">Activo</span>
+                                </div>
+                                <div v-else>
+                                    <span class="badge badge-danger">Desactivado</span>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -92,8 +109,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                             <div class="col-md-9">
-                                <input type="text" v-model="nombre_oficina" class="form-control" placeholder="Nombre de la unidad orgánica">
-                                <span class="help-block">(*) Ingrese el nombre de la unidad orgánica</span>
+                                <input type="text" v-model="nombre_oficina" class="form-control" placeholder="Ingrese el nombre de la unidad orgánica">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -102,12 +118,17 @@
                                 <input type="text" v-model="responsable" class="form-control" placeholder="Ingrese el nombre del responsable de la unidad orgánica">
                             </div>
                         </div>
+                        <div v-show="errorOficina" class="form-group row div-error">
+                            <div class="text-center text-error">
+                                <div v-for="error in errorMostrarOficina" :key="error" v-text="error"></div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                    <button type="button" v-if="tipoAccion==1" class="btn btn-primary">Guardar</button>
-                    <button type="button" v-if="tipoAccion==2" class="btn btn-primary">Actualizar</button>
+                    <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarOficina()">Guardar</button>
+                    <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarOficina()">Actualizar</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -115,29 +136,6 @@
         <!-- /.modal-dialog -->
     </div>
     <!--Fin del modal-->
-    <!-- Inicio del modal Eliminar -->
-    <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-danger" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Eliminar unidad orgánica</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estas seguro de eliminar esta unidad orgánica?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-danger">Eliminar</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- Fin del modal Eliminar -->
 
 </main>
 </template>
@@ -146,12 +144,16 @@
 export default {
     data(){
         return {
+            oficina_id:0,
             nombre_oficina: '',
             responsable: '',
+            condicion: '',
             arrayOficina : [],
             modal: 0,
             tituloModal: '',
-            tipoAccion: 0
+            tipoAccion: 0,
+            errorOficina: 0,
+            errorMostrarOficina: []
         }
     },
     methods : {
@@ -165,13 +167,134 @@ export default {
             });
         },
         registrarOficina(){
+            if (this.validarOficina()) {
+                return;
+            }
+            let me = this;
+            axios.post('/oficina/registrar',{
+                'nombre_oficina': this.nombre_oficina,
+                'responsable': this.responsable,
+                'condicion': this.condicion
+            }).then(function (response){
+                me.cerrarModal();
+                me.listarOficina();
+            })
+            .catch(function (error){
+                console.log(error);
+            });
+        },
+        actualizarOficina(){
+            if (this.validarOficina()) {
+                return;
+            }
+            let me = this;
+            axios.put('/oficina/actualizar',{
+                'nombre_oficina': this.nombre_oficina,
+                'responsable': this.responsable,
+                'id': this.oficina_id
+            }).then(function (response){
+                me.cerrarModal();
+                me.listarOficina();
+            })
+            .catch(function (error){
+                console.log(error);
+            });
+        },
+        desactivarOficina(id){
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
 
+            swalWithBootstrapButtons.fire({
+                title: '¿Esta seguro de desactivar la unidad orgánica?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                    let me = this;
+                    axios.put('/oficina/desactivar',{
+                        'id': id
+                    }).then(function (response){
+                        me.listarOficina();                        
+                        swalWithBootstrapButtons.fire(
+                            'Desactivado!',
+                            'El registro ha sido desactivado con éxito.',
+                            'success'
+                        )
+                    })
+                    .catch(function (error){
+                        console.log(error);
+                    });
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                }
+            })
+        },
+        activarOficina(id){
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: '¿Esta seguro de activar la unidad orgánica?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Aceptar',
+                cancelButtonText: 'Cancelar',
+                reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                    let me = this;
+                    axios.put('/oficina/activar',{
+                        'id': id
+                    }).then(function (response){
+                        me.listarOficina();                        
+                        swalWithBootstrapButtons.fire(
+                            'Activado!',
+                            'El registro ha sido activado con éxito.',
+                            'success'
+                        )
+                    })
+                    .catch(function (error){
+                        console.log(error);
+                    });
+                } else if (
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                }
+            })
+        },
+        validarOficina(){
+            this.errorOficina=0;
+            this.errorMostrarOficina=[];
+
+            if(!this.nombre_oficina) this.errorMostrarOficina.push("Necesito el nombre de la Unidad Orgánica que desea agregar.");
+            if(!this.responsable) this.errorMostrarOficina.push("Necesito el nombre del responsable de la Unidad Orgánica que desea agregar.");
+
+            if(this.errorMostrarOficina.length) this.errorOficina = 2;
+
+            return this.errorOficina;
         },
         cerrarModal(){
             this.modal=0;
             this.tituloModal='';
             this.nombre_oficina='';
             this.responsable='';
+            this.condicion='';
         },
         abrirModal(modelo, accion, data = []){
             switch (modelo) {
@@ -181,24 +304,28 @@ export default {
                         case 'registrar':
                         {
                             this.modal = 1;
-                            this.tituloModal = 'Registrar oficina'; 
+                            this.tituloModal = 'Registrar Unidad Orgánica'; 
                             this.nombre_oficina= '';
                             this.responsable='';
+                            this.condicion=1;
                             this.tipoAccion= 1;
                             break;
                         }
                         case 'actualizar':
                         {
-                            this.modal = 0;
+                            //console.log(data);
+                            this.modal = 1;
+                            this.tituloModal = 'Actualizar Unidad Orgánica'; 
+                            this.oficina_id = data['id'];
+                            this.nombre_oficina = data['nombre_oficina'];
+                            this.responsable = data['responsable'];
                             this.tipoAccion= 2;
+                            break;
                         }
                     }
                 }
             }
         },
-        actualizarOficina(){
-
-        }
     },
     mounted() {
         this.listarOficina();
@@ -215,5 +342,13 @@ export default {
         opacity: 1 !important;
         position: absolute !important;
         background-color: #3c29297a !important;
+    }
+    .div-error{
+        display: flex;
+        justify-content: center;
+    }
+    .text-error{
+        color: red !important;
+        font-weight: bold;
     }
 </style>

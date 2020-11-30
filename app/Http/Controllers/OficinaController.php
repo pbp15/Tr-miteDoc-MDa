@@ -18,43 +18,35 @@ class OficinaController extends Controller
         return $oficinas;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $oficinas = new Oficina();
         $oficinas-> nombre_oficina = $request-> nombre_oficina;
         $oficinas-> responsable = $request-> responsable;
+        $oficinas-> condicion = '1';
         $oficinas->save();
     }
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Oficina  $oficina
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request)
     {
         $oficinas = Oficina::findOrFail($request->id);
         $oficinas-> nombre_oficina = $request-> nombre_oficina;
         $oficinas-> responsable = $request-> responsable;
+        $oficinas-> condicion = '1';
         $oficinas->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Oficina  $oficina
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Oficina $oficina)
+    public function desactivar(Request $request)
     {
-        //
+        $oficinas = Oficina::findOrFail($request->id);
+        $oficinas-> condicion = '0';
+        $oficinas->save();
+    }
+
+    public function activar(Request $request)
+    {
+        $oficinas = Oficina::findOrFail($request->id);
+        $oficinas-> condicion = '1';
+        $oficinas->save();
     }
 }
