@@ -27,7 +27,7 @@
         </template>
 
         <template  v-if="menu==6">
-            <h1>Contenido Nº6 </h1>
+            <usuarioexpediente></usuarioexpediente>
         </template>
 
         <template  v-if="menu==7">

@@ -2,9 +2,7 @@
 <main class="main">
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Home</li>
-        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item"><a href="/">Escritorio</a></li>
     </ol>
     <div class="container-fluid">
         <!-- Ejemplo de tabla Listado -->
@@ -70,23 +68,14 @@
                 </table>
                 <nav>
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#">Ant</a>
+                        <li class="page-item" v-if="pagination.current_page > 1">
+                            <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1)">Ant</a>
                         </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
+                        <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
+                            <a class="page-link" href="#" @click.prevent="cambiarPagina(page)" v-text="page"></a>
                         </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Sig</a>
+                        <li class="page-item" v-if="pagination.current_page < pagination.last_page">
+                            <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1)">Sig</a>
                         </li>
                     </ul>
                 </nav>
@@ -141,6 +130,7 @@
 </template>
 
 <script>
+
 export default {
     data(){
         return {
@@ -153,18 +143,66 @@ export default {
             tituloModal: '',
             tipoAccion: 0,
             errorOficina: 0,
-            errorMostrarOficina: []
+            errorMostrarOficina: [],
+            pagination: {
+                total: 0,
+                current_page: 0,
+                per_page: 0,
+                last_page: 0,
+                from: 0,
+                to: 0,
+            },
+            offset: 3
+        }
+    },
+    computed: {
+        isActived: function () {
+            return this.pagination.current_page;
+        },
+        pagesNumber: function () {
+            if (!this.pagination.to) {
+                return [];
+            }
+
+            var from = this.pagination.current_page - this.offset;
+            if (from < 1) {
+                from = 1;
+            }
+
+            var to = from + (this.offset * 2);
+            if (to >= this.pagination.last_page) {
+                to = this.pagination.last_page;
+            }
+
+            var pagesArray = [];
+            while (from <= to) {
+                pagesArray.push(from);
+                from++;
+            }
+
+            return pagesArray;
         }
     },
     methods : {
-        listarOficina(){
+        listarOficina(page){
             let me = this;
-            axios.get('/oficina').then(function (response){
-                me.arrayOficina = response.data;
+            var url = '/oficina?page=' + page;
+            axios.get(url).then(function (response){
+                var respuesta= response.data;
+                me.arrayOficina = respuesta.oficinas.data;
+                me.pagination= respuesta.pagination;
             })
             .catch(function (error){
                 console.log(error);
             });
+        },
+        cambiarPagina(page){
+            let me = this;
+            //Actualiza la pagina actual
+            me.pagination.current_page = page;
+
+            //Envia la peticion para visualizar la data de sa pagina
+            me.listarOficina(page);
         },
         registrarOficina(){
             if (this.validarOficina()) {
@@ -319,6 +357,7 @@ export default {
                             this.oficina_id = data['id'];
                             this.nombre_oficina = data['nombre_oficina'];
                             this.responsable = data['responsable'];
+                            this.condicion = 1;
                             this.tipoAccion= 2;
                             break;
                         }

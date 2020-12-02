@@ -29,7 +29,8 @@ Route::put('/oficina/activar', 'OficinaController@activar');
 Route::get('/expediente', 'ExpedienteController@index');
 Route::post('/expediente/registrar', 'ExpedienteController@store');
 Route::put('/expediente/actualizar', 'ExpedienteController@update');
-
+Route::put('/expediente/desactivar', 'ExpedienteController@desactivar');
+Route::put('/expediente/activar', 'ExpedienteController@activar');
 
 
 

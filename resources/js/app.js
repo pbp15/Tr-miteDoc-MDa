@@ -25,6 +25,7 @@ window.Swal = swal;
 
 Vue.component('oficina', require('./components/Oficina.vue').default);
 Vue.component('expediente', require('./components/Expediente.vue').default);
+Vue.component('usuarioexpediente', require('./components/UsuarioExpediente.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

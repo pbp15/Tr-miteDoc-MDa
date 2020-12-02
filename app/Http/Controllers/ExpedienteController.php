@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expediente;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ExpedienteController extends Controller
 {
@@ -14,73 +15,68 @@ class ExpedienteController extends Controller
      */
     public function index()
     {
-        $expedientes = Expediente::all();
-        return $expedientes;
+        //if (!$request->ajax()) return redirect('/');
+        $expedientes = Expediente::paginate(3);
+        return [
+            'pagination' => [
+                'total' => $expedientes->total(),
+                'current_page' => $expedientes->currentPage(),
+                'per_page' => $expedientes->perPage(),
+                'last_page' => $expedientes->lastPage(),
+                'from' => $expedientes->firstItem(),
+                'to' => $expedientes->lastItem(),
+            ],
+            'expedientes' => $expedientes
+        ];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        if (!$request->ajax()) return redirect('/');
+        $expedientes = new Expediente();
+        $expedientes-> codigo_expediente = $request -> codigo_expediente;
+        $expedientes-> cabecera_documento = $request -> cabecera_documento;
+        $expedientes-> tipo_documento = $request -> tipo_documento;
+        $expedientes-> asunto = $request -> asunto;
+        $expedientes-> prioridad = $request -> prioridad;
+        $expedientes-> nro_folios = $request -> nro_folios;
+        $expedientes-> file = $request -> file;
+        $mytime = Carbon::now();
+        $expedientes-> fecha_tramite = $mytime;
+        $expedientes-> condicion = '1';
+        $expedientes-> save();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Expediente  $expediente
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Expediente $expediente)
+    public function update(Request $request)
     {
-        //
+        if (!$request->ajax()) return redirect('/');
+        $expedientes = Expediente::findOrFail($request->id);
+        $expedientes-> codigo_expediente = $request -> codigo_expediente;
+        $expedientes-> cabecera_documento = $request -> cabecera_documento;
+        $expedientes-> tipo_documento = $request -> tipo_documento;
+        $expedientes-> asunto = $request -> asunto;
+        $expedientes-> prioridad = $request -> prioridad;
+        $expedientes-> nro_folios = $request -> nro_folios;
+        $expedientes-> file = $request -> file;
+        $mytime = Carbon::now();
+        $expedientes-> fecha_tramite = $mytime;
+        $expedientes-> condicion = '1';
+        $expedientes-> save();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Expediente  $expediente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Expediente $expediente)
+    public function desactivar(Request $request)
     {
-        //
+        if (!$request->ajax()) return redirect('/');
+        $expedientes = Expediente::findOrFail($request->id);
+        $expedientes-> condicion = '0';
+        $expedientes-> save();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Expediente  $expediente
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Expediente $expediente)
+    public function activar(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Expediente  $expediente
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Expediente $expediente)
-    {
-        //
+        if (!$request->ajax()) return redirect('/');
+        $expedientes = Expediente::findOrFail($request->id);
+        $expedientes-> condicion = '1';
+        $expedientes-> save();
     }
 }
