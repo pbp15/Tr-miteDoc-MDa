@@ -25,6 +25,8 @@
     },
     "name": "Tr-miteDoc-MDa",
     "dependencies": {
-        "sweetalert2": "^10.10.4"
+        "sweetalert2": "^10.10.4",
+        "vue-resource": "^1.5.1",
+        "vue2-dropzone": "^3.6.0"
     }
 }

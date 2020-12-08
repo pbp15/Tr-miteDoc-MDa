@@ -9,7 +9,10 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import swal from 'sweetalert2';
+import VueResource from 'vue-resource';
+
 window.Swal = swal;
+Vue.use(VueResource);
 
 /**
  * The following block of code may be used to automatically register your

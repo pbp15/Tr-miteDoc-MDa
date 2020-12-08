@@ -16,7 +16,7 @@ class ExpedienteController extends Controller
     public function index()
     {
         //if (!$request->ajax()) return redirect('/');
-        $expedientes = Expediente::paginate(3);
+        $expedientes = Expediente::paginate(5);
         return [
             'pagination' => [
                 'total' => $expedientes->total(),
