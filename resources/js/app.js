@@ -8,6 +8,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import swal from 'sweetalert2';
+import VueResource from 'vue-resource';
+
+window.Swal = swal;
+Vue.use(VueResource);
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -22,6 +28,7 @@ window.Vue = require('vue');
 
 Vue.component('oficina', require('./components/Oficina.vue').default);
 Vue.component('expediente', require('./components/Expediente.vue').default);
+Vue.component('usuarioexpediente', require('./components/UsuarioExpediente.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

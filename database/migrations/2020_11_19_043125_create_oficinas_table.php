@@ -17,6 +17,7 @@ class CreateOficinasTable extends Migration
             $table->id();
             $table->string('nombre_oficina',45);
             $table->string('responsable',45);
+            $table->boolean('condicion')->default(1);
             $table->timestamps();
         });
     }

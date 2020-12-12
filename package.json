@@ -23,5 +23,10 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
-    "name": "Tr-miteDoc-MDa"
+    "name": "Tr-miteDoc-MDa",
+    "dependencies": {
+        "sweetalert2": "^10.10.4",
+        "vue-resource": "^1.5.1",
+        "vue2-dropzone": "^3.6.0"
+    }
 }

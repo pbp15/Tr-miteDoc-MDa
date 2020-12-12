@@ -12,49 +12,56 @@ class OficinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $oficinas = Oficina::all();
-        return $oficinas;
+        if (!$request->ajax()) return redirect('/');
+        $oficinas = Oficina::paginate(3);
+        return [
+            'pagination' => [
+                'total' => $oficinas->total(),
+                'current_page' => $oficinas->currentPage(),
+                'per_page' => $oficinas->perPage(),
+                'last_page' => $oficinas->lastPage(),
+                'from' => $oficinas->firstItem(),
+                'to' => $oficinas->lastItem(),
+            ],
+            'oficinas' => $oficinas
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        if (!$request->ajax()) return redirect('/');
         $oficinas = new Oficina();
         $oficinas-> nombre_oficina = $request-> nombre_oficina;
         $oficinas-> responsable = $request-> responsable;
-        $oficinas->save();
-    }
-    
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Oficina  $oficina
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
-    {
-        $oficinas = Oficina::findOrFail($request->id);
-        $oficinas-> nombre_oficina = $request-> nombre_oficina;
-        $oficinas-> responsable = $request-> responsable;
+        $oficinas-> condicion = '1';
         $oficinas->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Oficina  $oficina
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Oficina $oficina)
+    public function update(Request $request)
     {
-        //
+        if (!$request->ajax()) return redirect('/');
+        $oficinas = Oficina::findOrFail($request->id);
+        $oficinas-> nombre_oficina = $request-> nombre_oficina;
+        $oficinas-> responsable = $request-> responsable;
+        $oficinas-> condicion = '1';
+        $oficinas->save();
+    }
+
+    public function desactivar(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        $oficinas = Oficina::findOrFail($request->id);
+        $oficinas-> condicion = '0';
+        $oficinas->save();
+    }
+
+    public function activar(Request $request)
+    {
+        if (!$request->ajax()) return redirect('/');
+        $oficinas = Oficina::findOrFail($request->id);
+        $oficinas-> condicion = '1';
+        $oficinas->save();
     }
 }

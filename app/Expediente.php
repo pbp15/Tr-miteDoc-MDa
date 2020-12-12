@@ -16,5 +16,6 @@ class Expediente extends Model
         'nro_folios',
         'file',
         'fecha_tramite',
+        'condicion'
     ];
 }

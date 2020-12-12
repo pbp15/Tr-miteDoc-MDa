@@ -16,18 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('contenido/contenido');
 });
-
-
 Route::get('/nosotros', 'RecetaController@hola');
 
+/*Ofina*/
 Route::get('/oficina', 'OficinaController@index');
 Route::post('/oficina/registrar', 'OficinaController@store');
 Route::put('/oficina/actualizar', 'OficinaController@update');
-
+Route::put('/oficina/desactivar', 'OficinaController@desactivar');
+Route::put('/oficina/activar', 'OficinaController@activar');
+/*Expediente*/
 Route::get('/expediente', 'ExpedienteController@index');
 Route::post('/expediente/registrar', 'ExpedienteController@store');
 Route::put('/expediente/actualizar', 'ExpedienteController@update');
-
+Route::put('/expediente/desactivar', 'ExpedienteController@desactivar');
+Route::put('/expediente/activar', 'ExpedienteController@activar');
+Route::post('/expediente/documento', 'ExpedienteController@documento');
 
 
 
