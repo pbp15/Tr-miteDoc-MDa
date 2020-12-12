@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Expediente;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 
 class ExpedienteController extends Controller
 {
@@ -79,4 +80,15 @@ class ExpedienteController extends Controller
         $expedientes-> condicion = '1';
         $expedientes-> save();
     }
+
+    //Extras
+    public function documento(Request $request)
+    {
+        $documento = $request->file('file');
+        $nombredoc = time().'.'.$documento->extension();
+        $documento->move(public_path('storage/documentos'), $nombredoc);
+
+        return response()->json(['correcto'=> $nombredoc]);
+    }
+
 }

@@ -30,6 +30,7 @@ Route::post('/expediente/registrar', 'ExpedienteController@store');
 Route::put('/expediente/actualizar', 'ExpedienteController@update');
 Route::put('/expediente/desactivar', 'ExpedienteController@desactivar');
 Route::put('/expediente/activar', 'ExpedienteController@activar');
+Route::post('/expediente/documento', 'ExpedienteController@documento');
 
 
 

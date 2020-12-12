@@ -2095,6 +2095,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2174,19 +2175,18 @@ __webpack_require__.r(__webpack_exports__);
 
       me.listarExpediente(page);
     },
+    obtenerDocumento: function obtenerDocumento(e) {
+      var document = e.target.files[0]; //console.log(document);
 
-    /*
-    obtenerDocumento(e){
-      const document = e.target.files[0];
-      const formData = new FormData();
-      formData.append("file",document);
-      Vue.http.post('/expediente/registrar',formData, {
-          headers: {
-              'Content-type': 'multipart/form-data'
-          }
-      })
-      /* this.file = file;
-    },*/
+      this.file = document; //document.querySelector('#documento').value = doc;          
+
+      var formData = new FormData();
+      formData.append('file', document);
+      axios.post('/expediente/documento', formData).then(function (response) {
+        console.log(response.data); //console.log(response.correcto);
+        //document.querySelector('#documento').value = response.data;
+      });
+    },
     registrarExpediente: function registrarExpediente() {
       if (this.validarExpediente()) {
         return;
@@ -43722,7 +43722,32 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Documento")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          staticClass: "form-control-file",
+                          attrs: { type: "file", name: "file" },
+                          on: { change: _vm.obtenerDocumento }
+                        }),
+                        _vm._v(" "),
+                        _c("input", {
+                          attrs: {
+                            type: "hidden",
+                            name: "documento",
+                            id: "documento"
+                          }
+                        })
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "div",
@@ -43884,28 +43909,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Fecha")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-3 form-control-label",
-          attrs: { for: "text-input" }
-        },
-        [_vm._v("Documento")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-9" }, [
-        _c("input", {
-          staticClass: "form-control-file",
-          attrs: { type: "file" }
-        })
       ])
     ])
   }

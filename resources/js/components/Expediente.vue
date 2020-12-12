@@ -157,7 +157,8 @@
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Documento</label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control-file">
+                                <input type="file" class="form-control-file" @change="obtenerDocumento" name="file">
+                                <input type="hidden" name="documento" id="documento"> 
                             </div>
                         </div>  
 
@@ -214,6 +215,7 @@
                     'to': 0,
                 },
                 offset: 3,
+
             }
         },
         computed: {
@@ -264,19 +266,23 @@
 
                 //Envia la peticion para visualizar la data de sa pagina
                 me.listarExpediente(page);
-            },/*
+            },
             obtenerDocumento(e){
-                const document = e.target.files[0];
-                const formData = new FormData();
-                formData.append("file",document);
-                Vue.http.post('/expediente/registrar',formData, {
-                    headers: {
-                        'Content-type': 'multipart/form-data'
-                    }
-                })
+                let document = e.target.files[0];
+                    //console.log(document);
+                this.file = document;
 
-               /* this.file = file;
-            },*/
+                //document.querySelector('#documento').value = doc;          
+                let formData = new FormData();
+                formData.append('file',document);
+
+                axios.post('/expediente/documento',formData)
+                    .then(response => {
+                        console.log(response.data);
+                        //console.log(response.correcto);
+                        //document.querySelector('#documento').value = response.data;
+                    })
+            },
             registrarExpediente(){
                 if (this.validarExpediente()){
                     return;
