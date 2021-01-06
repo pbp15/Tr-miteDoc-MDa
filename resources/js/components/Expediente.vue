@@ -158,7 +158,7 @@
                             <label class="col-md-3 form-control-label" for="text-input">Documento</label>
                             <div class="col-md-9">
                                 <input type="file" class="form-control-file" @change="obtenerDocumento" name="file">
-                                <input type="hidden" name="documento" id="documento"> 
+                                <input type="hidden" id="archivo" name="archivo" v-model="archServer"> 
                             </div>
                         </div>  
 
@@ -215,7 +215,7 @@
                     'to': 0,
                 },
                 offset: 3,
-
+                archServer: '',
             }
         },
         computed: {
@@ -268,22 +268,23 @@
                 me.listarExpediente(page);
             },
             obtenerDocumento(e){
-                let document = e.target.files[0];
+                let documento = e.target.files[0];
                     //console.log(document);
-                this.file = document;
+                this.file = documento;
 
-                //document.querySelector('#documento').value = doc;          
                 let formData = new FormData();
-                formData.append('file',document);
+                formData.append('file',documento);
 
                 axios.post('/expediente/documento',formData)
                     .then(response => {
                         console.log(response.data);
-                        //console.log(response.correcto);
-                        //document.querySelector('#documento').value = response.data;
-                    })
+                        //document.querySelector('#archivo').value = 
+                    });
+                
+                
+                document.querySelector('#archivo').value = documento;
             },
-            registrarExpediente(){
+            registrarExpediente(archivo){
                 if (this.validarExpediente()){
                     return;
                 }

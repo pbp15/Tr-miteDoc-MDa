@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expediente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 
@@ -31,7 +32,7 @@ class ExpedienteController extends Controller
         ];
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $nombredoc)
     {
         if (!$request->ajax()) return redirect('/');
         $expedientes = new Expediente();
@@ -41,7 +42,7 @@ class ExpedienteController extends Controller
         $expedientes-> asunto = $request -> asunto;
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
-        $expedientes-> file = $request -> file;
+        $expedientes-> file = $nombredoc;
         $mytime = Carbon::now();
         $expedientes-> fecha_tramite = $mytime;
         $expedientes-> condicion = '1';
@@ -58,7 +59,6 @@ class ExpedienteController extends Controller
         $expedientes-> asunto = $request -> asunto;
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
-        $expedientes-> file = $request -> file;
         $mytime = Carbon::now();
         $expedientes-> fecha_tramite = $mytime;
         $expedientes-> condicion = '1';
@@ -89,6 +89,7 @@ class ExpedienteController extends Controller
         $documento->move(public_path('storage/documentos'), $nombredoc);
 
         return response()->json(['correcto'=> $nombredoc]);
+        //return redirect()->action('ExpedienteController@store', $nombredoc);
     }
 
 }
