@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('contenido/contenido');
 });
-Route::get('/nosotros', 'RecetaController@hola');
 
-/*Ofina*/
+
+/*Oficina*/
 Route::get('/oficina', 'OficinaController@index');
 Route::post('/oficina/registrar', 'OficinaController@store');
 Route::put('/oficina/actualizar', 'OficinaController@update');
@@ -34,14 +34,18 @@ Route::post('/expediente/documento', 'ExpedienteController@documento');
 
 
 
-
-
-
-
-
+Route::get('/rol', 'RolController@index');
+Route::get('/rol/selectRol', 'RolController@selectRol');
 
 
 Route::get('/persona', 'PersonaController@index');
 Route::post('/persona/registrar', 'PersonaController@store');
 Route::put('/persona/actualizar', 'PersonaController@update');
+
+        
+Route::get('/user', 'UserController@index');
+Route::post('/user/registrar', 'UserController@store');
+Route::put('/user/actualizar', 'UserController@update');
+Route::put('/user/desactivar', 'UserController@desactivar');
+Route::put('/user/activar', 'UserController@activar');
 
