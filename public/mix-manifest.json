@@ -1,5 +1,4 @@
 {
-    "/js/appdocumt.js": "/js/appdocumt.js",
-    "/css/plantilladocum.css": "/css/plantilladocum.css",
-    "/js/plantilladocum.js": "/js/plantilladocum.js"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css"
 }
