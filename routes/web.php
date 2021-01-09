@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/main', function () {
     return view('contenido/contenido');
-});
+})->name('main');
 
 
 /*Oficina*/
@@ -50,6 +50,7 @@ Route::put('/user/desactivar', 'UserController@desactivar');
 Route::put('/user/activar', 'UserController@activar');
 
 
-Auth::routes();
+Route::get('/','Auth\LoginController@showLoginForm');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
