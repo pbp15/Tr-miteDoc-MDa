@@ -2168,6 +2168,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    //empezamos a hacer experiemnto 
     cambiarPagina: function cambiarPagina(page) {
       var me = this; //Actualiza la pagina actual
 
@@ -2176,8 +2177,8 @@ __webpack_require__.r(__webpack_exports__);
       me.listarExpediente(page);
     },
     obtenerDocumento: function obtenerDocumento(e) {
-      var document = e.target.files[0]; //console.log(document);
-
+      var document = e.target.files[0];
+      console.log(document);
       this.file = document; //document.querySelector('#documento').value = doc;          
 
       var formData = new FormData();

@@ -259,6 +259,7 @@
                     console.log(error);
                 });
             },
+            //empezamos a hacer experiemnto 
             cambiarPagina(page){
                 let me = this;
                 //Actualiza la pagina actual
@@ -269,7 +270,7 @@
             },
             obtenerDocumento(e){
                 let document = e.target.files[0];
-                    //console.log(document);
+                console.log(document);
                 this.file = document;
 
                 //document.querySelector('#documento').value = doc;          
