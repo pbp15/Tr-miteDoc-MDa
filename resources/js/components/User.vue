@@ -39,7 +39,7 @@
                                     <th>Teléfono</th>
                                     <th>Email</th>
                                     <th>Usuario</th>
-                                    <th>Role</th>
+                                    <th>Rol</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,7 +66,7 @@
                                     <td v-text="persona.telefono"></td>
                                     <td v-text="persona.email"></td>
                                     <td v-text="persona.usuario"></td>
-                                    <td v-text="persona.role"></td>
+                                    <td v-text="persona.rol"></td>
                                 </tr>                                
                             </tbody>
                         </table>
