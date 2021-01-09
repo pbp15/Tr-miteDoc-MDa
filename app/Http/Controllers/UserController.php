@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        //if (!$request->ajax()) return redirect('/');
+        if (!$request->ajax()) return redirect('/');
 
         $buscar = $request->buscar;
         $criterio = $request->criterio;
@@ -45,7 +45,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-     //   if (!$request->ajax()) return redirect('/');
+       if (!$request->ajax()) return redirect('/');
 
         try{
             DB::beginTransaction();
@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-     //   if (!$request->ajax()) return redirect('/');
+       if (!$request->ajax()) return redirect('/');
 
         try{
             DB::beginTransaction();

@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('contenido/contenido');
+Route::get('/main', function () {
+    return view('contenido/contenido')->name('main');
 });
-// ->name('main')
+
 
 /*Oficina*/
 Route::get('/oficina', 'OficinaController@index');
@@ -50,7 +50,7 @@ Route::put('/user/desactivar', 'UserController@desactivar');
 Route::put('/user/activar', 'UserController@activar');
 
 
-// Route::get('/','Auth\LoginController@showLoginForm');
-// Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::get('/','Auth\LoginController@showLoginForm');
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 
 Route::get('/home', 'HomeController@index')->name('home');
