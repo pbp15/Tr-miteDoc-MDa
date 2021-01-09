@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/main', function () {
-    return view('contenido/contenido')->name('main');
-});
+    return view('contenido/contenido');
+})->name('main');
 
 
 /*Oficina*/

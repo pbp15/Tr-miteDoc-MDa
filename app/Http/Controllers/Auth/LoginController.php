@@ -12,16 +12,20 @@ class LoginController extends Controller
   }
 
   public function login(Request $request){
-      $this->validate($request,[
-          'usuario' => 'required|string',
-          'password'=> 'required|string'
-      ]);
-
+     
+    $this->validateLogin($request);
     if(Auth::attempt(['usuario' => $request->usuario, 'password' => $request->password, 'condicion'=>1])){
         return redirect()->route('main');
     }
 
-    return back();
+    return back()->withErrors(['usuario' => trans('auth.failed')])
+    ->withInput(request(['usuario']));
+  }
 
+  protected function validateLogin(Request $request){
+        $this->validate($request,[
+          'usuario' => 'required|string',
+          'password'=> 'required|string'
+      ]);
   }
 }
