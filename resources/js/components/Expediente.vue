@@ -270,19 +270,9 @@
             },
             obtenerDocumento(e){
                 let document = e.target.files[0];
-                console.log(document);
+              //  console.log(document);
                 this.file = document;
-
-                //document.querySelector('#documento').value = doc;          
-                let formData = new FormData();
-                formData.append('file',document);
-
-                axios.post('/expediente/documento',formData)
-                    .then(response => {
-                        console.log(response.data);
-                        //console.log(response.correcto);
-                        //document.querySelector('#documento').value = response.data;
-                    })
+                
             },
             registrarExpediente(){
                 if (this.validarExpediente()){
@@ -296,6 +286,7 @@
                     'asunto': this.asunto,
                     'prioridad': this.prioridad,
                     'nro_folios': this.nro_folios,
+                    'file' :  this.file,
                     'condicion': this.condicion
                 }).then(function (response){
                     me.cerrarModal();

@@ -2177,16 +2177,9 @@ __webpack_require__.r(__webpack_exports__);
       me.listarExpediente(page);
     },
     obtenerDocumento: function obtenerDocumento(e) {
-      var document = e.target.files[0];
-      console.log(document);
-      this.file = document; //document.querySelector('#documento').value = doc;          
+      var document = e.target.files[0]; //  console.log(document);
 
-      var formData = new FormData();
-      formData.append('file', document);
-      axios.post('/expediente/documento', formData).then(function (response) {
-        console.log(response.data); //console.log(response.correcto);
-        //document.querySelector('#documento').value = response.data;
-      });
+      this.file = document;
     },
     registrarExpediente: function registrarExpediente() {
       if (this.validarExpediente()) {
@@ -2201,6 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
         'asunto': this.asunto,
         'prioridad': this.prioridad,
         'nro_folios': this.nro_folios,
+        'file': this.file,
         'condicion': this.condicion
       }).then(function (response) {
         me.cerrarModal();
