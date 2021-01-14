@@ -10,6 +10,19 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.styles([
+    'resources/plantilla/css/font-awesome.min.css',
+    'resources/plantilla/css/simple-line-icons.min.css',
+    'resources/plantilla/css/style.css'
+], 'public/css/plantilladocum.css')
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+.scripts([
+    'resources/plantilla/js/jquery.min.js',
+    'resources/plantilla/js/popper.min.js',
+    'resources/plantilla/js/bootstrap.min.js',
+    'resources/plantilla/js/chart.min.js',      
+    'resources/plantilla/js/pace.min.js',      
+    'resources/plantilla/js/template.js'
+], 'public/js/plantilladocum.js')
+
+.js(['resources/js/app.js'], 'public/js/appdocumt.js');
