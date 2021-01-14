@@ -9,13 +9,13 @@
     <meta name="author" content="Incanatoit.com">
     <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sistema de Mesa de Partes Virtual- MDA </title>
+    <title>Colegio Einstein - Tarma</title>
     <!-- Icons -->
-    <link href="css/plantilladocum.css" rel="stylesheet">
+    <link href="css1/plantilla.css" rel="stylesheet">
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-  <div id="app">
+    <div id="app">
     <header class="app-header navbar">
         <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
           <span class="navbar-toggler-icon"></span>
@@ -55,27 +55,21 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    <span class="d-md-down-none">{{Auth::user()->usuario}} </span>
+                    <span class="d-md-down-none">admin </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header text-center">
                         <strong>Cuenta</strong>
                     </div>
-                    <a class="dropdown-item" href="{{ route('logout') }}" 
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fa fa-lock"></i> Cerrar sesión</a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
+                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
                 </div>
             </li>
         </ul>
     </header>
 
     <div class="app-body">
-
-
+      
         @if(Auth::check())
             @if(Auth::user()->idrol == 1)
                 @include('plantilla.sidebaradministrador')            
@@ -95,20 +89,19 @@
         @yield('contenido')
        <!-- /Fin del contenido principal -->
 
-
-
     </div>
 </div>
+
     
 
     <footer class="app-footer">
-        <span><a href="#">Editek</a> &copy; 2021</span>
-        <span class="ml-auto">Desarrollado por <a href="#"">EDITEK Team</a></span>
+        <span><a href="http://www.incanatoit.com/">TarmaIT</a> &copy; 2021</span>
+        <span class="ml-auto">Desarrollado por <a href="#">pbp@15</a></span>
     </footer>
 
     <!-- Bootstrap and necessary plugins -->
-    <script src="js/appdocumt.js"></script>
-    <script src="js/plantilladocum.js"></script>
+    <script src="js1/app.js"></script>
+    <script src="js1/plantilla.js"></script>
 </body>
 
 </html>

@@ -9,8 +9,8 @@
   <meta name="author" content="Incanatoit.com">
   <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
 
-  <title>Sistema de Mesa de Partes Virtual- MDA </title>
-  <link href="css/plantilladocum.css" rel="stylesheet">
+  <title>Página web - I.E.P "Einstein" </title>
+  <link href="css1/plantilla.css" rel="stylesheet">
 
 </head>
 
@@ -20,7 +20,7 @@
   </div>
 
   <!-- Bootstrap and necessary plugins -->
-  <script src="js/plantilladocum.js"></script>
+  <script src="js1/plantilla.js"></script>
 
 </body>
 </html>

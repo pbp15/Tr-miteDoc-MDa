@@ -19,12 +19,15 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('persona', require('./components/Persona.vue'));
-Vue.component('rol', require('./components/Rol.vue'));
-Vue.component('user', require('./components/User.vue'));
-Vue.component('oficina', require('./components/Oficina.vue'));
-Vue.component('expediente', require('./components/Expediente.vue'));
-Vue.component('usuarioexpediente', require('./components/UsuarioExpediente.vue'));
+Vue.component('persona', require('./components/Persona.vue').default);
+Vue.component('rol', require('./components/Rol.vue').default);
+Vue.component('user', require('./components/User.vue').default);
+Vue.component('categoria', require('./components/Categoria.vue').default);
+Vue.component('comunicado', require('./components/Comunicado.vue').default);
+Vue.component('contacto', require('./components/Contacto.vue').default);
+Vue.component('evento', require('./components/Evento.vue').default);
+Vue.component('institucion', require('./components/Institucion.vue').default);
+Vue.component('testimonio', require('./components/Testimonio.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,4 +37,7 @@ Vue.component('usuarioexpediente', require('./components/UsuarioExpediente.vue')
 
 const app = new Vue({
     el: '#app',
+    data :{
+        menu : 0
+    }
 });

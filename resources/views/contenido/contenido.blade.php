@@ -1,7 +1,6 @@
  @extends('principal')
  @section('contenido')
 
-
     @if(Auth::check())
             @if(Auth::user()->idrol == 1)
                 
@@ -11,7 +10,6 @@
                             </template>
 
                             <template  v-if="menu==1">
-                                <oficina></oficina>
                             </template>
 
                             <template  v-if="menu==2">
@@ -27,11 +25,9 @@
                             </template>
 
                             <template  v-if="menu==5">
-                                <expediente></expediente>
                             </template>
 
                             <template  v-if="menu==6">
-                                <usuarioexpediente></usuarioexpediente>
                             </template>
 
                             <template  v-if="menu==7">
@@ -68,15 +64,12 @@
                         <h1>Escritorio</h1>           
                     </template>
                     <template  v-if="menu==1">
-                        <oficina></oficina>
                     </template>   
 
                     <template  v-if="menu==5">
-                        <expediente></expediente>
                     </template>
 
                     <template  v-if="menu==6">
-                        <usuarioexpediente></usuarioexpediente>
                     </template>
 
             
@@ -88,11 +81,9 @@
                     </template>
 
                     <template  v-if="menu==5">
-                        <expediente></expediente>
                     </template>
 
                     <template  v-if="menu==6">
-                        <usuarioexpediente></usuarioexpediente>
                     </template>
             
             @elseif (Auth::user()->idrol == 4)
@@ -101,11 +92,9 @@
                     </template>
 
                     <template  v-if="menu==5">
-                        <expediente></expediente>
                     </template>
 
                     <template  v-if="menu==6">
-                        <usuarioexpediente></usuarioexpediente>
                     </template>
             @else
 
