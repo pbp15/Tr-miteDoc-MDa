@@ -9,10 +9,32 @@ use App\Persona;
 class PersonaController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        $personas =  Persona::all();
-        return $personas;
+        if (!$request->ajax()) return redirect('/');
+
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
+        
+        if ($buscar==''){
+            $personas = Persona::orderBy('id', 'desc')->paginate(3);
+        }
+        else{
+            $personas = Persona::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+        }
+        
+
+        return [
+            'pagination' => [
+                'total'        => $personas->total(),
+                'current_page' => $personas->currentPage(),
+                'per_page'     => $personas->perPage(),
+                'last_page'    => $personas->lastPage(),
+                'from'         => $personas->firstItem(),
+                'to'           => $personas->lastItem(),
+            ],
+            'personas' => $personas
+        ];
     }
 
     

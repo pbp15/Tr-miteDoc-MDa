@@ -18,6 +18,8 @@ class CreateComunicadosTable extends Migration
             $table->string('titulo',100)->unique();
             $table->string('descripcion',200);
             $table->dateTime('fecha');
+            $table->string('atentamente',200);
+            $table->boolean('condicion')->default(1);
             $table->timestamps();
         });
     }

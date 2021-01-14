@@ -40,7 +40,7 @@ class TestimonioController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $categoria = new Testimonio();
-        $categoria->titulo = $request->titulo;
+        $categoria->nombre = $request->nombre;
         $categoria->descripcion = $request->descripcion;
         $categoria->imagen = $request->imagen;
         $categoria->save();
@@ -50,7 +50,7 @@ class TestimonioController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $categoria = Testimonio::findOrFail($request->id);
-        $categoria->titulo = $request->titulo;
+        $categoria->nombre = $request->nombre;
         $categoria->descripcion = $request->descripcion;
         $categoria->imagen = $request->imagen;
         $categoria->save();

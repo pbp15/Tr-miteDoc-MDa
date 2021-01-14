@@ -10,14 +10,15 @@
                             </template>
 
                             <template  v-if="menu==1">
+                                <categoria></categoria>
                             </template>
 
                             <template  v-if="menu==2">
-                                <user></user>
+                             <h1>Form contacto</h1>
                             </template>
 
                             <template  v-if="menu==3">
-                                <h1>Contenido Nº3 </h1>
+                                <persona></persona>
                             </template>
 
                             <template  v-if="menu==4">
@@ -25,6 +26,7 @@
                             </template>
 
                             <template  v-if="menu==5">
+                                <user></user>
                             </template>
 
                             <template  v-if="menu==6">
@@ -54,7 +56,7 @@
                                 <h1>Contenido Nº12 </h1>
                             </template>
                             <template  v-if="menu==13">
-                                <persona></persona>
+                           
                             </template>
                             <!-- /Fin del contenido principal -->
             

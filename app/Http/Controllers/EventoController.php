@@ -14,23 +14,23 @@ class EventoController extends Controller
     $criterio = $request->criterio;
     
     if ($buscar==''){
-        $testimonios = Testimonio::orderBy('id', 'desc')->paginate(3);
+        $eventos = Evento::orderBy('id', 'desc')->paginate(3);
     }
     else{
-        $testimonios = Testimonio::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+        $eventos = Evento::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
     }
     
 
     return [
         'pagination' => [
-            'total'        => $testimonios->total(),
-            'current_page' => $testimonios->currentPage(),
-            'per_page'     => $testimonios->perPage(),
-            'last_page'    => $testimonios->lastPage(),
-            'from'         => $testimonios->firstItem(),
-            'to'           => $testimonios->lastItem(),
+            'total'        => $eventos->total(),
+            'current_page' => $eventos->currentPage(),
+            'per_page'     => $eventos->perPage(),
+            'last_page'    => $eventos->lastPage(),
+            'from'         => $eventos->firstItem(),
+            'to'           => $eventos->lastItem(),
         ],
-        'testimonios' => $testimonios
+        'eventos' => $eventos
     ];
 }
 
@@ -38,7 +38,7 @@ class EventoController extends Controller
 public function store(Request $request)
 {
     if (!$request->ajax()) return redirect('/');
-    $categoria = new Testimonio();
+    $categoria = new Evento();
     $categoria->titulo = $request->titulo;
     $categoria->descripcion = $request->descripcion;
     $categoria->imagen = $request->imagen;
@@ -48,7 +48,7 @@ public function store(Request $request)
 public function update(Request $request)
 {
     if (!$request->ajax()) return redirect('/');
-    $categoria = Testimonio::findOrFail($request->id);
+    $categoria = Evento::findOrFail($request->id);
     $categoria->titulo = $request->titulo;
     $categoria->descripcion = $request->descripcion;
     $categoria->imagen = $request->imagen;
