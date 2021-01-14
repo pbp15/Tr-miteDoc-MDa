@@ -25,4 +25,4 @@ mix.styles([
     'resources/plantilla/js/template.js'
 ], 'public/js/plantilladocum.js')
 
-.js(['resources/js/app.js'], 'public/js/appdocumt.js');
+.js(['resources/js/app.js'], 'public/js/app.js');
