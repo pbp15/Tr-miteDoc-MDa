@@ -26,91 +26,10 @@
 </head>
 
 <body>
-	<div class="bg-top navbar-light">
-		<div class="container">
-			<div class="row no-gutters d-flex align-items-center align-items-stretch">
-				<div class="col-md-4 d-flex align-items-center py-4">
-					<a class="navbar-brand" href="index.html">Einstein <span>Institución Educativa Particular </span></a>
-				</div>
-				<div class="col-lg-8 d-block">
-					<div class="row d-flex">
-						<div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
-							<div class="icon d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span>
-							</div>
-							<div class="text">
-								<span>Email</span>
-								<span>einstenTarma10@email.com</span>
-							</div>
-						</div>
-						<div class="col-md d-flex topper align-items-center align-items-stretch py-md-4">
-							<div class="icon d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
-							<div class="text">
-								<span>Telefono</span>
-								<span>(064)- 322660</span>
-							</div>
-						</div>
+	<div id="app">
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container d-flex align-items-center px-4">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> Menu
-			</button>
-			<form action="#" class="searchform order-lg-last">
-				<div class="form-group d-flex">
-					<input type="text" class=" form-control pl-3 " placeholder="buscar">
-					<button type="submit" placeholder="" class="form-control search"><span class="ion-ios-search"></span></button>
-				</div>
-			</form>
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a href="index.html" class="nav-link pl-0">Colegio</a></li>
-					<li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
-					<li class="nav-item"><a href="courses.html" class="nav-link"> Niveles </a></li>
-					<li class="nav-item"><a href="teacher.html" class="nav-link"> Admisión </a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">Servicios</a></li>
-					<li class="nav-item"><a href="{{route('defect')}}" class="nav-link">Intranet</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- END nav -->
+		@include('paginaweb.header')
 
-	<section class="home-slider owl-carousel">
-		<div class="slider-item" style="background-image:url(images/portada3.jpg);">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-					<div class="col-md-6 ftco-animate">
-						<h1 class="mb-4">Educación de Calidad & Holistica
-						</h1>
-						<p>Elegir una educacion personalizada es acompañar a los
-							alumnos en cada etapa de su vida</p>
-						<p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Contact Us</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="slider-item" style="background-image:url(images/portada2.jpg);">
-			<div class="overlay"></div>
-			<div class="container">
-				<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-					<div class="col-md-6 ftco-animate">
-						<h1 class="mb-4">Elegir una educacion personalizada es acompañar a los
-							alumnos en cada etapa de su vida </h1>
-						<p>Te invitamos a ver nuestra propuesta educativa 2020</p>
-						<p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 	<section class="ftco-services ftco-no-pb">
 		<div class="container-wrap">
@@ -555,84 +474,9 @@
 
 
 			<div class="row">
-				<div class="col-md-6 col-lg-4 ftco-animate">
-					<div class="blog-entry">
-						<a href="blog-single.html" class="block-20 d-flex align-items-end"
-							style="background-image: url('images/deportiva.jpg');">
-							<div class="meta-date text-center p-2">
-								<span class="day">15</span>
-								<span class="mos">Junio</span>
-								<span class="yr">2019</span>
-							</div>
-						</a>
-						<div class="text bg-white p-4">
-							<h3 class="heading"><a href="#">Semana Deportina Einstiana</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-								blind texts.</p>
-							<div class="d-flex align-items-center mt-4">
-								<p class="mb-0"><a href="#" class="btn btn-primary">Leer mas<span
-											class="ion-ios-arrow-round-forward"></span></a></p>
-								<p class="ml-auto mb-0">
-									<a href="#" class="mr-2">Admin</a>
-									<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-				<div class="col-md-6 col-lg-4 ftco-animate">
-					<div class="blog-entry">
-						<a href="blog-single.html" class="block-20 d-flex align-items-end"
-							style="background-image: url('images/baile.jpg');">
-							<div class="meta-date text-center p-2">
-								<span class="day">26</span>
-								<span class="mos">Setiembre</span>
-								<span class="yr">2019</span>
-							</div>
-						</a>
-						<div class="text bg-white p-4">
-							<h3 class="heading"><a href="#">
-									<fieldset>Danza de Docentes</fieldset>
-								</a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-								blind texts.</p>
-							<div class="d-flex align-items-center mt-4">
-								<p class="mb-0"><a href="#" class="btn btn-primary">Leer mas<span
-											class="ion-ios-arrow-round-forward"></span></a></p>
-								<p class="ml-auto mb-0">
-									<a href="#" class="mr-2">Admin</a>
-									<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-4 ftco-animate">
-					<div class="blog-entry">
-						<a href="blog-single.html" class="block-20 d-flex align-items-end"
-							style="background-image: url('images/octubre.jpg');">
-							<div class="meta-date text-center p-2">
-								<span class="day">26</span>
-								<span class="mos">Octubre</span>
-								<span class="yr">2019</span>
-							</div>
-						</a>
-						<div class="text bg-white p-4">
-							<h3 class="heading"><a href="#">Mes Morado </a></h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
-								blind texts.</p>
-							<div class="d-flex align-items-center mt-4">
-								<p class="mb-0"><a href="#" class="btn btn-primary">Leer mas <span
-											class="ion-ios-arrow-round-forward"></span></a></p>
-								<p class="ml-auto mb-0">
-									<a href="#" class="mr-2">Admin</a>
-									<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				<template v-if="menu==0">
+				<eventito></eventito>
+			</template>	
 			</div>
 		</div>
 	</section>
@@ -870,7 +714,7 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
 				stroke="#F96D00" /></svg></div>
 
-
+			</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
