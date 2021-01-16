@@ -33,7 +33,7 @@
             <div>
               <h2>Página web - I.E.P "Einstein" </h2>
               <p>Sistema Administrador Web</p>
-              <a href="#" target="_blank" class=" btn btn-light active mt-3">Ver Page</a>
+              <a href="{{route('page')}}" target="_blank" class=" btn btn-light active mt-3">Ver Page</a>
             </div>
           </div>
         </div>

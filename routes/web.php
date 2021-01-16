@@ -19,6 +19,7 @@ Route::group(['middleware' => ['guest']], function(){
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::get('/page','PaginaController')->name('page');
     Route::get('/evento/show','EventoController@getDatos');
+    Route::get('/testimonio/show','TestimonioController@getDatos');
 
 });
 
@@ -75,6 +76,11 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/evento/registrar', 'EventoController@store');
         Route::put('/evento/actualizar', 'EventoController@update');
         Route::put('/evento/eliminar', 'EventoController@destroy');
+
+        Route::get('/testimonio','TestimonioController@index');
+        Route::post('/testimonio/registrar', 'TestimonioController@store');
+        Route::put('/testimonio/actualizar', 'TestimonioController@update');
+        Route::put('/testimonio/eliminar', 'TestimonioController@destroy');
     });
         
 });

@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Testimonios
-                        <button type="button" @click="abrirModal('persona','registrar')" class="btn btn-secondary">
+                        <button type="button" @click="abrirModal('testimonio','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -18,13 +18,11 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">Nombre</option>
-                                      <option value="num_documento">Documento</option>
-                                      <option value="email">Email</option>
-                                      <option value="telefono">Teléfono</option>
+                                      <option value="nombre">nombre</option>
+                                      <option value="descripcion">Descripcion</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarPersona(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarPersona(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarTestimonio(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarTestimonio(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -33,26 +31,26 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>Nombre</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Número</th>
-                                    <th>Dirección</th>
-                                    <th>Teléfono</th>
-                                    <th>Email</th>
+                                    <th>Descripcion</th>
+                                    <th>Imagen</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="persona in arrayPersona" :key="persona.id">
+                                <tr v-for="testimonio in arrayTestimonio" :key="testimonio.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('testimonio','actualizar',testimonio)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button>
+                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarTestimonio(testimonio.id)">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
-                                    <td v-text="persona.nombre"></td>
-                                    <td v-text="persona.tipo_documento"></td>
-                                    <td v-text="persona.num_documento"></td>
-                                    <td v-text="persona.direccion"></td>
-                                    <td v-text="persona.telefono"></td>
-                                    <td v-text="persona.email"></td>
+                                    <td v-text="testimonio.nombre"></td>
+                                    <td v-text="testimonio.descripcion"></td>
+                                    <td>
+                                        <img :src="'imagepage/testimonios/' + testimonio.imagen" class="img-responsive" width="100px" height="100px">
+                                    </td>
+                         
                                 </tr>                                
                             </tbody>
                         </table>
@@ -86,48 +84,30 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre (*)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
+                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del titulo">                                        
+                                    </div>
+                                </div>
+                          
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Descripcion">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Tipo Documento</label>
+                                    <label class="col-md-3 form-control-label" for="email-input">Imagen</label>
                                     <div class="col-md-9">
-                                        <select v-model="tipo_documento" class="form-control">
-                                            <option value="DNI">DNI</option>
-                                            <option value="RUC">RUC</option>
-                                            <option value="PASS">PASS</option>
-                                        </select>                                    
+                                          <input @change="subirImagen"  type="file" class="form-control" placeholder="">
+                                           <img :src="imagen" class="img-responsive" width="100px" height="100px"> 
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Número</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Dirección</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="direccion" class="form-control" placeholder="Dirección">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Teléfono</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="telefono" class="form-control" placeholder="Teléfono">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div v-show="errorPersona" class="form-group row div-error">
+                              
+
+                                <div v-show="errorTestimonio" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjTestimonio" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -137,8 +117,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPersona()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPersona()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTestimonio()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTestimonio()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -153,19 +133,16 @@
     export default {
         data (){
             return {
-                persona_id: 0,
+                testimonio_id: 0,
                 nombre : '',
-                tipo_documento : 'DNI',
-                num_documento : '',
-                direccion : '',
-                telefono : '',
-                email : '',
-                arrayPersona : [],
+                descripcion : '',
+                imagen : '',
+                arrayTestimonio: [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorPersona : 0,
-                errorMostrarMsjPersona : [],
+                errorTestimonio : 0,
+                errorMostrarMsjTestimonio : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -209,12 +186,12 @@
             }
         },
         methods : {
-            listarPersona (page,buscar,criterio){
+            listarTestimonio (page,buscar,criterio){
                 let me=this;
-                var url= '/persona?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/testimonio?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayPersona = respuesta.personas.data;
+                    me.arrayTestimonio = respuesta.testimonios.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -226,88 +203,137 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarPersona(page,buscar,criterio);
+                me.listarTestimonio(page,buscar,criterio);
             },
-            registrarPersona(){
-                if (this.validarPersona()){
+            subirImagen(e){
+                let me=this;
+                let file=e.target.files[0];
+
+                let reader= new FileReader();
+                reader.onloadend=(file)=>{
+                    me.imagen=reader.result;
+                }
+                reader.readAsDataURL(file);
+            },
+            registrarTestimonio(){
+                if (this.validarTestimonio()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/persona/registrar',{
+                axios.post('/testimonio/registrar',{
                     'nombre': this.nombre,
-                    'tipo_documento': this.tipo_documento,
-                    'num_documento' : this.num_documento,
-                    'direccion' : this.direccion,
-                    'telefono' : this.telefono,
-                    'email' : this.email
+                    'descripcion': this.descripcion,
+                    'imagen' : this.imagen,
                 }).then(function (response) {
+                    swal(
+                        'Registrado!',
+                        'El testimonio ha sido registrado con éxito.',
+                        'success'
+                        )
                     me.cerrarModal();
-                    me.listarPersona(1,'','nombre');
+                    me.listarTestimonio(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarPersona(){
-               if (this.validarPersona()){
+            actualizarTestimonio(){
+               if (this.validarTestimonio()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/persona/actualizar',{
+                axios.put('/testimonio/actualizar',{
                     'nombre': this.nombre,
-                    'tipo_documento': this.tipo_documento,
-                    'num_documento' : this.num_documento,
-                    'direccion' : this.direccion,
-                    'telefono' : this.telefono,
-                    'email' : this.email,
-                    'id': this.persona_id
+                    'descripcion': this.descripcion,
+                    'imagen' : this.imagen,
+                    'id': this.testimonio_id
                 }).then(function (response) {
+                   swal(
+                        'Actualizado!',
+                        'El testimonio ha sido actualizado con éxito.',
+                        'success'
+                        )
                     me.cerrarModal();
-                    me.listarPersona(1,'','nombre');
+                    me.listarTestimonio(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },            
-            validarPersona(){
-                this.errorPersona=0;
-                this.errorMostrarMsjPersona =[];
+            validarTestimonio(){
+                this.errorTestimonio=0;
+                this.errorMostrarMsjTestimonio =[];
 
-                if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la persona no puede estar vacío.");
+                if (!this.nombre) this.errorMostrarMsjTestimonio.push("El nombre del testimonio no puede estar vacío.");
 
-                if (this.errorMostrarMsjPersona.length) this.errorPersona = 1;
+                if (this.errorMostrarMsjTestimonio.length) this.errorTestimonio = 1;
 
-                return this.errorPersona;
+                return this.errorTestimonio;
             },
+              eliminarTestimonio(id){
+            
+             swal({
+                title: 'Esta seguro de eliminar este testimonio?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar!',
+                cancelButtonText: 'Cancelar',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+                }).then((result) => {
+                if (result.value) {
+                    let me = this;
+
+                    axios.put('/testimonio/eliminar',{
+                        'id': id
+                    }).then(function (response) {
+                        me.listarTestimonio(1,'','nombre');
+                        swal(
+                        'Eliminado!',
+                        'El registro ha sido activado con éxito.',
+                        'success'
+                        )
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                    
+                    
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    
+                }
+                }) 
+            },
+     
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
                 this.nombre='';
-                this.tipo_documento='DNI';
-                this.num_documento='';
-                this.direccion='';
-                this.telefono='';
-                this.email='';
-                this.errorPersona=0;
+                this.descripcion='';
+                this.imagen='';
+                this.errorTestimonio=0;
 
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "persona":
+                    case "testimonio":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Cliente';
+                                this.tituloModal = 'Registrar Testimonio';
                                 this.nombre= '';
-                                this.tipo_documento='DNI';
-                                this.num_documento='';
-                                this.direccion='';
-                                this.telefono='';
-                                this.email='';
+                                this.descripcion='';
+                                this.imagen='';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -315,15 +341,12 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Cliente';
+                                this.tituloModal='Actualizar Testimonio';
                                 this.tipoAccion=2;
-                                this.persona_id=data['id'];
+                                this.testimonio_id=data['id'];
                                 this.nombre = data['nombre'];
-                                this.tipo_documento = data['tipo_documento'];
-                                this.num_documento = data['num_documento'];
-                                this.direccion = data['direccion'];
-                                this.telefono = data['telefono'];
-                                this.email = data['email'];
+                                this.descripcion = data['descripcion'];
+                                this.imagen = data['imagen'];
                                 break;
                             }
                         }
@@ -332,7 +355,7 @@
             }
         },
         mounted() {
-            this.listarPersona(1,this.buscar,this.criterio);
+            this.listarTestimonio(1,this.buscar,this.criterio);
         }
     }
 </script>
