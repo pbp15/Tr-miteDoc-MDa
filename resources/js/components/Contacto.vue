@@ -8,8 +8,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Lista de Formulario de contactos
-                        <button type="button" @click="abrirModal('persona','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Lista de formularios 
+                        <button type="button" @click="abrirModal('contacto','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -18,41 +18,40 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">Nombre</option>
-                                      <option value="num_documento">Documento</option>
-                                      <option value="email">Email</option>
-                                      <option value="telefono">Teléfono</option>
+                                      <option value="nombres">Nombres</option>   
+                                      <option value="apellidos">Apellidos</option>
+                                                                       
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarPersona(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarPersona(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarContacto(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarContacto(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
                         <table class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Número</th>
-                                    <th>Dirección</th>
-                                    <th>Teléfono</th>
+                                    <th>Opciones</th>                                    
+                                    <th>Categoría</th>
+                                    <th>Apellidos</th>
+                                    <th>Nombres</th>
                                     <th>Email</th>
+                                    <th>Telefono</th>
+                                    <th>Asunto</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="persona in arrayPersona" :key="persona.id">
+                                <tr v-for="contacto in arrayContacto" :key="contacto.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('contacto','actualizar',contacto)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
-                                        </button>
-                                    </td>
-                                    <td v-text="persona.nombre"></td>
-                                    <td v-text="persona.tipo_documento"></td>
-                                    <td v-text="persona.num_documento"></td>
-                                    <td v-text="persona.direccion"></td>
-                                    <td v-text="persona.telefono"></td>
-                                    <td v-text="persona.email"></td>
+                                        </button> 
+                                    </td>                                    
+                                    <td v-text="contacto.nombre_categoria"></td>
+                                    <td v-text="contacto.apellidos"></td>
+                                    <td v-text="contacto.nombres"></td>
+                                    <td v-text="contacto.email"></td>
+                                    <td v-text="contacto.telefono"></td>
+                                    <td v-text="contacto.asunto"></td>
                                 </tr>                                
                             </tbody>
                         </table>
@@ -86,48 +85,50 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre (*)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
+                                        <select class="form-control" v-model="idcategoria">
+                                            <option value="0" disabled>Seleccione</option>
+                                            <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                        </select>                                        
+                                    </div>
+                                </div>
+                           
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Apellidos</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="apellidos" class="form-control" placeholder="Apellidos">                                        
+                                    </div>
+                                </div>
+
+                                  <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Nombres</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="nombres" class="form-control" placeholder="Nombre de artículo">                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Correo Electrónico</label>
+                                    <div class="col-md-9">
+                                        <input type="email" v-model="email" class="form-control" placeholder="Correo">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Tipo Documento</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Nº Celular</label>
                                     <div class="col-md-9">
-                                        <select v-model="tipo_documento" class="form-control">
-                                            <option value="DNI">DNI</option>
-                                            <option value="RUC">RUC</option>
-                                            <option value="PASS">PASS</option>
-                                        </select>                                    
+                                        <input type="number" v-model="telefono" class="form-control" placeholder="celular">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Número</label>
+                                    <label class="col-md-3 form-control-label" for="email-input">Asunto</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">                                        
+                                        <input type="email" v-model="asunto" class="form-control" placeholder="Ingrese asunto">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Dirección</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="direccion" class="form-control" placeholder="Dirección">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Teléfono</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="telefono" class="form-control" placeholder="Teléfono">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div v-show="errorPersona" class="form-group row div-error">
+                                <div v-show="errorContacto" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjContacto" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -137,8 +138,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPersona()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPersona()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarContacto()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarContacto()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -150,22 +151,24 @@
 </template>
 
 <script>
+   
     export default {
         data (){
             return {
-                persona_id: 0,
-                nombre : '',
-                tipo_documento : 'DNI',
-                num_documento : '',
-                direccion : '',
-                telefono : '',
+                contacto_id: 0,
+                idcategoria : 0,
+                nombre_categoria : '',
+                apellidos : '',
+                nombres : '',
                 email : '',
-                arrayPersona : [],
+                telefono : '',
+                asunto : '',
+                arrayContacto : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorPersona : 0,
-                errorMostrarMsjPersona : [],
+                errorContacto : 0,
+                errorMostrarMsjContacto : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -175,10 +178,12 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
-                buscar : ''
+                criterio : 'nombres',
+                buscar : '',
+                arrayCategoria :[]
             }
         },
+ 
         computed:{
             isActived: function(){
                 return this.pagination.current_page;
@@ -209,13 +214,25 @@
             }
         },
         methods : {
-            listarPersona (page,buscar,criterio){
+            listarContacto(page,buscar,criterio){
                 let me=this;
-                var url= '/persona?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/contacto?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayPersona = respuesta.personas.data;
+                    me.arrayContacto = respuesta.contactos.data;
                     me.pagination= respuesta.pagination;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            selectCategoria(){
+                let me=this;
+                var url= '/categoria/selectCategoria';
+                axios.get(url).then(function (response) {
+                    //console.log(response);
+                    var respuesta= response.data;
+                    me.arrayCategoria = respuesta.categorias;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -226,88 +243,94 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarPersona(page,buscar,criterio);
+                me.listarContacto(page,buscar,criterio);
             },
-            registrarPersona(){
-                if (this.validarPersona()){
+            registrarContacto(){
+                if (this.validarContacto()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/persona/registrar',{
-                    'nombre': this.nombre,
-                    'tipo_documento': this.tipo_documento,
-                    'num_documento' : this.num_documento,
-                    'direccion' : this.direccion,
-                    'telefono' : this.telefono,
-                    'email' : this.email
+                axios.post('/contacto/registrar',{
+                    'idcategoria': this.idcategoria,
+                    'apellidos': this.apellidos,
+                    'nombres': this.nombres,
+                    'email': this.email,
+                    'telefono': this.telefono,
+                    'asunto': this.asunto
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarPersona(1,'','nombre');
+                    me.listarContacto(1,'','nombres');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarPersona(){
-               if (this.validarPersona()){
+            actualizarContacto(){
+               if (this.validarContacto()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/persona/actualizar',{
-                    'nombre': this.nombre,
-                    'tipo_documento': this.tipo_documento,
-                    'num_documento' : this.num_documento,
-                    'direccion' : this.direccion,
-                    'telefono' : this.telefono,
-                    'email' : this.email,
-                    'id': this.persona_id
+                axios.put('/contacto/actualizar',{
+                    'idcategoria': this.idcategoria,
+                    'apellidos': this.apellidos,
+                    'nombres': this.nombres,
+                    'email': this.email,
+                    'telefono': this.telefono,
+                    'asunto': this.asunto,
+                    'id': this.contacto_id
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarPersona(1,'','nombre');
+                    me.listarContacto(1,'','nombre');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
-            },            
-            validarPersona(){
-                this.errorPersona=0;
-                this.errorMostrarMsjPersona =[];
+            },
+      
+            validarContacto(){
+                this.errorArticulo=0;
+                this.errorMostrarMsjContacto =[];
 
-                if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la persona no puede estar vacío.");
+                if (this.idcategoria==0) this.errorMostrarMsjContacto.push("Seleccione una categoría.");
+                if (!this.apellidos) this.errorMostrarMsjContacto.push("Los apellidos del contacto no pueden estar vacío.");
+                if (!this.nombres) this.errorMostrarMsjContacto.push("Los nombres del contacto no pueden estar vacío.");
+                if (!this.email) this.errorMostrarMsjContacto.push("El email no puede estar vacío.");
+                if (!this.asunto) this.errorMostrarMsjContacto.push("El asunto no puede estar vacío.");
 
-                if (this.errorMostrarMsjPersona.length) this.errorPersona = 1;
+                if (this.errorMostrarMsjContacto.length) this.errorContacto = 1;
 
-                return this.errorPersona;
+                return this.errorContacto;
             },
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre='';
-                this.tipo_documento='DNI';
-                this.num_documento='';
-                this.direccion='';
-                this.telefono='';
-                this.email='';
-                this.errorPersona=0;
-
+                this.idcategoria= 0;
+                this.nombre_categoria = '';
+                this.apellidos = '';
+                this.nombres = '';
+                this.email = 0;
+                this.telefono = 0;
+                this.asunto = '';
+		        this.errorContacto=0;
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "persona":
+                    case "contacto":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Cliente';
-                                this.nombre= '';
-                                this.tipo_documento='DNI';
-                                this.num_documento='';
-                                this.direccion='';
-                                this.telefono='';
+                                this.tituloModal = 'Registrar Contacto';
+                                this.idcategoria=0;
+                                this.nombre_categoria='';
+                                this.apellidos= '';
+                                this.nombres='';                        
                                 this.email='';
+                                this.telefono='';
+                                this.asunto = '';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -315,24 +338,25 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Cliente';
+                                this.tituloModal='Actualizar Contacto';
                                 this.tipoAccion=2;
-                                this.persona_id=data['id'];
-                                this.nombre = data['nombre'];
-                                this.tipo_documento = data['tipo_documento'];
-                                this.num_documento = data['num_documento'];
-                                this.direccion = data['direccion'];
-                                this.telefono = data['telefono'];
-                                this.email = data['email'];
+                                this.articulo_id=data['id'];
+                                this.idcategoria=data['idcategoria'];
+                                this.apellidos=data['apellidos'];
+                                this.nombres = data['nombres'];
+                                this.email=data['email'];
+                                this.telefono=data['telefono'];
+                                this.asunto= data['asunto'];
                                 break;
                             }
                         }
                     }
                 }
+                this.selectCategoria();
             }
         },
         mounted() {
-            this.listarPersona(1,this.buscar,this.criterio);
+            this.listarContacto(1,this.buscar,this.criterio);
         }
     }
 </script>

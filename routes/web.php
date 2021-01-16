@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest']], function(){
 
-    Route::get('/','Auth\LoginController@showLoginForm');
+    Route::get('/','Auth\LoginController@showLoginForm')->name('defect');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
+    Route::get('/page','PaginaController')->name('page');
 
 });
 
@@ -64,6 +65,10 @@ Route::group(['middleware' => ['auth']], function(){
         Route::put('/categoria/desactivar', 'CategoriaController@desactivar');
         Route::put('/categoria/activar', 'CategoriaController@activar');
         Route::get('/categoria/selectCategoria', 'CategoriaController@selectCategoria');
+
+        Route::get('/contacto', 'ContactoController@index');
+        Route::post('/contacto/registrar', 'ContactoController@store');
+        Route::put('/contacto/actualizar', 'ContactoController@update');
     });
         
 });

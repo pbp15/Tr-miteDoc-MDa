@@ -74,7 +74,7 @@
 					<li class="nav-item"><a href="courses.html" class="nav-link"> Niveles </a></li>
 					<li class="nav-item"><a href="teacher.html" class="nav-link"> Admisión </a></li>
 					<li class="nav-item"><a href="blog.html" class="nav-link">Servicios</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">Intranet</a></li>
+					<li class="nav-item"><a href="{{route('defect')}}" class="nav-link">Intranet</a></li>
 				</ul>
 			</div>
 		</div>
@@ -580,6 +580,7 @@
 						</div>
 					</div>
 				</div>
+			
 				<div class="col-md-6 col-lg-4 ftco-animate">
 					<div class="blog-entry">
 						<a href="blog-single.html" class="block-20 d-flex align-items-end"

@@ -15,13 +15,13 @@ class ContactoController extends Controller
         $criterio = $request->criterio;
         
         if ($buscar==''){
-            $articulos = Contacto::join('categorias','contactos.idcategoria','=','categorias.id')
-            ->select('contactos.id','contactos.idcategoria','contactos.apellidos','contactos.nombres','contactos.email','contactos.telefono','contactos.asunto')
+            $contactos = Contacto::join('categorias','contactos.idcategoria','=','categorias.id')
+            ->select('contactos.id','contactos.idcategoria','categorias.nombre as nombre_categoria', 'contactos.apellidos','contactos.nombres','contactos.email','contactos.telefono','contactos.asunto')
             ->orderBy('contactos.id', 'desc')->paginate(3);
         }
         else{
             $contactos = Contacto::join('categorias','contactos.idcategoria','=','categorias.id')
-            ->select('contactos.id','contactos.idcategoria','contactos.apellidos','contactos.nombres','contactos.email','contactos.telefono','contactos.asunto')
+            ->select('contactos.id','contactos.idcategoria', 'categorias.nombre as nombre_categoria' , 'contactos.apellidos','contactos.nombres','contactos.email','contactos.telefono','contactos.asunto')
             ->where('contactos.'.$criterio, 'like', '%'. $buscar . '%')
             ->orderBy('contactos.id', 'desc')->paginate(3);
         }
@@ -42,15 +42,6 @@ class ContactoController extends Controller
 
    
 
-    public function buscarContacto(Request $request){
-        if (!$request->ajax()) return redirect('/');
-
-        $filtro = $request->filtro;
-        $contactos = Contacto::where('apellidos','=', $filtro)
-        ->select('id','nombres')->orderBy('nombres', 'asc')->take(1)->get();
-
-        return ['contactos' => $contactos];
-    }
     
     public function store(Request $request)
     {

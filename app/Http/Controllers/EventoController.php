@@ -42,6 +42,7 @@ public function store(Request $request)
     $categoria->titulo = $request->titulo;
     $categoria->descripcion = $request->descripcion;
     $categoria->imagen = $request->imagen;
+    $categoria->condicion = '1';
     $categoria->save();
 }
 
@@ -52,7 +53,9 @@ public function update(Request $request)
     $categoria->titulo = $request->titulo;
     $categoria->descripcion = $request->descripcion;
     $categoria->imagen = $request->imagen;
+    $categoria->condicion = '1';
     $categoria->save();
 }
+
 
 }

@@ -14,7 +14,7 @@
                             </template>
 
                             <template  v-if="menu==2">
-                             <h1>Form contacto</h1>
+                             <contacto></contacto>
                             </template>
 
                             <template  v-if="menu==3">
