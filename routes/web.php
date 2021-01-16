@@ -69,6 +69,11 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/contacto', 'ContactoController@index');
         Route::post('/contacto/registrar', 'ContactoController@store');
         Route::put('/contacto/actualizar', 'ContactoController@update');
+
+        Route::get('/evento','EventoController@index');
+        Route::post('/evento/registrar', 'EventoController@store');
+        Route::put('/evento/actualizar', 'EventoController@update');
+        Route::put('/evento/eliminar', 'EventoController@destroy');
     });
         
 });

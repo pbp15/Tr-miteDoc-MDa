@@ -33,7 +33,7 @@
                             </template>
 
                             <template  v-if="menu==7">
-                                <h1>Contenido Nº7 </h1>
+                                <evento></evento>
                             </template>
 
                             <template  v-if="menu==8">

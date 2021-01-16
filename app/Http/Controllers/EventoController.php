@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Evento;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class EventoController extends Controller
@@ -38,24 +39,74 @@ class EventoController extends Controller
 public function store(Request $request)
 {
     if (!$request->ajax()) return redirect('/');
-    $categoria = new Evento();
-    $categoria->titulo = $request->titulo;
-    $categoria->descripcion = $request->descripcion;
-    $categoria->imagen = $request->imagen;
-    $categoria->condicion = '1';
-    $categoria->save();
+    $evento = new Evento();
+    $evento->titulo = $request->titulo;
+    $evento->descripcion = $request->descripcion;
+    $exploded = explode(',', $request->imagen);
+    $decoded = base64_decode($exploded[1]);
+
+        if (Str::contains($exploded[0], 'jpeg')) {
+
+            $extension = 'jpg';
+        } else {
+
+            $extension = 'png';
+        }
+
+        $fileName = Str::random() . '.' . $extension;
+
+        $path = public_path() . '/imagepage/eventos/' . $fileName;
+
+        file_put_contents($path, $decoded);
+
+        $evento->imagen = $fileName;
+        $evento->save();
+
+
+    $evento->imagen = $fileName;
+    $evento->save();
 }
 
 public function update(Request $request)
 {
     if (!$request->ajax()) return redirect('/');
-    $categoria = Evento::findOrFail($request->id);
-    $categoria->titulo = $request->titulo;
-    $categoria->descripcion = $request->descripcion;
-    $categoria->imagen = $request->imagen;
-    $categoria->condicion = '1';
-    $categoria->save();
+    $evento = Evento::findOrFail($request->id);
+    $evento->titulo = $request->titulo;
+    $evento->descripcion = $request->descripcion;
+    $currentPhoto = $evento->imagen;
+    if ($request->imagen != $currentPhoto) {
+
+        $exploded = explode(',', $request->imagen);
+        $decoded = base64_decode($exploded[1]);
+
+        if (Str::contains($exploded[0], 'jpeg')) {
+
+            $extension = 'jpg';
+        } else {
+
+            $extension = 'png';
+        }
+
+        $fileName = Str::random() . '.' . $extension;
+
+        $path = public_path() . '/imagepage/eventos/' . $fileName;
+
+        file_put_contents($path, $decoded);
+
+        /*inicio eliminar del servidor*/
+        $usuarioImagen = public_path('/imagepage/eventos/') . $currentPhoto;
+        if (file_exists($usuarioImagen)) {
+            @unlink($usuarioImagen);
+        }
+        /*fin eliminar del servidor*/
+        $evento->imagen = $fileName;
+    }
+    $evento->save();
 }
 
+public function destroy(Request $request){
+    $evento=Evento::findOrFail($request->id);
+    $evento->delete();
+}
 
 }

@@ -18,7 +18,6 @@ class CreateTestimoniosTable extends Migration
             $table->string('nombre',100)->unique();
             $table->string('descripcion',200);
             $table->string('imagen');
-            $table->boolean('condicion')->default(1);
             $table->timestamps();
         });
     }
