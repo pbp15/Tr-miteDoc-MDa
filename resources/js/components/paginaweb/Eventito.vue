@@ -1,14 +1,19 @@
 <template>
-	<div class="col-md-6 col-lg-4 ftco-animate">
-					<div class="blog-entry" v-for="evento in arrayEvento" :key="evento.id" >
-							<a href="#"><img class="t-pic " :src="'imagepage/eventos/'+evento.imagen" :title="evento.titulo" />
-							<div class="meta-date text-center p-2">
+
+	
+
+	<div v-if="arrayEvento" class="row">
+					<div class="blog-entry col-md-4 " v-for="evento in arrayEvento" :key="evento.id" >
+							<div style="position: relative">
+                			<a href="#"><img  class="img-fluid " :src="'imagepage/eventos/'+evento.imagen" :title="evento.titulo" />	</a>
+                            <p style="background-color:#000; position:absolute; bottom: 0">HOLA</p>
+                            </div>
+                            <!-- <div class="meta-date text-center p-2">
 								<span class="day">15</span>
 								<span class="mos">Junio</span>
 								<span class="yr">2019</span>
-							</div>
-						</a>
-						<div class="text bg-white p-4" >
+							</div> -->
+											<div class="text bg-white p-4" >
 							<h3 class="heading"><a href="#">{{evento.titulo}}</a></h3>
 							<p>{{evento.descripcion}}</p>
 							<div class="d-flex align-items-center mt-4">
@@ -23,8 +28,7 @@
 					</div>
 				</div>
 
-
-            
+		
 </template>
 
 <script>
@@ -40,11 +44,11 @@
         methods: {
             getEvento(){
                 let me = this;
-                var url = '/evento';
+                var url = '/evento/show';
                 axios.get(url).then((Response)=>{
                     console.log(Response);
-                    var respuesta = Response.data;
-                    me.arrayTuristas=respuesta.eventos.data
+                   
+                    me.arrayEvento=Response.data.eventos;
                 }).catch((error)=>{
                     console.log(error)
                 })

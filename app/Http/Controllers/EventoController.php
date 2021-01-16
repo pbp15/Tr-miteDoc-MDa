@@ -35,6 +35,10 @@ class EventoController extends Controller
     ];
 }
 
+public function getDatos(){
+    $eventos = Evento::orderBy('id','asc')->get();
+    return [ 'eventos' => $eventos];
+}
 
 public function store(Request $request)
 {

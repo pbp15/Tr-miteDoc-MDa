@@ -18,6 +18,7 @@ Route::group(['middleware' => ['guest']], function(){
     Route::get('/','Auth\LoginController@showLoginForm')->name('defect');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
     Route::get('/page','PaginaController')->name('page');
+    Route::get('/evento/show','EventoController@getDatos');
 
 });
 
