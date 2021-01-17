@@ -5112,6 +5112,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.getTestimonio();
@@ -29623,13 +29627,13 @@ var render = function() {
   return _vm.arrayTestimonio
     ? _c(
         "div",
-        { staticClass: "item" },
+        { staticClass: "row" },
         _vm._l(_vm.arrayTestimonio, function(testimonio) {
           return _c(
             "div",
-            { key: testimonio.id, staticClass: "testimony-wrap d-flex" },
+            { key: testimonio.id, staticClass: "blog-entry col-md-4 " },
             [
-              _c("div", { staticClass: "user-img mr-4" }, [
+              _c("div", { staticStyle: { position: "relative" } }, [
                 _c("a", { attrs: { href: "#" } }, [
                   _c("img", {
                     staticClass: "img-fluid ",
@@ -29641,18 +29645,16 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "text ml-2" }, [
-                _vm._m(0, true),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(testimonio.descripcion))]),
-                _vm._v(" "),
-                _c("p", { staticClass: "name" }, [
-                  _vm._v(_vm._s(testimonio.nombre))
+              _c("div", { staticClass: "text bg-white p-4" }, [
+                _c("h3", { staticClass: "heading" }, [
+                  _c("a", { attrs: { href: "#" } }, [
+                    _vm._v(_vm._s(testimonio.descripcion))
+                  ])
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "position" }, [
-                  _vm._v("Madre de Familia")
-                ])
+                _c("p", [_vm._v(_vm._s(testimonio.nombre))]),
+                _vm._v(" "),
+                _vm._m(0, true)
               ])
             ]
           )
@@ -29666,11 +29668,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "span",
-      { staticClass: "quote d-flex align-items-center justify-content-center" },
-      [_c("i", { staticClass: "icon-quote-left" })]
-    )
+    return _c("div", { staticClass: "d-flex align-items-center mt-4" }, [
+      _c("p", { staticClass: "mb-0" }, [
+        _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+          _vm._v("Leer mas"),
+          _c("span", { staticClass: "ion-ios-arrow-round-forward" })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "ml-auto mb-0" }, [
+        _c("a", { staticClass: "mr-2", attrs: { href: "#" } }, [
+          _vm._v("Admin")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "meta-chat", attrs: { href: "#" } }, [
+          _c("span", { staticClass: "icon-chat" }),
+          _vm._v(" 3")
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true

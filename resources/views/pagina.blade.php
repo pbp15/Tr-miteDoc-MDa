@@ -41,7 +41,7 @@
 						</div>
 						<div class="media-body p-2 mt-3">
 							<h3 class="heading">Docentes Calificados</h3>
-							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+							<p> </p>
 						</div>
 					</div>
 				</div>
@@ -403,7 +403,7 @@
 				<div class="col-md-6 py-5 px-md-5">
 					<div class="py-md-5">
 						<div class="heading-section heading-section-white ftco-animate mb-5">
-							<h2 class="mb-4">Admisión 2020</h2>
+							<h2 class="mb-4">Admisión 2021</h2>
 							<p>Para mayor información envianos un mensaje y nos pondremos en contacto.</p>
 						</div>
 						<form action="#" class="appointment-form ftco-animate">
@@ -490,30 +490,9 @@
 						regelialia. It is a paradisematic country</p>
 				</div>
 			</div>
-			<div class="row ftco-animate justify-content-center">
-				<div class="col-md-12">
-					<div class="carousel-testimony owl-carousel">
-					
-
-						<div class="item">
-							<div class="testimony-wrap d-flex">
-								<div class="user-img mr-4" style="background-image: url(images/anghelo.jpg)">
-								</div>
-								<div class="text ml-2">
-									<span class="quote d-flex align-items-center justify-content-center">
-										<i class="icon-quote-left"></i>
-									</span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-										the blind texts.</p>
-									<p class="name">Anghelo Romero -UNMSM</p>
-									<span class="position">Ex-alumno - Promoción 2018</span>
-								</div>
-							</div>
-						</div>
+			<div class="row">		
+							<testimonito></testimonito>	
 				
-						<testimonito></testimonito>	
-				
-					</div>
 				</div>
 			</div>
 		</div>
@@ -558,98 +537,8 @@
 		</div>
 	</section>
 
-
-	<footer class="ftco-footer ftco-bg-dark ftco-section">
-		<div class="container">
-			<div class="row mb-5">
-				<div class="col-md-6 col-lg-3">
-					<div class="ftco-footer-widget mb-5">
-						<h2 class="ftco-heading-2">Consultas</h2>
-						<div class="block-23 mb-3">
-							<ul>
-								<li><span class="icon icon-map-marker"></span><span class="text">Jr.Lima 750 - Tarma-Junin-Perú</span>
-								</li>
-								<li><a href="#"><span class="icon icon-phone"></span><span class="text">(064)-322660</span></a></li>
-								<li><a href="#"><span class="icon icon-envelope"></span><span
-											class="text">einstein10Trama@gmail.com</span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="ftco-footer-widget mb-5">
-						<h2 class="ftco-heading-2">Eventos </h2>
-						<div class="block-21 mb-4 d-flex">
-							<a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-							<div class="text">
-								<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-								<div class="meta">
-									<div><a href="#"><span class="icon-calendar"></span> June 27, 2019</a></div>
-									<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-									<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-								</div>
-							</div>
-						</div>
-						<div class="block-21 mb-5 d-flex">
-							<a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-							<div class="text">
-								<h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-								<div class="meta">
-									<div><a href="#"><span class="icon-calendar"></span> June 27, 2019</a></div>
-									<div><a href="#"><span class="icon-person"></span> Admin</a></div>
-									<div><a href="#"><span class="icon-chat"></span> 19</a></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="ftco-footer-widget mb-5 ml-md-4">
-						<h2 class="ftco-heading-2">Links</h2>
-						<ul class="list-unstyled">
-							<li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Colegio</a></li>
-							<li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Nosotros</a></li>
-							<li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Niveles</a></li>
-							<li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Servicios</a></li>
-							<li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contactenos</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3">
-					<div class="ftco-footer-widget mb-5">
-						<h2 class="ftco-heading-2">Suscribe </h2>
-						<form action="#" class="subscribe-form">
-							<div class="form-group">
-								<input type="text" class="form-control mb-2 text-center" placeholder="Envianos tu correo">
-								<input type="submit" value="Suscribete" class="form-control submit px-3">
-							</div>
-						</form>
-					</div>
-					<div class="ftco-footer-widget mb-5">
-						<h2 class="ftco-heading-2 mb-0">Siguenos</h2>
-						<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
-							<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-							<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-							<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center">
-
-					<p>
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						{{-- Copyright &copy; --}}
-						{{-- <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-						<i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> --}}
-						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-					</p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
+	@include('paginaweb.footer')
+	
 
 
 	<!-- loader -->
@@ -671,7 +560,7 @@
 	<script src="js/aos.js"></script>
 	<script src="js/jquery.animateNumber.min.js"></script>
 	<script src="js/scrollax.min.js"></script>
-	{{-- <script
+	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
 	{{-- <script src="js/google-map.js"></script> --}}
 	<script src="js/main.js"></script>

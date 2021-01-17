@@ -59,10 +59,9 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
                 <div class="col-md-6 ftco-animate">
-                    <h1 class="mb-4">Educación de Calidad & Holistica
+                    <h1 class="mb-4">Admision 2021
                     </h1>
-                    <p>Elegir una educacion personalizada es acompañar a los
-                        alumnos en cada etapa de su vida</p>
+                    <p></p>
                     <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Contact Us</a></p>
                 </div>
             </div>
@@ -74,9 +73,8 @@
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
                 <div class="col-md-6 ftco-animate">
-                    <h1 class="mb-4">Elegir una educacion personalizada es acompañar a los
-                        alumnos en cada etapa de su vida </h1>
-                    <p>Te invitamos a ver nuestra propuesta educativa 2020</p>
+                    <h1 class="mb-4">"Dios, ciencia y verdad"</h1>
+                    <p>Lema de la I.E.P "Einstein"</p>
                     <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
                 </div>
             </div>
