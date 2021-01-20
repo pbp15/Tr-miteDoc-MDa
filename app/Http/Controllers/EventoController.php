@@ -64,11 +64,8 @@ public function store(Request $request)
         file_put_contents($path, $decoded);
 
         $evento->imagen = $fileName;
+        $evento->fecha = $request->fecha;
         $evento->save();
-
-
-    $evento->imagen = $fileName;
-    $evento->save();
 }
 
 public function update(Request $request)
@@ -105,6 +102,7 @@ public function update(Request $request)
         /*fin eliminar del servidor*/
         $evento->imagen = $fileName;
     }
+    $evento->fecha = $request->fecha;
     $evento->save();
 }
 

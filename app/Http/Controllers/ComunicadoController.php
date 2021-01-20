@@ -14,23 +14,23 @@ class ComunicadoController extends Controller
          $criterio = $request->criterio;
          
          if ($buscar==''){
-             $eventos = Comunicado::orderBy('id', 'desc')->paginate(3);
+             $comunicados = Comunicado::orderBy('id', 'desc')->paginate(3);
          }
          else{
-             $eventos = Comunicado::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+             $comunicados = Comunicado::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
          }
          
      
          return [
              'pagination' => [
-                 'total'        => $eventos->total(),
-                 'current_page' => $eventos->currentPage(),
-                 'per_page'     => $eventos->perPage(),
-                 'last_page'    => $eventos->lastPage(),
-                 'from'         => $eventos->firstItem(),
-                 'to'           => $eventos->lastItem(),
+                 'total'        => $comunicados->total(),
+                 'current_page' => $comunicados->currentPage(),
+                 'per_page'     => $comunicados->perPage(),
+                 'last_page'    => $comunicados->lastPage(),
+                 'from'         => $comunicados->firstItem(),
+                 'to'           => $comunicados->lastItem(),
              ],
-             'eventos' => $eventos
+             'comunicados' => $comunicados
          ];
      }
      
@@ -38,38 +38,23 @@ class ComunicadoController extends Controller
      public function store(Request $request)
      {
          if (!$request->ajax()) return redirect('/');
-         $categoria = new Comunicado();
-         $categoria->titulo = $request->titulo;
-         $categoria->descripcion = $request->descripcion;
-         $categoria->imagen = $request->imagen;
-         $categoria->condicion = '1';
-         $categoria->save();
+         $comunicado = new Comunicado();
+         $comunicado->titulo = $request->titulo;
+         $comunicado->descripcion = $request->descripcion;
+         $comunicado->fecha = $request->fecha;
+         $comunicado->atentamente = $request->atentamente;
+         $comunicado->save();
      }
      
      public function update(Request $request)
      {
          if (!$request->ajax()) return redirect('/');
-         $categoria = Comunicado::findOrFail($request->id);
-         $categoria->titulo = $request->titulo;
-         $categoria->descripcion = $request->descripcion;
-         $categoria->imagen = $request->imagen;
-         $categoria->condicion = '1';
-         $categoria->save();
+         $comunicado = Comunicado::findOrFail($request->id);
+         $comunicado->titulo = $request->titulo;
+         $comunicado->descripcion = $request->descripcion;
+         $comunicado->fecha = $request->fecha;
+         $comunicado->atentamente = $request->atentamente;
+         $comunicado->save();
      }
-     
-    public function desactivar(Request $request)
-    {
-        if (!$request->ajax()) return redirect('/');
-        $categoria = Comunicado::findOrFail($request->id);
-        $categoria->condicion = '0';
-        $categoria->save();
-    }
 
-    public function activar(Request $request)
-    {
-        if (!$request->ajax()) return redirect('/');
-        $categoria = Comunicado::findOrFail($request->id);
-        $categoria->condicion = '1';
-        $categoria->save();
-    }
 }

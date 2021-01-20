@@ -45,6 +45,7 @@ class TestimonioController extends Controller
         if (!$request->ajax()) return redirect('/');
         $testimonio = new Testimonio();
         $testimonio->nombre = $request->nombre;
+        $testimonio->universidad = $request->universidad;
         $testimonio->descripcion = $request->descripcion;
         $exploded = explode(',', $request->imagen);
         $decoded = base64_decode($exploded[1]);
@@ -72,6 +73,7 @@ class TestimonioController extends Controller
         if (!$request->ajax()) return redirect('/');
         $testimonio = Testimonio::findOrFail($request->id);
         $testimonio->nombre = $request->nombre;
+        $testimonio->universidad = $request->universidad;
         $testimonio->descripcion = $request->descripcion;
         $currentPhoto = $testimonio->imagen;
         if ($request->imagen != $currentPhoto) {

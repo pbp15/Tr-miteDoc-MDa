@@ -30,6 +30,36 @@
 
 		@include('paginaweb.header')
 
+		<section class="home-slider owl-carousel">
+			<div class="slider-item" style="background-image:url(images/portada3.jpg);">
+				<div class="overlay"></div>
+				<div class="container">
+					<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+						<div class="col-md-6 ftco-animate">
+							<h1 class="mb-4">Admision 2021 
+							</h1>
+							<p> I.E.P "Einstein - "Dios, ciencia y verdad"</p>
+							<p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="slider-item" style="background-image:url(images/portada2.jpg);">
+				<div class="overlay"></div>
+				<div class="container">
+					<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+						<div class="col-md-6 ftco-animate">
+							<h1 class="mb-4">....</h1>
+							<p>Lema de la </p>
+							<p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+
 
 	<section class="ftco-services ftco-no-pb">
 		<div class="container-wrap">
@@ -400,54 +430,17 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row justify-content-end">
-				<div class="col-md-6 py-5 px-md-5">
+				<div class="col-md-8 py-5 px-md-5">
 					<div class="py-md-5">
 						<div class="heading-section heading-section-white ftco-animate mb-5">
 							<h2 class="mb-4">Admisión 2021</h2>
 							<p>Para mayor información envianos un mensaje y nos pondremos en contacto.</p>
 						</div>
-						<form action="#" class="appointment-form ftco-animate">
-							<div class="d-md-flex">
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Nombres">
-								</div>
-								<div class="form-group ml-md-4">
-									<input type="text" class="form-control" placeholder="Apellidos">
-								</div>
-							</div>
-							<div class="d-md-flex">
-								<div class="form-group">
-									<div class="form-field">
-										<div class="select-wrap">
-											<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-											<select name="" id="" class="form-control">
-												<option value="">Selecciona opción </option>
-												<option value="">Art Lesson</option>
-												<option value="">Language Lesson</option>
-												<option value="">Music Lesson</option>
-												<option value="">Sports</option>
-												<option value="">Other Services</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="form-group ml-md-4">
-									<input type="text" class="form-control" placeholder="Celular">
-								</div>
-							</div>
-							<div class="d-md-flex">
-								<div class="form-group">
-									<textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Mensaje"></textarea>
-								</div>
-								<div class="form-group ml-md-4">
-									<input type="submit" value="Enviar" class="btn btn-primary py-3 px-4">
-								</div>
-							</div>
-						</form>
+						<formularito></formularito>
 					</div>
 				</div>
 
-				<div class=" col-md-6 py-5 px-md-5  appointment-form ftco-animate">
+				<div class=" col-md-4 py-5 px-md-5  appointment-form ftco-animate">
 					<div>
 						<div class="heading-section heading-section-white ftco-animate mb-5">
 							<h2 class="mb-4">Ubicanos en :</h2>
@@ -548,6 +541,7 @@
 				stroke="#F96D00" /></svg></div>
 
 </div>
+	<script src="js1/app.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
@@ -564,7 +558,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
 	{{-- <script src="js/google-map.js"></script> --}}
 	<script src="js/main.js"></script>
-	<script src="js1/app.js"></script>
+
 
 </body>
 

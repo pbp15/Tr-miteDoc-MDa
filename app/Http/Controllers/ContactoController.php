@@ -9,24 +9,17 @@ class ContactoController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
-
         $buscar = $request->buscar;
         $criterio = $request->criterio;
         
         if ($buscar==''){
-            $contactos = Contacto::join('categorias','contactos.idcategoria','=','categorias.id')
-            ->select('contactos.id','contactos.idcategoria','categorias.nombre as nombre_categoria', 'contactos.apellidos','contactos.nombres','contactos.email','contactos.telefono','contactos.asunto')
-            ->orderBy('contactos.id', 'desc')->paginate(3);
+            $contactos = Contacto::orderBy('id', 'desc')->paginate(3);
         }
         else{
-            $contactos = Contacto::join('categorias','contactos.idcategoria','=','categorias.id')
-            ->select('contactos.id','contactos.idcategoria', 'categorias.nombre as nombre_categoria' , 'contactos.apellidos','contactos.nombres','contactos.email','contactos.telefono','contactos.asunto')
-            ->where('contactos.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('contactos.id', 'desc')->paginate(3);
+            $contactos = Contacto::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
         }
         
-
+    
         return [
             'pagination' => [
                 'total'        => $contactos->total(),
@@ -47,7 +40,6 @@ class ContactoController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $contacto = new Contacto();
-        $contacto->idcategoria = $request->idcategoria;
         $contacto->apellidos = $request->apellidos;
         $contacto->nombres = $request->nombres;
         $contacto->email = $request->email;
@@ -59,7 +51,6 @@ class ContactoController extends Controller
     {
         if (!$request->ajax()) return redirect('/');
         $contacto = Contacto::findOrFail($request->id);
-        $contacto->idcategoria = $request->idcategoria;
         $contacto->apellidos = $request->apellidos;
         $contacto->nombres = $request->nombres;
         $contacto->email = $request->email;

@@ -33,6 +33,7 @@
                                     <th>Titulo</th>
                                     <th>Descripcion</th>
                                     <th>Imagen</th>
+                                    <th>Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,7 +51,7 @@
                                     <td>
                                         <img :src="'imagepage/eventos/' + evento.imagen" class="img-responsive" width="100px" height="100px">
                                     </td>
-                         
+                                         <td v-text="evento.fecha"></td>
                                 </tr>                                
                             </tbody>
                         </table>
@@ -103,6 +104,12 @@
                                            <img :src="imagen" class="img-responsive" width="100px" height="100px"> 
                                     </div>
                                 </div>
+                                   <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Fecha</label>
+                                    <div class="col-md-9">
+                                        <input type="date" v-model="fecha" class="form-control" >                                        
+                                    </div>
+                                </div>
                               
 
                                 <div v-show="errorEvento" class="form-group row div-error">
@@ -137,6 +144,7 @@
                 titulo : '',
                 descripcion : '',
                 imagen : '',
+                fecha: '',
                 arrayEvento : [],
                 modal : 0,
                 tituloModal : '',
@@ -226,6 +234,7 @@
                     'titulo': this.titulo,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
+                    'fecha' :  this.fecha,
                 }).then(function (response) {
                     swal(
                         'Registrado!',
@@ -249,6 +258,7 @@
                     'titulo': this.titulo,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
+                    'fecha' :  this.fecha,
                     'id': this.evento_id
                 }).then(function (response) {
                    swal(
@@ -319,6 +329,7 @@
                 this.titulo='';
                 this.descripcion='';
                 this.imagen='';
+                this.fecha='';
                 this.errorEvento=0;
 
             },
@@ -334,6 +345,7 @@
                                 this.titulo= '';
                                 this.descripcion='';
                                 this.imagen='';
+                                this.fecha='';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -347,6 +359,7 @@
                                 this.titulo = data['titulo'];
                                 this.descripcion = data['descripcion'];
                                 this.imagen = data['imagen'];
+                                this.fecha=data['fecha'];
                                 break;
                             }
                         }

@@ -8,6 +8,7 @@
 						<div class="text bg-white p-4" >
 							<h3 class="heading"><a href="#">{{testimonio.descripcion}}</a></h3>
 							<p>{{testimonio.nombre}}</p>
+                            <p>{{testimonio.universidad}}</p>
 							<div class="d-flex align-items-center mt-4">
 								<p class="mb-0"><a href="#" class="btn btn-primary">Leer mas<span
 											class="ion-ios-arrow-round-forward"></span></a></p>
@@ -37,7 +38,7 @@
                 let me = this;
                 var url = '/testimonio/show';
                 axios.get(url).then((Response)=>{
-                    console.log(Response);                   
+                  //  console.log(Response);                   
                     me.arrayTestimonio=Response.data.testimonios;
                 }).catch((error)=>{
                     console.log(error)

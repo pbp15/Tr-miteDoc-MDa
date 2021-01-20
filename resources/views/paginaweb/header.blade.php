@@ -44,40 +44,12 @@
                 <li class="nav-item active"><a href="index.html" class="nav-link pl-0">Colegio</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">Nosotros</a></li>
                 <li class="nav-item"><a href="courses.html" class="nav-link"> Niveles </a></li>
-                <li class="nav-item"><a href="teacher.html" class="nav-link"> Admisión </a></li>
+                <li class="nav-item"><a href="teacher.html" class="nav-link"> Admisión 2021 </a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Servicios</a></li>
                 <li class="nav-item"><a href="{{route('defect')}}" class="nav-link">Intranet</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<!-- END nav -->
 
-<section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image:url(images/portada3.jpg);">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-                <div class="col-md-6 ftco-animate">
-                    <h1 class="mb-4">Admision 2021
-                    </h1>
-                    <p></p>
-                    <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Contact Us</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="slider-item" style="background-image:url(images/portada2.jpg);">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-                <div class="col-md-6 ftco-animate">
-                    <h1 class="mb-4">"Dios, ciencia y verdad"</h1>
-                    <p>Lema de la I.E.P "Einstein"</p>
-                    <p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>

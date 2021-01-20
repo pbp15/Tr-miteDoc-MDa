@@ -18,7 +18,7 @@ class CreateInstitucionsTable extends Migration
             $table->string('nombre',100)->unique();
             $table->string('nivel',200);
             $table->string('codigo_modular');
-            $table->string('imagen');
+            $table->string('logo');
             $table->timestamps();
         });
     }

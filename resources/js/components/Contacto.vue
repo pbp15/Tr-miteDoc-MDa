@@ -30,8 +30,7 @@
                         <table class="table table-bordered table-striped table-sm">
                             <thead>
                                 <tr>
-                                    <th>Opciones</th>                                    
-                                    <th>Categoría</th>
+                                    <th>Opciones</th>    
                                     <th>Apellidos</th>
                                     <th>Nombres</th>
                                     <th>Email</th>
@@ -45,8 +44,7 @@
                                         <button type="button" @click="abrirModal('contacto','actualizar',contacto)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> 
-                                    </td>                                    
-                                    <td v-text="contacto.nombre_categoria"></td>
+                                    </td>                                   
                                     <td v-text="contacto.apellidos"></td>
                                     <td v-text="contacto.nombres"></td>
                                     <td v-text="contacto.email"></td>
@@ -84,16 +82,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" v-model="idcategoria">
-                                            <option value="0" disabled>Seleccione</option>
-                                            <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
-                                        </select>                                        
-                                    </div>
-                                </div>
-                           
+                                                     
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Apellidos</label>
                                     <div class="col-md-9">
@@ -104,7 +93,7 @@
                                   <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Nombres</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombres" class="form-control" placeholder="Nombre de artículo">                                        
+                                        <input type="text" v-model="nombres" class="form-control" placeholder="Nombres">                                        
                                     </div>
                                 </div>
 
@@ -123,7 +112,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="email-input">Asunto</label>
                                     <div class="col-md-9">
-                                        <input type="email" v-model="asunto" class="form-control" placeholder="Ingrese asunto">
+                                        <input type="text" v-model="asunto" class="form-control" placeholder="Ingrese asunto">
                                     </div>
                                 </div>
                                 <div v-show="errorContacto" class="form-group row div-error">
@@ -156,8 +145,6 @@
         data (){
             return {
                 contacto_id: 0,
-                idcategoria : 0,
-                nombre_categoria : '',
                 apellidos : '',
                 nombres : '',
                 email : '',
@@ -180,7 +167,6 @@
                 offset : 3,
                 criterio : 'nombres',
                 buscar : '',
-                arrayCategoria :[]
             }
         },
  
@@ -226,18 +212,6 @@
                     console.log(error);
                 });
             },
-            selectCategoria(){
-                let me=this;
-                var url= '/categoria/selectCategoria';
-                axios.get(url).then(function (response) {
-                    //console.log(response);
-                    var respuesta= response.data;
-                    me.arrayCategoria = respuesta.categorias;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-            },
             cambiarPagina(page,buscar,criterio){
                 let me = this;
                 //Actualiza la página actual
@@ -253,7 +227,6 @@
                 let me = this;
 
                 axios.post('/contacto/registrar',{
-                    'idcategoria': this.idcategoria,
                     'apellidos': this.apellidos,
                     'nombres': this.nombres,
                     'email': this.email,
@@ -274,7 +247,6 @@
                 let me = this;
 
                 axios.put('/contacto/actualizar',{
-                    'idcategoria': this.idcategoria,
                     'apellidos': this.apellidos,
                     'nombres': this.nombres,
                     'email': this.email,
@@ -290,10 +262,9 @@
             },
       
             validarContacto(){
-                this.errorArticulo=0;
+                this.errorContacto=0;
                 this.errorMostrarMsjContacto =[];
 
-                if (this.idcategoria==0) this.errorMostrarMsjContacto.push("Seleccione una categoría.");
                 if (!this.apellidos) this.errorMostrarMsjContacto.push("Los apellidos del contacto no pueden estar vacío.");
                 if (!this.nombres) this.errorMostrarMsjContacto.push("Los nombres del contacto no pueden estar vacío.");
                 if (!this.email) this.errorMostrarMsjContacto.push("El email no puede estar vacío.");
@@ -306,8 +277,6 @@
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.idcategoria= 0;
-                this.nombre_categoria = '';
                 this.apellidos = '';
                 this.nombres = '';
                 this.email = 0;
@@ -324,8 +293,6 @@
                             {
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Contacto';
-                                this.idcategoria=0;
-                                this.nombre_categoria='';
                                 this.apellidos= '';
                                 this.nombres='';                        
                                 this.email='';
@@ -340,8 +307,7 @@
                                 this.modal=1;
                                 this.tituloModal='Actualizar Contacto';
                                 this.tipoAccion=2;
-                                this.articulo_id=data['id'];
-                                this.idcategoria=data['idcategoria'];
+                                this.contacto_id=data['id'];
                                 this.apellidos=data['apellidos'];
                                 this.nombres = data['nombres'];
                                 this.email=data['email'];
@@ -352,7 +318,6 @@
                         }
                     }
                 }
-                this.selectCategoria();
             }
         },
         mounted() {

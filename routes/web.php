@@ -17,9 +17,15 @@ Route::group(['middleware' => ['guest']], function(){
 
     Route::get('/','Auth\LoginController@showLoginForm')->name('defect');
     Route::post('/login', 'Auth\LoginController@login')->name('login');
-    Route::get('/page','PaginaController')->name('page');
+    /* VISTAS DE PAGINA WEB */
+    Route::get('/page','PaginaController@inicio')->name('page');
+    Route::get('/inicial','PaginaController@nivelinicial')->name('nivel-inicial');
+    /* METODOS DE PAGINA WEB */
     Route::get('/evento/show','EventoController@getDatos');
-    Route::get('/testimonio/show','TestimonioController@getDatos');
+    Route::get('/testimonio/show','TestimonioController@getDatos');    
+    Route::post('/contacto/registrar', 'ContactoController@store');
+
+    
 
 });
 
@@ -68,9 +74,8 @@ Route::group(['middleware' => ['auth']], function(){
         Route::put('/categoria/activar', 'CategoriaController@activar');
         Route::get('/categoria/selectCategoria', 'CategoriaController@selectCategoria');
 
-        Route::get('/contacto', 'ContactoController@index');
-        Route::post('/contacto/registrar', 'ContactoController@store');
-        Route::put('/contacto/actualizar', 'ContactoController@update');
+        // Route::get('/contacto', 'ContactoController@index');
+        // Route::put('/contacto/actualizar', 'ContactoController@update');
 
         Route::get('/evento','EventoController@index');
         Route::post('/evento/registrar', 'EventoController@store');

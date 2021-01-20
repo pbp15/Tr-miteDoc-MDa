@@ -31,6 +31,7 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>Nombre</th>
+                                    <th>Procedencia</th>
                                     <th>Descripcion</th>
                                     <th>Imagen</th>
                                 </tr>
@@ -46,6 +47,7 @@
                                         </button>
                                     </td>
                                     <td v-text="testimonio.nombre"></td>
+                                           <td v-text="testimonio.procedencia"></td>
                                     <td v-text="testimonio.descripcion"></td>
                                     <td>
                                         <img :src="'imagepage/testimonios/' + testimonio.imagen" class="img-responsive" width="100px" height="100px">
@@ -87,6 +89,12 @@
                                     <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del titulo">                                        
+                                    </div>
+                                </div>
+                                   <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Universidad</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="universidad" class="form-control" placeholder="Nombre de la Universidad">                                        
                                     </div>
                                 </div>
                           
@@ -135,6 +143,7 @@
             return {
                 testimonio_id: 0,
                 nombre : '',
+                universidad: '',
                 descripcion : '',
                 imagen : '',
                 arrayTestimonio: [],
@@ -224,6 +233,7 @@
 
                 axios.post('/testimonio/registrar',{
                     'nombre': this.nombre,
+                    'universidad':this.universidad,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
                 }).then(function (response) {
@@ -247,6 +257,7 @@
 
                 axios.put('/testimonio/actualizar',{
                     'nombre': this.nombre,
+                    'universidad' : this.universidad,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
                     'id': this.testimonio_id
@@ -317,6 +328,7 @@
                 this.modal=0;
                 this.tituloModal='';
                 this.nombre='';
+                this.universidad='',
                 this.descripcion='';
                 this.imagen='';
                 this.errorTestimonio=0;
@@ -332,6 +344,7 @@
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Testimonio';
                                 this.nombre= '';
+                                this.universidad='';
                                 this.descripcion='';
                                 this.imagen='';
                                 this.tipoAccion = 1;
@@ -345,6 +358,7 @@
                                 this.tipoAccion=2;
                                 this.testimonio_id=data['id'];
                                 this.nombre = data['nombre'];
+                                this.universidad = data['universidad'];
                                 this.descripcion = data['descripcion'];
                                 this.imagen = data['imagen'];
                                 break;

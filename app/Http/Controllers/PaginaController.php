@@ -6,10 +6,19 @@ use Illuminate\Http\Request;
 
 class PaginaController extends Controller
 {
+ 
     
-    public function __invoke()
+    public function inicio()
     {
        return view('pagina');
     }
+
+    public function nivelinicial()
+    {
+       return view('vistas-paginaweb\nivel-inicial');
+    }
+
+
+
 
 }

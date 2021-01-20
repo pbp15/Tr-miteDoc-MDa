@@ -34,7 +34,7 @@ Vue.component('testimonio', require('./components/Testimonio.vue').default);
 /*INICIO DEL COMPONENTES DE LA PAGINA WEB */
 Vue.component('eventito', require('./components/paginaweb/Eventito.vue').default);
 Vue.component('testimonito', require('./components/paginaweb/Testimonito.vue').default);
-
+Vue.component('formularito', require('./components/paginaweb/Formularito.vue').default);
 
 
 

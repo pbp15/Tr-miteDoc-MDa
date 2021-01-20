@@ -16,12 +16,13 @@ class CreateTestimoniosTable extends Migration
         Schema::create('testimonios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',100)->unique();
+            $table->string('universidad',150);
             $table->string('descripcion',200);
             $table->string('imagen');
             $table->timestamps();
         });
     }
-
+   
     /**
      * Reverse the migrations.
      *
