@@ -30,35 +30,7 @@
 
 		@include('paginaweb.header')
 
-		<section class="home-slider owl-carousel">
-			<div class="slider-item" style="background-image:url(images/portada3.jpg);">
-				<div class="overlay"></div>
-				<div class="container">
-					<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-						<div class="col-md-6 ftco-animate">
-							<h1 class="mb-4">Admision 2021 
-							</h1>
-							<p> I.E.P "Einstein - "Dios, ciencia y verdad"</p>
-							<p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		
-			<div class="slider-item" style="background-image:url(images/portada2.jpg);">
-				<div class="overlay"></div>
-				<div class="container">
-					<div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-						<div class="col-md-6 ftco-animate">
-							<h1 class="mb-4">....</h1>
-							<p>Lema de la </p>
-							<p><a href="#" class="btn btn-primary px-4 py-3 mt-3">Ver mas</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		
+		@include('paginaweb.carrusel')
 
 
 	<section class="ftco-services ftco-no-pb">
@@ -71,7 +43,7 @@
 						</div>
 						<div class="media-body p-2 mt-3">
 							<h3 class="heading">Docentes Calificados</h3>
-							<p> </p>
+							<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic </p>
 						</div>
 					</div>
 				</div>
@@ -221,8 +193,8 @@
 							<div class="block-18">
 								<div class="icon"><span class="flaticon-doctor"></span></div>
 								<div class="text">
-									<strong class="number" data-number="8">0</strong>
-									<span>Ingresantes 2020</span>
+									<strong class="number" data-number="15">0</strong>
+									<span>Ingresantes 2021</span>
 								</div>
 							</div>
 						</div>
@@ -230,7 +202,7 @@
 							<div class="block-18">
 								<div class="icon"><span class="flaticon-doctor"></span></div>
 								<div class="text">
-									<strong class="number" data-number="401">0</strong>
+									<strong class="number" data-number="170">0</strong>
 									<span>Estudiantes</span>
 								</div>
 							</div>
@@ -239,7 +211,7 @@
 							<div class="block-18">
 								<div class="icon"><span class="flaticon-doctor"></span></div>
 								<div class="text">
-									<strong class="number" data-number="25">0</strong>
+									<strong class="number" data-number="18">0</strong>
 									<span>Cursos</span>
 								</div>
 							</div>
@@ -248,7 +220,7 @@
 							<div class="block-18">
 								<div class="icon"><span class="flaticon-doctor"></span></div>
 								<div class="text">
-									<strong class="number" data-number="25">0</strong>
+									<strong class="number" data-number="21">0</strong>
 									<span> Docentes </span>
 								</div>
 							</div>
@@ -330,99 +302,7 @@
 		</div>
 	</section>
 
-	<section class="ftco-section bg-light">
-		<div class="container-fluid px-4">
-			<div class="row justify-content-center mb-5 pb-2">
-				<div class="col-md-8 text-center heading-section ftco-animate">
-					<h2 class="mb-4">Plana de Docentes </h2>
-					<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
-						regelialia. It is a paradisematic country</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="staff">
-						<div class="img-wrap d-flex align-items-stretch">
-							<div class="img align-self-stretch" style="background-image: url(images/prof1.jpg);"></div>
-						</div>
-						<div class="text pt-3 text-center">
-							<h3>Daniel Romero</h3>
-							<span class="position mb-2">Docente De Matemática </span>
-							<div class="faded">
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social text-center">
-									<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="staff">
-						<div class="img-wrap d-flex align-items-stretch">
-							<div class="img align-self-stretch" style="background-image: url(images/prof2.jpg);"></div>
-						</div>
-						<div class="text pt-3 text-center">
-							<h3>Geovanni Anglas</h3>
-							<span class="position mb-2">Docente De Ciencias << /span>
-									<div class="faded">
-										<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-										<ul class="ftco-social text-center">
-											<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-											<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-											<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-											<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-										</ul>
-									</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="staff">
-						<div class="img-wrap d-flex align-items-stretch">
-							<div class="img align-self-stretch" style="background-image: url(images/prof3.jpg);"></div>
-						</div>
-						<div class="text pt-3 text-center">
-							<h3>Maria Torres</h3>
-							<span class="position mb-2">Docente De Comunicación</span>
-							<div class="faded">
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social text-center">
-									<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-lg-3 ftco-animate">
-					<div class="staff">
-						<div class="img-wrap d-flex align-items-stretch">
-							<div class="img align-self-stretch" style="background-image: url(images/prof4.jpg);"></div>
-						</div>
-						<div class="text pt-3 text-center">
-							<h3>Esmeralda Sanchez</h3>
-							<span class="position mb-2"> Docente de Ingles</span>
-							<div class="faded">
-								<p>I am an ambitious workaholic, but apart from that, pretty simple person.</p>
-								<ul class="ftco-social text-center">
-									<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-									<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+
 
 
 	<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb" style="background-image: url(images/portada3jpg);"
