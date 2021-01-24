@@ -15,99 +15,99 @@
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-  <div id="app">
-    <header class="app-header navbar">
-        <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="nav navbar-nav d-md-down-none">
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Escritorio</a>
-            </li>
-            <li class="nav-item px-3">
-                <a class="nav-link" href="#">Configuraciones</a>
-            </li>
-        </ul>
-        <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#" data-toggle="dropdown">
-                    <i class="icon-bell"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header text-center">
-                        <strong>Notificaciones</strong>
-                    </div>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa fa-envelope-o"></i> Ingresos
-                        <span class="badge badge-success">3</span>
+    <div id="app">
+        <header class="app-header navbar">
+            <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="nav navbar-nav d-md-down-none">
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#">Escritorio</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="#">Configuraciones</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item d-md-down-none">
+                    <a class="nav-link" href="#" data-toggle="dropdown">
+                        <i class="icon-bell"></i>
+                        <span class="badge badge-pill badge-danger">5</span>
                     </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa fa-tasks"></i> Ventas
-                        <span class="badge badge-danger">2</span>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    <span class="d-md-down-none">{{Auth::user()->usuario}} </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header text-center">
-                        <strong>Cuenta</strong>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header text-center">
+                            <strong>Notificaciones</strong>
+                        </div>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-envelope-o"></i> Ingresos
+                            <span class="badge badge-success">3</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-tasks"></i> Ventas
+                            <span class="badge badge-danger">2</span>
+                        </a>
                     </div>
-                    <a class="dropdown-item" href="{{ route('logout') }}" 
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fa fa-lock"></i> Cerrar sesión</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
+                        <span class="d-md-down-none">{{Auth::user()->usuario}} </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="dropdown-header text-center">
+                            <strong>Cuenta</strong>
+                        </div>
+                        <a class="dropdown-item" href="{{ route('logout') }}" 
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fa fa-lock"></i> Cerrar sesión</a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </div>
-            </li>
-        </ul>
-    </header>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </header>
 
-    <div class="app-body">
+        <div class="app-body">
 
 
-        @if(Auth::check())
-            @if(Auth::user()->idrol == 1)
-                @include('plantilla.sidebaradministrador')            
-            @elseif (Auth::user()->idrol == 2)
-                @include('plantilla.sidebarsecretaria')
-            @elseif (Auth::user()->idrol == 3)
-                @include('plantilla.sidebargerente')
-            @elseif (Auth::user()->idrol == 4)
-                @include('plantilla.sidebarusuario')
-            @else
+            @if(Auth::check())
+                @if(Auth::user()->idrol == 1)
+                    @include('plantilla.sidebaradministrador')            
+                @elseif (Auth::user()->idrol == 2)
+                    @include('plantilla.sidebarsecretaria')
+                @elseif (Auth::user()->idrol == 3)
+                    @include('plantilla.sidebargerente')
+                @elseif (Auth::user()->idrol == 4)
+                    @include('plantilla.sidebarusuario')
+                @else
+
+                @endif
 
             @endif
 
-        @endif
-
-       <!-- Contenido Principal -->
-        @yield('contenido')
-       <!-- /Fin del contenido principal -->
+        <!-- Contenido Principal -->
+            @yield('contenido')
+        <!-- /Fin del contenido principal -->
 
 
 
+        </div>
     </div>
-</div>
     
 
     <footer class="app-footer">
         <span><a href="#">Editek</a> &copy; 2021</span>
-        <span class="ml-auto">Desarrollado por <a href="#"">EDITEK Team</a></span>
+        <span class="ml-auto">Desarrollado por <a href="#">EDITEK Team</a></span>
     </footer>
 
     <!-- Bootstrap and necessary plugins -->
-    <script src="js/appdocumt.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/plantilladocum.js"></script>
 </body>
 
