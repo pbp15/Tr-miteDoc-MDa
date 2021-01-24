@@ -29,6 +29,9 @@ Vue.component('contacto', require('./components/Contacto.vue').default);
 Vue.component('evento', require('./components/Evento.vue').default);
 Vue.component('institucion', require('./components/Institucion.vue').default);
 Vue.component('testimonio', require('./components/Testimonio.vue').default);
+Vue.component('noticia', require('./components/Noticia.vue').default);
+Vue.component('profesor', require('./components/Profesor.vue').default);
+Vue.component('blog', require('./components/Blog.vue').default);
 /*FIN  DEL COMPONENTES DEL PANEL ADMINISTRADOR */
 
 /*INICIO DEL COMPONENTES DE LA PAGINA WEB */

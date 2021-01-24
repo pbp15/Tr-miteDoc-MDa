@@ -8,8 +8,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Testimonios
-                        <button type="button" @click="abrirModal('testimonio','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Profesores
+                        <button type="button" @click="abrirModal('profesore','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -18,11 +18,10 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">nombre</option>
-                                      <option value="descripcion">Descripcion</option>
+                                      <option value="nombres">Nombres</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarTestimonio(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarTestimonio(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarProfesor(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarProfesor(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -30,29 +29,30 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Procedencia</th>
-                                    <th>Descripcion</th>
+                                    <th>Apellidos y Nombres</th>
+                                    <th>Curso a Cargo</th>
+                                    <th>Nivel</th>
                                     <th>Imagen</th>
+                                 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="testimonio in arrayTestimonio" :key="testimonio.id">
+                                <tr v-for="profesore in arrayProfesore" :key="profesore.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('testimonio','actualizar',testimonio)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('profesore','actualizar',profesore)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarTestimonio(testimonio.id)">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarProfesor(profesore.id)">
                                         <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
-                                    <td v-text="testimonio.nombre"></td>
-                                           <td v-text="testimonio.procedencia"></td>
-                                    <td v-text="testimonio.descripcion"></td>
+                                    <td v-text="profesore.nombres"></td>
+                                    <td v-text="profesore.curso_cargo"></td>
+                                          <td v-text="profesore.nivel"></td>
                                     <td>
-                                        <img :src="'imagepage/testimonios/' + testimonio.imagen" class="img-responsive" width="100px" height="100px">
+                                        <img :src="'imagepage/profesores/' + profesore.imagen" class="img-responsive" width="100px" height="100px">
                                     </td>
-                         
+                                   
                                 </tr>                                
                             </tbody>
                         </table>
@@ -86,24 +86,31 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Nombres</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del titulo">                                        
-                                    </div>
-                                </div>
-                                   <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Universidad</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="universidad" class="form-control" placeholder="Nombre de la Universidad">                                        
+                                        <input type="text" v-model="nombres" class="form-control" placeholder="Apellidos y Nombres">                                        
                                     </div>
                                 </div>
                           
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Curso a Cargo</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Descripcion">                                        
+                                        <input type="text" v-model="curso_cargo" class="form-control" placeholder="Descripcion">                                        
                                     </div>
                                 </div>
+                                 <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Nivel Educativo</label>
+                                    <div class="col-md-9">                                
+                                         <select class="form-control" v-model="nivel">
+                                            <option value="0" disabled>Seleccione</option>
+                                            <option >Inicial</option>
+                                            <option > Primaria</option>
+                                            <option >Secundaria</option>
+                                        </select>                           
+                              
+                                    </div>
+                                </div>
+                              
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="email-input">Imagen</label>
                                     <div class="col-md-9">
@@ -111,11 +118,11 @@
                                            <img :src="imagen" class="img-responsive" width="100px" height="100px"> 
                                     </div>
                                 </div>
-                              
+                                
 
-                                <div v-show="errorTestimonio" class="form-group row div-error">
+                                <div v-show="errorProfesore" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjTestimonio" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjProfesore" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -125,8 +132,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTestimonio()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTestimonio()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarProfesor()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarProfesor()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -141,17 +148,17 @@
     export default {
         data (){
             return {
-                testimonio_id: 0,
-                nombre : '',
-                universidad: '',
-                descripcion : '',
-                imagen : '',
-                arrayTestimonio: [],
+                profesor_id: 0,
+                nombres : '',
+                curso_cargo : '',
+                nivel: '',
+                imagen : '',           
+                arrayProfesore : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorTestimonio : 0,
-                errorMostrarMsjTestimonio : [],
+                errorProfesore : 0,
+                errorMostrarMsjProfesore : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -161,7 +168,7 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
+                criterio : 'nombres',
                 buscar : ''
             }
         },
@@ -195,12 +202,12 @@
             }
         },
         methods : {
-            listarTestimonio (page,buscar,criterio){
+            listarProfesor (page,buscar,criterio){
                 let me=this;
-                var url= '/testimonio?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/profesor?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayTestimonio = respuesta.testimonios.data;
+                    me.arrayProfesore = respuesta.profesores.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -212,7 +219,7 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarTestimonio(page,buscar,criterio);
+                me.listarProfesor(page,buscar,criterio);
             },
             subirImagen(e){
                 let me=this;
@@ -224,69 +231,70 @@
                 }
                 reader.readAsDataURL(file);
             },
-            registrarTestimonio(){
-                if (this.validarTestimonio()){
+            registrarProfesor(){
+                if (this.validarProfesor()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/testimonio/registrar',{
-                    'nombre': this.nombre,
-                    'universidad':this.universidad,
-                    'descripcion': this.descripcion,
+                axios.post('/profesor/registrar',{
+                    'nombres': this.nombres,
+                    'curso_cargo': this.curso_cargo,
+                     'nivel' :  this.nivel,
                     'imagen' : this.imagen,
+                   
                 }).then(function (response) {
                     swal(
                         'Registrado!',
-                        'El testimonio ha sido registrado con éxito.',
+                        'El profesor ha sido registrado con éxito.',
                         'success'
                         )
                     me.cerrarModal();
-                    me.listarTestimonio(1,'','titulo');
+                    me.listarProfesor(1,'','nombres');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarTestimonio(){
-               if (this.validarTestimonio()){
+            actualizarProfesor(){
+               if (this.validarProfesor()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/testimonio/actualizar',{
-                    'nombre': this.nombre,
-                    'universidad' : this.universidad,
-                    'descripcion': this.descripcion,
+                axios.put('/profesor/actualizar',{
+                    'nombres': this.nombres,
+                    'curso_cargo': this.curso_cargo,                    
+                    'nivel' :  this.nivel,
                     'imagen' : this.imagen,
-                    'id': this.testimonio_id
+                    'id': this.profesor_id
                 }).then(function (response) {
                    swal(
                         'Actualizado!',
-                        'El testimonio ha sido actualizado con éxito.',
+                        'El registro ha sido actualizado con éxito.',
                         'success'
                         )
                     me.cerrarModal();
-                    me.listarTestimonio(1,'','titulo');
+                    me.listarProfesor(1,'','nombres');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },            
-            validarTestimonio(){
-                this.errorTestimonio=0;
-                this.errorMostrarMsjTestimonio =[];
+            validarProfesor(){
+                this.errorMostrarMsjProfesore=0;
+                this.errorMostrarMsjProfesore =[];
 
-                if (!this.nombre) this.errorMostrarMsjTestimonio.push("El nombre del testimonio no puede estar vacío.");
+                if (!this.nombres) this.errorMostrarMsjProfesore.push("El nombre del profesor no puede estar vacío.");
 
-                if (this.errorMostrarMsjTestimonio.length) this.errorTestimonio = 1;
+                if (this.errorMostrarMsjProfesore.length) this.errorProfesore = 1;
 
-                return this.errorTestimonio;
+                return this.errorProfesore;
             },
-              eliminarTestimonio(id){
+              eliminarProfesor(id){
             
              swal({
-                title: 'Esta seguro de eliminar este testimonio?',
+                title: 'Esta seguro de eliminar este registro?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -301,10 +309,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/testimonio/eliminar',{
+                    axios.put('/profesor/eliminar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarTestimonio(1,'','nombre');
+                        me.listarProfesor(1,'','nombres');
                         swal(
                         'Eliminado!',
                         'El registro ha sido eliminado con éxito.',
@@ -327,25 +335,25 @@
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre='';
-                this.universidad='',
-                this.descripcion='';
+                this.nombres='';
+                this.curso_cargo='';                
+                this.nivel='';
                 this.imagen='';
-                this.errorTestimonio=0;
+                this.errorProfesore=0;
 
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "testimonio":
+                    case "profesore":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Testimonio';
-                                this.nombre= '';
-                                this.universidad='';
-                                this.descripcion='';
+                                this.tituloModal = 'Registrar Profesor';
+                                this.nombres='';
+                                this.curso_cargo='';                
+                                this.nivel='';
                                 this.imagen='';
                                 this.tipoAccion = 1;
                                 break;
@@ -354,12 +362,12 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Testimonio';
+                                this.tituloModal='Actualizar Evento';
                                 this.tipoAccion=2;
-                                this.testimonio_id=data['id'];
-                                this.nombre = data['nombre'];
-                                this.universidad = data['universidad'];
-                                this.descripcion = data['descripcion'];
+                                this.profesor_id=data['id'];
+                                this.nombres = data['nombres'];
+                                this.curso_cargo = data['curso_cargo'];                                
+                                this.nivel=data['nivel'];
                                 this.imagen = data['imagen'];
                                 break;
                             }
@@ -369,7 +377,7 @@
             }
         },
         mounted() {
-            this.listarTestimonio(1,this.buscar,this.criterio);
+            this.listarProfesor(1,this.buscar,this.criterio);
         }
     }
 </script>

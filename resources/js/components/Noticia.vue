@@ -8,8 +8,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Testimonios
-                        <button type="button" @click="abrirModal('testimonio','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Noticias
+                        <button type="button" @click="abrirModal('noticia','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -18,11 +18,11 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">nombre</option>
+                                      <option value="titulo">Titulo</option>
                                       <option value="descripcion">Descripcion</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarTestimonio(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarTestimonio(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarNoticia(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarNoticia(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -30,29 +30,28 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Procedencia</th>
+                                    <th>Titulo</th>
                                     <th>Descripcion</th>
                                     <th>Imagen</th>
+                                    <th>Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="testimonio in arrayTestimonio" :key="testimonio.id">
+                                <tr v-for="noticia in arrayNoticia" :key="noticia.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('testimonio','actualizar',testimonio)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('noticia','actualizar',noticia)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarTestimonio(testimonio.id)">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarNoticia(noticia.id)">
                                         <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
-                                    <td v-text="testimonio.nombre"></td>
-                                           <td v-text="testimonio.procedencia"></td>
-                                    <td v-text="testimonio.descripcion"></td>
+                                    <td v-text="noticia.titulo"></td>
+                                    <td v-text="noticia.descripcion"></td>
                                     <td>
-                                        <img :src="'imagepage/testimonios/' + testimonio.imagen" class="img-responsive" width="100px" height="100px">
+                                        <img :src="'imagepage/noticias/' + noticia.imagen" class="img-responsive" width="100px" height="100px">
                                     </td>
-                         
+                                         <td v-text="noticia.fecha"></td>
                                 </tr>                                
                             </tbody>
                         </table>
@@ -86,15 +85,9 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Titulo</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del titulo">                                        
-                                    </div>
-                                </div>
-                                   <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Universidad</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="universidad" class="form-control" placeholder="Nombre de la Universidad">                                        
+                                        <input type="text" v-model="titulo" class="form-control" placeholder="Nombre del titulo">                                        
                                     </div>
                                 </div>
                           
@@ -111,11 +104,17 @@
                                            <img :src="imagen" class="img-responsive" width="100px" height="100px"> 
                                     </div>
                                 </div>
+                                   <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Fecha</label>
+                                    <div class="col-md-9">
+                                        <input type="date" v-model="fecha" class="form-control" >                                        
+                                    </div>
+                                </div>
                               
 
-                                <div v-show="errorTestimonio" class="form-group row div-error">
+                                <div v-show="errorNoticia" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjTestimonio" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjNoticia" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -125,8 +124,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTestimonio()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTestimonio()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarNoticia()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarNoticia()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -141,17 +140,17 @@
     export default {
         data (){
             return {
-                testimonio_id: 0,
-                nombre : '',
-                universidad: '',
+                noticia_id: 0,
+                titulo : '',
                 descripcion : '',
                 imagen : '',
-                arrayTestimonio: [],
+                fecha: '',
+                arrayNoticia : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorTestimonio : 0,
-                errorMostrarMsjTestimonio : [],
+                errorNoticia : 0,
+                errorMostrarMsjNoticia : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -161,7 +160,7 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
+                criterio : 'titulo',
                 buscar : ''
             }
         },
@@ -195,12 +194,12 @@
             }
         },
         methods : {
-            listarTestimonio (page,buscar,criterio){
+            listarNoticia (page,buscar,criterio){
                 let me=this;
-                var url= '/testimonio?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/noticia?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayTestimonio = respuesta.testimonios.data;
+                    me.arrayNoticia = respuesta.noticias.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -212,7 +211,7 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarTestimonio(page,buscar,criterio);
+                me.listarNoticia(page,buscar,criterio);
             },
             subirImagen(e){
                 let me=this;
@@ -224,69 +223,69 @@
                 }
                 reader.readAsDataURL(file);
             },
-            registrarTestimonio(){
-                if (this.validarTestimonio()){
+            registrarNoticia(){
+                if (this.validarNoticia()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/testimonio/registrar',{
-                    'nombre': this.nombre,
-                    'universidad':this.universidad,
+                axios.post('/noticia/registrar',{
+                    'titulo': this.titulo,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
+                    'fecha' :  this.fecha,
                 }).then(function (response) {
                     swal(
                         'Registrado!',
-                        'El testimonio ha sido registrado con éxito.',
+                        'La noticia ha sido registrado con éxito.',
                         'success'
                         )
                     me.cerrarModal();
-                    me.listarTestimonio(1,'','titulo');
+                    me.listarNoticia(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarTestimonio(){
-               if (this.validarTestimonio()){
+            actualizarNoticia(){
+               if (this.validarNoticia()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/testimonio/actualizar',{
-                    'nombre': this.nombre,
-                    'universidad' : this.universidad,
+                axios.put('/noticia/actualizar',{
+                    'titulo': this.titulo,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
-                    'id': this.testimonio_id
+                    'fecha' :  this.fecha,
+                    'id': this.evento_id
                 }).then(function (response) {
                    swal(
                         'Actualizado!',
-                        'El testimonio ha sido actualizado con éxito.',
+                        'La noticia ha sido actualizado con éxito.',
                         'success'
                         )
                     me.cerrarModal();
-                    me.listarTestimonio(1,'','titulo');
+                    me.listarNoticia(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },            
-            validarTestimonio(){
-                this.errorTestimonio=0;
-                this.errorMostrarMsjTestimonio =[];
+            validarNoticia(){
+                this.errorNoticia=0;
+                this.errorMostrarMsjNoticia =[];
 
-                if (!this.nombre) this.errorMostrarMsjTestimonio.push("El nombre del testimonio no puede estar vacío.");
+                if (!this.titulo) this.errorMostrarMsjNoticia.push("El titulo del evento no puede estar vacío.");
 
-                if (this.errorMostrarMsjTestimonio.length) this.errorTestimonio = 1;
+                if (this.errorMostrarMsjNoticia.length) this.errorNoticia = 1;
 
-                return this.errorTestimonio;
+                return this.errorNoticia;
             },
-              eliminarTestimonio(id){
+              eliminarNoticia(id){
             
              swal({
-                title: 'Esta seguro de eliminar este testimonio?',
+                title: 'Esta seguro de eliminar esta Noticia?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -301,13 +300,13 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/testimonio/eliminar',{
+                    axios.put('/noticia/eliminar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarTestimonio(1,'','nombre');
+                        me.listarNoticia(1,'','titulo');
                         swal(
-                        'Eliminado!',
-                        'El registro ha sido eliminado con éxito.',
+                        'Eliminada!',
+                        'La Noticia ha sido eliminada con éxito.',
                         'success'
                         )
                     }).catch(function (error) {
@@ -327,26 +326,26 @@
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre='';
-                this.universidad='',
+                this.titulo='';
                 this.descripcion='';
                 this.imagen='';
-                this.errorTestimonio=0;
+                this.fecha='';
+                this.errorNoticia=0;
 
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "testimonio":
+                    case "noticia":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Testimonio';
-                                this.nombre= '';
-                                this.universidad='';
+                                this.tituloModal = 'Registrar Noticia';
+                                this.titulo= '';
                                 this.descripcion='';
                                 this.imagen='';
+                                this.fecha='';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -354,13 +353,13 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Testimonio';
+                                this.tituloModal='Actualizar Noticia';
                                 this.tipoAccion=2;
-                                this.testimonio_id=data['id'];
-                                this.nombre = data['nombre'];
-                                this.universidad = data['universidad'];
+                                this.evento_id=data['id'];
+                                this.titulo = data['titulo'];
                                 this.descripcion = data['descripcion'];
                                 this.imagen = data['imagen'];
+                                this.fecha=data['fecha'];
                                 break;
                             }
                         }
@@ -369,7 +368,7 @@
             }
         },
         mounted() {
-            this.listarTestimonio(1,this.buscar,this.criterio);
+            this.listarNoticia(1,this.buscar,this.criterio);
         }
     }
 </script>

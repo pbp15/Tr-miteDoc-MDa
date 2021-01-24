@@ -18,7 +18,7 @@ class CreateProfesoresTable extends Migration
             $table->string('nombres',100)->unique();
             $table->string('curso_cargo',200);
             $table->string('nivel',200);
-            $table->dateTime('imagen');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

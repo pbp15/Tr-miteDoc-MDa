@@ -86,6 +86,25 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/testimonio/registrar', 'TestimonioController@store');
         Route::put('/testimonio/actualizar', 'TestimonioController@update');
         Route::put('/testimonio/eliminar', 'TestimonioController@destroy');
+
+        
+        Route::get('/noticia','NoticiaController@index');
+        Route::post('/noticia/registrar', 'NoticiaController@store');
+        Route::put('/noticia/actualizar', 'NoticiaController@update');
+        Route::put('/noticia/eliminar', 'NoticiaController@destroy');
+
+        
+        Route::get('/profesor','ProfesoreController@index');
+        Route::post('/profesor/registrar', 'ProfesoreController@store');
+        Route::put('/profesor/actualizar', 'ProfesoreController@update');
+        Route::put('/profesor/eliminar', 'ProfesoreController@destroy');
+
+
+        
+        Route::get('/blog','BlogController@index');
+        Route::post('/blog/registrar', 'BlogController@store');
+        Route::put('/blog/actualizar', 'BlogController@update');
+        Route::put('/blog/eliminar', 'BlogController@destroy');
     });
         
 });

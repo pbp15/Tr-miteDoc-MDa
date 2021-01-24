@@ -3,10 +3,10 @@
 
     @if(Auth::check())
             @if(Auth::user()->idrol == 1)
-                
+            
                             <!-- Contenido Principal -->
                             <template  v-if="menu==0">
-                                <h1>Escritorio</h1>           
+                              
                             </template>
 
                             <template  v-if="menu==1">
@@ -14,50 +14,52 @@
                             </template>
 
                             <template  v-if="menu==2">
-                             <contacto></contacto>
+                                   <blog></blog>
                             </template>
 
                             <template  v-if="menu==3">
-                                <persona></persona>
-                            </template>
-
-                            <template  v-if="menu==4">
-                                <rol></rol>
-                            </template>
-
-                            <template  v-if="menu==5">
-                                <user></user>
-                            </template>
-
-                            <template  v-if="menu==6">
-                            </template>
-
-                            <template  v-if="menu==7">
                                 <evento></evento>
                             </template>
 
-                            <template  v-if="menu==8">
+                            <template  v-if="menu==4">
+                                <noticia></noticia>
+                            </template>
+
+                            <template  v-if="menu==5">
+                                <comunicado></comunicado>
+                            </template>
+
+                            <template  v-if="menu==6">
                                 <testimonio></testimonio>
                             </template>
 
+                            <template  v-if="menu==7">
+                                <profesor></profesor>
+                            </template>
+
+                            <template  v-if="menu==8">
+                                <contacto></contacto>
+                            </template>
+
                             <template  v-if="menu==9">
-                                <h1>Contenido Nº9 </h1>
+                                <persona></persona> 
                             </template>
 
                             <template  v-if="menu==10">
-                                <h1>Contenido Nº10 </h1>
+                                <rol></rol>
                             </template>
 
                             <template  v-if="menu==11">
-                                <h1>Contenido Nº11 </h1>
+                                <user></user>
                             </template>
 
                             <template  v-if="menu==12">
-                                <h1>Contenido Nº12 </h1>
+                                <h1>PERFIL</h1>
                             </template>
                             <template  v-if="menu==13">
-                           
-                            </template>
+                                <h1>INSTITUCION</h1>
+                            </template>                            
+                    
                             <!-- /Fin del contenido principal -->
             
             @elseif (Auth::user()->idrol == 2)

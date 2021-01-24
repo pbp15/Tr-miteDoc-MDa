@@ -8,8 +8,8 @@
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Testimonios
-                        <button type="button" @click="abrirModal('testimonio','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Blog
+                        <button type="button" @click="abrirModal('blog','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -18,11 +18,11 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">nombre</option>
+                                      <option value="titulo">Titulo</option>
                                       <option value="descripcion">Descripcion</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarTestimonio(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarTestimonio(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarBlog(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarBlog(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -30,29 +30,30 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Procedencia</th>
+                                    <th>Categoria</th>
+                                    <th>Titulo</th>
                                     <th>Descripcion</th>
                                     <th>Imagen</th>
+                                    <th>Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="testimonio in arrayTestimonio" :key="testimonio.id">
+                                <tr v-for="blog in arrayBlog" :key="blog.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('testimonio','actualizar',testimonio)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('blog','actualizar',blog)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarTestimonio(testimonio.id)">
+                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarBlog(blog.id)">
                                         <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
-                                    <td v-text="testimonio.nombre"></td>
-                                           <td v-text="testimonio.procedencia"></td>
-                                    <td v-text="testimonio.descripcion"></td>
+                                    <td v-text="blog.nombre_categoria"></td>
+                                    <td v-text="blog.titulo"></td>
+                                    <td v-text="blog.descripcion"></td>
                                     <td>
-                                        <img :src="'imagepage/testimonios/' + testimonio.imagen" class="img-responsive" width="100px" height="100px">
+                                        <img :src="'imagepage/blogs/' + blog.imagen" class="img-responsive" width="100px" height="100px">
                                     </td>
-                         
+                                         <td v-text="blog.fecha"></td>
                                 </tr>                                
                             </tbody>
                         </table>
@@ -85,16 +86,21 @@
                         </div>
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre del titulo">                                        
+                                        <select class="form-control" v-model="idcategoria">
+                                            <option value="0" disabled>Seleccione</option>
+                                            <option v-for="categoria in arrayCategoria" :key="categoria.id" :value="categoria.id" v-text="categoria.nombre"></option>
+                                        </select>                                        
                                     </div>
                                 </div>
-                                   <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Universidad</label>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Titulo</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="universidad" class="form-control" placeholder="Nombre de la Universidad">                                        
+                                        <input type="text" v-model="titulo" class="form-control" placeholder="Nombre del titulo">                                        
                                     </div>
                                 </div>
                           
@@ -111,11 +117,17 @@
                                            <img :src="imagen" class="img-responsive" width="100px" height="100px"> 
                                     </div>
                                 </div>
+                                   <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Fecha</label>
+                                    <div class="col-md-9">
+                                        <input type="date" v-model="fecha" class="form-control" >                                        
+                                    </div>
+                                </div>
                               
 
-                                <div v-show="errorTestimonio" class="form-group row div-error">
+                                <div v-show="errorBlog" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjTestimonio" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjBlog" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -125,8 +137,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTestimonio()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTestimonio()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarBlog()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarBlog()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -141,17 +153,19 @@
     export default {
         data (){
             return {
-                testimonio_id: 0,
-                nombre : '',
-                universidad: '',
+                blog_id: 0,
+                idcategoria : 0,
+                nombre_categoria : '',
+                titulo : '',
                 descripcion : '',
                 imagen : '',
-                arrayTestimonio: [],
+                fecha: '',
+                arrayBlog : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorTestimonio : 0,
-                errorMostrarMsjTestimonio : [],
+                errorBlog : 0,
+                errorMostrarMsjBlog : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -161,8 +175,9 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
-                buscar : ''
+                criterio : 'titulo',
+                buscar : '',
+                arrayCategoria: []
             }
         },
         computed:{
@@ -195,12 +210,12 @@
             }
         },
         methods : {
-            listarTestimonio (page,buscar,criterio){
+            listarBlog (page,buscar,criterio){
                 let me=this;
-                var url= '/testimonio?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/blog?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayTestimonio = respuesta.testimonios.data;
+                    me.arrayBlog = respuesta.blogs.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -212,7 +227,7 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarTestimonio(page,buscar,criterio);
+                me.listarBlog(page,buscar,criterio);
             },
             subirImagen(e){
                 let me=this;
@@ -224,69 +239,84 @@
                 }
                 reader.readAsDataURL(file);
             },
-            registrarTestimonio(){
-                if (this.validarTestimonio()){
+
+            registrarBlog(){
+                if (this.validarBlog()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/testimonio/registrar',{
-                    'nombre': this.nombre,
-                    'universidad':this.universidad,
+                axios.post('/blog/registrar',{
+                    'idcategoria': this.idcategoria,
+                    'titulo': this.titulo,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
+                    'fecha' :  this.fecha,
                 }).then(function (response) {
                     swal(
                         'Registrado!',
-                        'El testimonio ha sido registrado con éxito.',
+                        'El blog ha sido registrado con éxito.',
                         'success'
                         )
                     me.cerrarModal();
-                    me.listarTestimonio(1,'','titulo');
+                    me.listarBlog(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarTestimonio(){
-               if (this.validarTestimonio()){
+                 selectCategoria(){
+                let me=this;
+                var url= '/categoria/selectCategoria';
+                axios.get(url).then(function (response) {
+                    //console.log(response);
+                    var respuesta= response.data;
+                    me.arrayCategoria = respuesta.categorias;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            actualizarBlog(){
+               if (this.validarBlog()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/testimonio/actualizar',{
-                    'nombre': this.nombre,
-                    'universidad' : this.universidad,
+                axios.put('/blog/actualizar',{
+                    'idcategoria': this.idcategoria,
+                    'titulo': this.titulo,
                     'descripcion': this.descripcion,
                     'imagen' : this.imagen,
-                    'id': this.testimonio_id
+                    'fecha' :  this.fecha,
+                    'id': this.blog_id
                 }).then(function (response) {
                    swal(
                         'Actualizado!',
-                        'El testimonio ha sido actualizado con éxito.',
+                        'El blog ha sido actualizado con éxito.',
                         'success'
                         )
                     me.cerrarModal();
-                    me.listarTestimonio(1,'','titulo');
+                    me.listarBlog(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },            
-            validarTestimonio(){
-                this.errorTestimonio=0;
-                this.errorMostrarMsjTestimonio =[];
+            validarBlog(){
+                this.errorBlog=0;
+                this.errorMostrarMsjBlog =[];
 
-                if (!this.nombre) this.errorMostrarMsjTestimonio.push("El nombre del testimonio no puede estar vacío.");
+                if (!this.titulo) this.errorMostrarMsjBlog.push("El titulo del blog no puede estar vacío.");
 
-                if (this.errorMostrarMsjTestimonio.length) this.errorTestimonio = 1;
+                if (this.errorMostrarMsjBlog.length) this.errorBlog = 1;
 
-                return this.errorTestimonio;
+                return this.errorBlog;
             },
-              eliminarTestimonio(id){
+              eliminarBlog(id){
             
              swal({
-                title: 'Esta seguro de eliminar este testimonio?',
+                title: 'Esta seguro de eliminar este evento?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -301,10 +331,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/testimonio/eliminar',{
+                    axios.put('/blog/eliminar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarTestimonio(1,'','nombre');
+                        me.listarBlog(1,'','titulo');
                         swal(
                         'Eliminado!',
                         'El registro ha sido eliminado con éxito.',
@@ -327,26 +357,30 @@
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre='';
-                this.universidad='',
+                this.idcategoria= 0;
+                this.nombre_categoria = '';
+                this.titulo='';
                 this.descripcion='';
                 this.imagen='';
-                this.errorTestimonio=0;
+                this.fecha='';
+                this.errorBlog=0;
 
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "testimonio":
+                    case "blog":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Testimonio';
-                                this.nombre= '';
-                                this.universidad='';
+                                this.tituloModal = 'Registrar Blog';
+                                 this.idcategoria=0;
+                                this.nombre_categoria='';
+                                this.titulo= '';
                                 this.descripcion='';
                                 this.imagen='';
+                                this.fecha='';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -354,22 +388,24 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Testimonio';
+                                this.tituloModal='Actualizar Blog';
                                 this.tipoAccion=2;
-                                this.testimonio_id=data['id'];
-                                this.nombre = data['nombre'];
-                                this.universidad = data['universidad'];
+                                this.blog_id=data['id'];
+                                this.idcategoria=data['idcategoria'];
+                                this.titulo = data['titulo'];
                                 this.descripcion = data['descripcion'];
                                 this.imagen = data['imagen'];
+                                this.fecha=data['fecha'];
                                 break;
                             }
                         }
                     }
                 }
+            this.selectCategoria();
             }
         },
         mounted() {
-            this.listarTestimonio(1,this.buscar,this.criterio);
+            this.listarBlog(1,this.buscar,this.criterio);
         }
     }
 </script>

@@ -306,7 +306,7 @@
                         me.listarEvento(1,'','titulo');
                         swal(
                         'Eliminado!',
-                        'El registro ha sido activado con éxito.',
+                        'El evento ha sido eliminado con éxito.',
                         'success'
                         )
                     }).catch(function (error) {
