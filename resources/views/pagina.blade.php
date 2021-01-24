@@ -5,7 +5,7 @@
 	<title>I.E.P "Einstein"-Tarma </title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="shortcut icon" href="images/log1.jpg">
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap"
 		rel="stylesheet">
 
@@ -84,152 +84,8 @@
 		</div>
 	</section>
 
-	<section class="ftco-section ftco-no-pt ftc-no-pb">
-		<div class="container">
-			<div class="row d-flex">
-				<div class="col-md-5 order-md-last wrap-about wrap-about d-flex align-items-stretch">
-					<div class="img" style="background-image: url(images/sec1.jpg); border"></div>
-				</div>
-				<div class="col-md-7 wrap-about py-5 pr-md-4 ftco-animate">
-					<h2 class="mb-4">Lo que ofrecemos</h2>
-					<p>La Institución Educativa Particular "Einsteiin" - Tarma te ofrece una educación de calidad con lo que
-						contamos con: </p>
-					<div class="row mt-5">
-						<div class="col-lg-6">
-							<div class="services-2 d-flex">
-								<div class="icon mt-2 d-flex justify-content-center align-items-center"><span
-										class="flaticon-security"></span></div>
-								<div class="text pl-3">
-									<h3>Seguridad primero</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="services-2 d-flex">
-								<div class="icon mt-2 d-flex justify-content-center align-items-center"><span
-										class="flaticon-reading"></span></div>
-								<div class="text pl-3">
-									<h3>Clases regulares</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="services-2 d-flex">
-								<div class="icon mt-2 d-flex justify-content-center align-items-center"><span
-										class="flaticon-diploma"></span></div>
-								<div class="text pl-3">
-									<h3>Maestros calificados</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="services-2 d-flex">
-								<div class="icon mt-2 d-flex justify-content-center align-items-center"><span
-										class="flaticon-education"></span></div>
-								<div class="text pl-3">
-									<h3>Infraestrutura de Calidad</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="services-2 d-flex">
-								<div class="icon mt-2 d-flex justify-content-center align-items-center"><span
-										class="flaticon-jigsaw"></span></div>
-								<div class="text pl-3">
-									<h3>Talleres </h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="services-2 d-flex">
-								<div class="icon mt-2 d-flex justify-content-center align-items-center"><span
-										class="flaticon-kids"></span></div>
-								<div class="text pl-3">
-									<h3>Instalaciones Deportivas</h3>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 
-	<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/cole.jpg);"
-		data-stellar-background-ratio="0.5">
-		<div class="container">
-			<div class="row justify-content-center mb-5 pb-2 d-flex">
-				<div class="col-md-6 align-items-stretch d-flex">
-					<div class="img img-video d-flex align-items-center" style="background-image: url(images/about-2.jpg);">
-						<div class="video justify-content-center">
-							<a href="https://vimeo.com/45830194"
-								class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-								<span class="ion-ios-play"></span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
-					<h2 class="mb-4">Colegio "Einstein"</h2>
-					<p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
-						regelialia. It is a paradisematic country. A small river named Duden flows by their place and supplies it
-						with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into
-						your mouth.</p>
-					<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
-						paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-				</div>
-			</div>
-			<div class="row d-md-flex align-items-center justify-content-center">
-				<div class="col-lg-12">
-					<div class="row d-md-flex align-items-center">
-						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-							<div class="block-18">
-								<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="15">0</strong>
-									<span>Ingresantes 2021</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-							<div class="block-18">
-								<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="170">0</strong>
-									<span>Estudiantes</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-							<div class="block-18">
-								<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="18">0</strong>
-									<span>Cursos</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-							<div class="block-18">
-								<div class="icon"><span class="flaticon-doctor"></span></div>
-								<div class="text">
-									<strong class="number" data-number="21">0</strong>
-									<span> Docentes </span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 
 	<section class="ftco-section">

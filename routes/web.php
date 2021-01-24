@@ -20,6 +20,7 @@ Route::group(['middleware' => ['guest']], function(){
     /* VISTAS DE PAGINA WEB */
     Route::get('/page','PaginaController@inicio')->name('page');
     Route::get('/inicial','PaginaController@nivelinicial')->name('nivel-inicial');
+    Route::get('/nosotros','PaginaController@nosotros')->name('nosotros');
     /* METODOS DE PAGINA WEB */
     Route::get('/evento/show','EventoController@getDatos');
     Route::get('/testimonio/show','TestimonioController@getDatos');    
