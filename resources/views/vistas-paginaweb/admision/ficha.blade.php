@@ -28,13 +28,12 @@
 <body>
 	<div id="app">
 
-		@include('paginaweb.header')
-
-		<section class="ftco-section testimony-section">
+        @include('paginaweb.header')
+        <section class="ftco-section testimony-section">
             <div class="container">
                 <div class="row justify-content-center mb-5 pb-2">
                     <div class="col-md-8 text-center heading-section ftco-animate">
-                        <h2 class="mb-4">Admision</h2>
+                        <h2 class="mb-4">Ficha de inscripcion</h2>
                         <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
                             regelialia. It is a paradisematic country</p>
                     </div>
@@ -42,15 +41,13 @@
             </div>
         
         </section>
-
-  
         @include('paginaweb.footer')
 
     </div>
 
 
-	</div>
-	<script src="js1/app.js"></script>
+    </div>
+    <script src="js1/app.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>

@@ -40,39 +40,40 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a href="{{route('page')}}" class="nav-link pl-0">Inicio</a></li>
-                <li class="nav-item dropdown"><a href="{{route('nosotros')}}" class="nav-link">Quienes Somos</a>
+                <li class="nav-item dropdown"><a href="#" class="nav-link">Quienes Somos</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Bienvenida</a></li>
-                        <li><a class="dropdown-item" href="#">Nuestra Historia</a></li>
-                        <li><a class="dropdown-item" href="#">Visión y Misión</a></li>
+                        <li><a class="dropdown-item" href="{{route('bienvenida')}}">Bienvenida</a></li>
+                        <li><a class="dropdown-item" href="{{route('historia')}}">Nuestra Historia</a></li>
+                        <li><a class="dropdown-item" href="{{route('vision-mision')}}">Visión y Misión</a></li>
                       </ul>
                 </li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link">Que ofrecemos</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Nuestra Propuesta</a></li>
-                        <li><a class="dropdown-item" href="#">Metodología de Enseñanza</a></li>
-                        <li><a class="dropdown-item" href="{{route('nivel-inicial')}}">Niveles Educativos</a></li>
-                      </ul>
+                        <li><a class="dropdown-item" href="{{route('propuesta')}}">Nuestra Propuesta</a></li>
+                        <li><a class="dropdown-item" href="{{route('metodologia')}}">Metodología de Enseñanza</a></li>
+                        <li><a class="dropdown-item" href="{{route('niveles')}}">Niveles Educativos</a></li>
+                        <li><a class="dropdown-item" href="{{route('servicios')}}">Servicios</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown"><a href="" class="nav-link"> Comunidad </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Eventos</a></li>
-                        <li><a class="dropdown-item" href="#">Testimonios</a></li>
-                        <li><a class="dropdown-item" href="#">Noticias</a></li>
-                        <li><a class="dropdown-item" href="#">Blog</a></li>
+                        <li><a class="dropdown-item" href="{{route('eventos')}}">Eventos</a></li>
+                        <li><a class="dropdown-item" href="{{route('testimonios')}}">Testimonios</a></li>
+                        <li><a class="dropdown-item" href="{{route('noticias')}}">Noticias</a></li>
+                        <li><a class="dropdown-item" href="{{route('blogs')}}">Blogs</a></li>
                       </ul>
                 
                 </li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link"> Admisión 2021 </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ficha de Inscripción</a></li>
-                        <li><a class="dropdown-item" href="#">Requisitos Matricula </a></li>
-                        <li><a class="dropdown-item" href="#">Admision</a></li>
+                        <li><a class="dropdown-item" href="{{route('ficha')}}">Ficha de Inscripción</a></li>
+                        <li><a class="dropdown-item" href="{{route('requisitos')}}">Requisitos Matricula </a></li>
+                        <li><a class="dropdown-item" href="{{route('admision')}}">Admision</a></li>
                       </ul>                
                 </li>
              
                 <li class="nav-item dropdown"><a href="{{route('defect')}}" class="nav-link">Intranet</a></li>
-                <li class="nav-item dropdown"><a href="{{route('defect')}}" class="nav-link">Contactanos</a></li>
+                <li class="nav-item dropdown"><a href="{{route('contactanos')}}" class="nav-link">Contactanos</a></li>
         
             </ul>
         </div>

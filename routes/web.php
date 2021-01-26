@@ -20,7 +20,32 @@ Route::group(['middleware' => ['guest']], function(){
     /* VISTAS DE PAGINA WEB */
     Route::get('/page','PaginaController@inicio')->name('page');
     Route::get('/inicial','PaginaController@nivelinicial')->name('nivel-inicial');
-    Route::get('/nosotros','PaginaController@nosotros')->name('nosotros');
+
+    //MENU DE COMUNIDAD
+    Route::get('/eventos','PaginaController@eventos')->name('eventos');
+    Route::get('/testimonios','PaginaController@testimonios')->name('testimonios');
+    Route::get('/noticias','PaginaController@noticias')->name('noticias');
+    Route::get('/blogs','PaginaController@blogs')->name('blogs');
+   
+    // MENU DE QUIENES-SOMOS
+    Route::get('/bienvenida','PaginaController@bienvenida')->name('bienvenida');
+    Route::get('/historia','PaginaController@historia')->name('historia');
+    Route::get('/vision-mision','PaginaController@visionmision')->name('vision-mision');
+
+    //MENU DE QUE-OFRECEMOS
+    Route::get('/propuesta','PaginaController@propuesta')->name('propuesta');
+    Route::get('/metodologia','PaginaController@metodologia')->name('metodologia');
+    Route::get('/niveles','PaginaController@niveles')->name('niveles');
+    Route::get('/servicios','PaginaController@servicios')->name('servicios');
+
+    // MENU ADMISION
+    Route::get('/ficha','PaginaController@ficha')->name('ficha');
+    Route::get('/requisitos','PaginaController@requisitos')->name('requisitos');
+    Route::get('/admision','PaginaController@admision')->name('admision');
+
+    //MENU CONTACTANOS
+    Route::get('/contactanos','PaginaController@contactanos')->name('contactanos');
+    
     /* METODOS DE PAGINA WEB */
     Route::get('/evento/show','EventoController@getDatos');
     Route::get('/testimonio/show','TestimonioController@getDatos');    
