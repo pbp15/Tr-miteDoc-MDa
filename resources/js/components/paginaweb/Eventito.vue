@@ -6,12 +6,10 @@
 					<div class="blog-entry col-md-4 " v-for="evento in arrayEvento" :key="evento.id" >
 							<div style="position: relative">
                 			<a href="#"><img  class="img-fluid " :src="'imagepage/eventos/'+evento.imagen" :title="evento.titulo" />	</a>
-                            <p style="background-color:#000; position:absolute; bottom: 0">{{evento.fecha}}</p>
+                            <p    style="background-color:yellow; position:absolute; bottom: 0">{{evento.fecha}}</p>
                             </div>
                             <!-- <div class="meta-date text-center p-2">
-								<span class="day">15</span>
-								<span class="mos">Junio</span>
-								<span class="yr">2019</span>
+								<span class="day"></span>
 							</div> -->
 											<div class="text bg-white p-4" >
 							<h3 class="heading"><a href="#">{{evento.titulo}}</a></h3>

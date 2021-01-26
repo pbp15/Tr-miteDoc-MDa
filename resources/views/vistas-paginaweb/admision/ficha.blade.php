@@ -29,21 +29,36 @@
 	<div id="app">
 
         @include('paginaweb.header')
-        <section class="ftco-section testimony-section">
+
             <div class="container">
-                <div class="row justify-content-center mb-5 pb-2">
+                <div class="row justify-content-center my-5 pb-2">
                     <div class="col-md-8 text-center heading-section ftco-animate">
-                        <h2 class="mb-4">Ficha de inscripcion</h2>
-                        <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia. It is a paradisematic country</p>
-                    </div>
-                </div>             
+                        <h2 >Matricula 2021 </h2>
+                        <strong><h4>Para mayor información envianos un mensaje y nos pondremos en contacto.</h4></strong>
+                </div>
             </div>
-        
-        </section>
+        </div>
+
+<section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb mt-5  mb-5" style="background-image: url(images/portada3jpg);"
+		data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row justify-content-end">
+				<div class="col-md-12 py-2 px-md-5">
+					<div class="py-md-5">
+						<div class="heading-section heading-section-white ftco-animate mb-5">
+							<h2 class="mb-4">Admisión 2021</h2>
+							
+						</div>
+						<admisionito></admisionito>
+					</div>
+				</div>			
+			</div>
+         </section>
+
+
         @include('paginaweb.footer')
 
-    </div>
 
 
     </div>

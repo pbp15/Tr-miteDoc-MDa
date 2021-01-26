@@ -8,7 +8,7 @@
   <meta name="description" content="Sistema Ventas Laravel Vue Js- IncanatoIT">
   <meta name="author" content="Incanatoit.com">
   <meta name="keyword" content="Sistema ventas Laravel Vue Js, Sistema compras Laravel Vue Js">
-
+  <link rel="shortcut icon" href="images/log1.jpg">
   <title>Página web - I.E.P "Einstein" </title>
   <link href="css1/plantilla.css" rel="stylesheet">
 

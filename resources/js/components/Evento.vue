@@ -6,9 +6,11 @@
             </ol>
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
+             
                 <div class="card">
+                    <strong><h2 class="text-center">Eventos</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Eventos
+                        <i class="fa fa-align-justify"></i> 
                         <button type="button" @click="abrirModal('evento','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
