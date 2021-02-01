@@ -8,7 +8,7 @@
         <!-- Ejemplo de tabla Listado -->
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-align-justify"></i> Expedientes
+                <i class="fa fa-align-justify"></i> Registro de expedientes
                 <button type="button" @click="abrirModal('expediente','registrar')" class="btn btn-secondary">
                     <i class="icon-plus"></i>&nbsp;Nuevo
                 </button>
@@ -157,8 +157,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Documento</label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control-file" @change="obtenerDocumento" name="file">
-                                <input type="hidden" name="documento" id="documento"> 
+                                <input type="file" class="form-control-file" @change="registrarExpediente" name="file">
                             </div>
                         </div>  
 
@@ -267,12 +266,6 @@
 
                 //Envia la peticion para visualizar la data de sa pagina
                 me.listarExpediente(page);
-            },
-            obtenerDocumento(e){
-                let document = e.target.files[0];
-              //  console.log(document);
-                this.file = document;
-                
             },
             registrarExpediente(){
                 if (this.validarExpediente()){

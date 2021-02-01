@@ -83,6 +83,10 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/persona/registrar', 'PersonaController@store');
         Route::put('/persona/actualizar', 'PersonaController@update');
     });
+
+    Route::group(['middleware' => 'Usuario'], function () {
+        Route::get('/user/obtener','UserExpedienteController@obtenerUsuario');
+    });
         
 });
 

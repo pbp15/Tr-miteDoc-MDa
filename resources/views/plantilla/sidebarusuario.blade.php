@@ -9,10 +9,10 @@
             </li>
             
             <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-basket"></i> Gestión de trámites</a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-basket"></i>Trámites</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=5" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-basket-loaded"></i> Trámites</a>
+                        <a class="nav-link" href="#"><i class="icon-basket-loaded"></i>Registro</a>
                     </li>
                 </ul>
             </li>
@@ -21,7 +21,7 @@
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-basket"></i> Total de trámites</a>
                 <ul class="nav-dropdown-items">
                     <li @click="menu=6" class="nav-item">
-                        <a class="nav-link" href="#"><i class="icon-basket-loaded"></i> Lista deTrámites</a>
+                        <a class="nav-link" href="#"><i class="icon-basket-loaded"></i> Lista de Trámites</a>
                     </li>
                 </ul>
             </li>

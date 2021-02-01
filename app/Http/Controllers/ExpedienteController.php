@@ -41,7 +41,13 @@ class ExpedienteController extends Controller
         $expedientes-> asunto = $request -> asunto;
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
-        $expedientes-> file = $request -> file;
+
+        $documento = $request->file('file');
+        $nombredoc = time().'.'.$documento->extension();
+        $documento->move(public_path('storage/documentos'), $nombredoc);
+      
+        $expedientes-> file = $documento;
+
         $mytime = Carbon::now();
         $expedientes-> fecha_tramite = $mytime;
         $expedientes-> condicion = '1';

@@ -38,4 +38,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Persona');
     }
 
+    public function expedientes(){
+        return $this->belongsToMany('App\Expediente','user_expedientes','iduser','idexpediente');
+    }
+
 }
