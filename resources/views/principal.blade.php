@@ -107,8 +107,9 @@
     </footer>
 
     <!-- Bootstrap and necessary plugins -->
-    {{-- <script src="js/appdocumt.js"></script> --}}
+    <script src="/js/app.js"></script>
     <script src="js/plantilladocum.js"></script>
+   
 </body>
 
 </html>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Expediente;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Expediente;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class ExpedienteController extends Controller
@@ -41,11 +42,32 @@ class ExpedienteController extends Controller
         $expedientes-> asunto = $request -> asunto;
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
-        $expedientes-> file = $request -> file;
-        $mytime = Carbon::now();
-        $expedientes-> fecha_tramite = $mytime;
-        $expedientes-> condicion = '1';
-        $expedientes-> save();
+        $exploded = explode(',', $request->file);
+        $decoded = base64_decode($exploded[1]);
+        $coss = Str::contains($exploded[0], 'doc') ;     
+        
+            if ($coss) {
+                $extension = 'doc';
+            } elseif($coss) {    
+                $extension = 'pdf';
+            } elseif($coss) {
+                $extension = 'rar';
+            } else {
+                echo 'No es la extensión correcta';
+            }    
+
+
+            $fileName = Str::random() . '.' . $extension;
+
+            $path = public_path() . '/file/docs/' . $fileName;
+
+            file_put_contents($path, $decoded);
+
+            $expedientes->file = $fileName;
+            $mytime = Carbon::now();
+            $expedientes-> fecha_tramite = $mytime;
+            $expedientes-> condicion = '1';
+            $expedientes-> save();
     }
 
     public function update(Request $request)
@@ -58,7 +80,33 @@ class ExpedienteController extends Controller
         $expedientes-> asunto = $request -> asunto;
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
-        $expedientes-> file = $request -> file;
+        $currentFile = $expedientes->file;
+        if ($request->file != $currentFile) {
+            $exploded = explode(',', $request->file);
+            $decoded = base64_decode($exploded[1]);
+
+            if (Str::contains($exploded[0], 'doc')) {
+
+                $extension = 'pdf';
+            } else {
+
+                $extension = 'rar';
+            }
+
+            $fileName = Str::random() . '.' . $extension;
+
+            $path = public_path() . '/file/docs/' . $fileName;
+
+            file_put_contents($path, $decoded);
+
+            /*inicio eliminar del servidor*/
+            $usuarioFile = public_path('/file/docs/') . $currentFile;
+            if (file_exists($usuarioFile)) {
+                @unlink($usuarioFile);
+            }
+            /*fin eliminar del servidor*/
+            $expedientes->file = $fileName;
+        }
         $mytime = Carbon::now();
         $expedientes-> fecha_tramite = $mytime;
         $expedientes-> condicion = '1';

@@ -2096,6 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2176,10 +2177,16 @@ __webpack_require__.r(__webpack_exports__);
 
       me.listarExpediente(page);
     },
-    obtenerDocumento: function obtenerDocumento(e) {
-      var document = e.target.files[0]; //  console.log(document);
+    subirFile: function subirFile(e) {
+      var me = this;
+      var file = e.target.files[0];
+      var reader = new FileReader();
 
-      this.file = document;
+      reader.onloadend = function (file) {
+        me.file = reader.result;
+      };
+
+      reader.readAsDataURL(file);
     },
     registrarExpediente: function registrarExpediente() {
       if (this.validarExpediente()) {
@@ -40919,9 +40926,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
                         _c("input", {
-                          staticClass: "form-control-file",
-                          attrs: { type: "file", name: "file" },
-                          on: { change: _vm.obtenerDocumento }
+                          staticClass: "form-control",
+                          attrs: { type: "file", placeholder: "" },
+                          on: { change: _vm.subirFile }
                         }),
                         _vm._v(" "),
                         _c("input", {
@@ -56300,6 +56307,7 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -56340,6 +56348,7 @@ var app = new Vue({
 /***/ (function(module, exports, __webpack_require__) {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -56347,8 +56356,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  //   window.Popper = require('popper.js').default;
-  //  window.$ = window.jQuery = require('jquery');
+  //   window.$ = window.jQuery = require('jquery');
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
 /**
