@@ -18,6 +18,7 @@ class CreateComunicadosTable extends Migration
             $table->string('titulo',160);
             $table->string('descripcion',300);
             $table->dateTime('fecha');
+            $table->string('atentamente');
             $table->timestamps();
         });
     }

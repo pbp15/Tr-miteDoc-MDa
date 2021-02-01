@@ -100,5 +100,23 @@ class PaginaController extends Controller
        return view('vistas-paginaweb\contactanos\contactanos');
     }
 
+    //NIVELES EDUCATIVOS
+
+   public function inicial()
+      {
+         return view('vistas-paginaweb\niveles\inicial');
+      }
+
+      
+   public function primaria()
+   {
+      return view('vistas-paginaweb\niveles\primaria');
+   }
+
+
+   public function secundaria()
+      {
+         return view('vistas-paginaweb\niveles\secundaria');
+      }
 
 }

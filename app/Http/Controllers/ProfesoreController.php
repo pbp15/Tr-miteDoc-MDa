@@ -34,12 +34,9 @@ class ProfesoreController extends Controller
              'profesores' => $profesores
          ];
      }
-     
-     public function getDatos(){
-         $profesores = Profesore::orderBy('id','asc')->get();
-         return [ 'profesores' => $profesores];
-     }
-     
+  
+
+  
      public function store(Request $request)
      {
          if (!$request->ajax()) return redirect('/');
@@ -105,6 +102,33 @@ class ProfesoreController extends Controller
          }   
          $profesore->save();
      }
+
+     public function getDatosInicial(Request $request){
+
+        if (!$request->ajax()) return redirect('/');
+         $profesores = Profesore::where('profesores.nivel','inicial')
+        ->orderBy('id','asc')->get();
+         return [ 'profesores' => $profesores];       
+     }
+      
+ 
+     public function getDatosPrimaria(Request $request){
+ 
+         //  if (!$request->ajax()) return redirect('/');
+           $profesores = Profesore::where('profesores.nivel','primaria')
+          ->orderBy('id','asc')->get();
+           return [ 'profesores' => $profesores];       
+       }
+ 
+ 
+       public function getDatosSecundaria(Request $request){
+ 
+         //  if (!$request->ajax()) return redirect('/');
+           $profesores = Profesore::where('profesores.nivel','secundaria')
+          ->orderBy('id','asc')->get();
+           return [ 'profesores' => $profesores];       
+       }
+ 
      
      public function destroy(Request $request){
          $profesore=Profesore::findOrFail($request->id);

@@ -7,8 +7,9 @@
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
+                <strong><h2 class="text-center">Lista de Contactanos</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Lista de formularios 
+                        <i class="fa fa-align-justify"></i>  
                         <button type="button" @click="abrirModal('contacto','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>

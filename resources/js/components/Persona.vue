@@ -7,8 +7,9 @@
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
+               <strong><h2 class="text-center"> Personas</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Personas
+                        <i class="fa fa-align-justify"></i>
                         <button type="button" @click="abrirModal('persona','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
@@ -301,7 +302,7 @@
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Cliente';
+                                this.tituloModal = 'Registrar Persona';
                                 this.nombre= '';
                                 this.tipo_documento='DNI';
                                 this.num_documento='';
@@ -315,7 +316,7 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Cliente';
+                                this.tituloModal='Actualizar Persona';
                                 this.tipoAccion=2;
                                 this.persona_id=data['id'];
                                 this.nombre = data['nombre'];

@@ -42,19 +42,19 @@
                             </template>
 
                             <template  v-if="menu==9">
-                                <persona></persona> 
+                                <admision></admision>
                             </template>
 
                             <template  v-if="menu==10">
-                                <rol></rol>
+                                  <persona></persona> 
                             </template>
 
                             <template  v-if="menu==11">
-                                <user></user>
+                               <rol></rol> 
                             </template>
 
                             <template  v-if="menu==12">
-                                <h1>PERFIL</h1>
+                                <user></user> 
                             </template>
                             <template  v-if="menu==13">
                                 <h1>INSTITUCION</h1>

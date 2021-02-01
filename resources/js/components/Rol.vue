@@ -7,8 +7,9 @@
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
+                 <strong><h2 class="text-center">Roles</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Roles
+                        <i class="fa fa-align-justify"></i> 
                     </div>
                     <div class="card-body">
                         <div class="form-group row">

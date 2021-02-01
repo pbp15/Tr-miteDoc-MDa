@@ -6,10 +6,12 @@
             </ol>
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
+             
                 <div class="card">
+                    <strong><h2 class="text-center">Comunicados</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Comunicados
-                        <button type="button" @click="abrirModal('persona','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> 
+                        <button type="button" @click="abrirModal('comunicado','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -18,13 +20,11 @@
                             <div class="col-md-6">
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
-                                      <option value="nombre">Nombre</option>
-                                      <option value="num_documento">Documento</option>
-                                      <option value="email">Email</option>
-                                      <option value="telefono">Teléfono</option>
+                                      <option value="titulo">Titulo</option>
+                                      <option value="descripcion">Descripcion</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarPersona(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarPersona(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarComunicado(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarComunicado(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -32,27 +32,26 @@
                             <thead>
                                 <tr>
                                     <th>Opciones</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo Documento</th>
-                                    <th>Número</th>
-                                    <th>Dirección</th>
-                                    <th>Teléfono</th>
-                                    <th>Email</th>
+                                    <th>Titulo</th>
+                                    <th>Descripcion</th>                                    
+                                    <th>Fecha</th>
+                                    <th>Atentamente</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="persona in arrayPersona" :key="persona.id">
+                                <tr v-for="comunicado in arrayComunicado" :key="comunicado.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('persona','actualizar',persona)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('comunicado','actualizar',comunicado)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button>
+                                        <button type="button" class="btn btn-danger btn-sm" @click="eliminarComunicado(comunicado.id)">
+                                        <i class="fa fa-trash"></i>
+                                        </button>
                                     </td>
-                                    <td v-text="persona.nombre"></td>
-                                    <td v-text="persona.tipo_documento"></td>
-                                    <td v-text="persona.num_documento"></td>
-                                    <td v-text="persona.direccion"></td>
-                                    <td v-text="persona.telefono"></td>
-                                    <td v-text="persona.email"></td>
+                                    <td v-text="comunicado.titulo"></td>
+                                    <td v-text="comunicado.descripcion"></td>
+                                    <td v-text="comunicado.fecha"></td>
+                                    <td v-text="comunicado.atentamente"></td>
                                 </tr>                                
                             </tbody>
                         </table>
@@ -86,48 +85,36 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre (*)</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Titulo</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="nombre" class="form-control" placeholder="Nombre de la persona">                                        
+                                        <input type="text" v-model="titulo" class="form-control" placeholder="Nombre del titulo">                                        
                                     </div>
                                 </div>
+                          
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Tipo Documento</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
                                     <div class="col-md-9">
-                                        <select v-model="tipo_documento" class="form-control">
-                                            <option value="DNI">DNI</option>
-                                            <option value="RUC">RUC</option>
-                                            <option value="PASS">PASS</option>
-                                        </select>                                    
+                                        <input type="text" v-model="descripcion" class="form-control" placeholder="Descripcion">                                        
                                     </div>
-                                </div>
+                                </div>                             
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Número</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Fecha</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">                                        
+                                        <input type="date" v-model="fecha" class="form-control" >                                        
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Dirección</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Atentamente</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="direccion" class="form-control" placeholder="Dirección">
+                                        <input type="text" v-model="atentamente" class="form-control" >                                        
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Teléfono</label>
-                                    <div class="col-md-9">
-                                        <input type="text" v-model="telefono" class="form-control" placeholder="Teléfono">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="email" class="form-control" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div v-show="errorPersona" class="form-group row div-error">
+                              
+
+                                <div v-show="errorComunicado" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjPersona" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjComunicado" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -137,8 +124,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarPersona()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarPersona()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarComunicado()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarComunicado()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -153,19 +140,17 @@
     export default {
         data (){
             return {
-                persona_id: 0,
-                nombre : '',
-                tipo_documento : 'DNI',
-                num_documento : '',
-                direccion : '',
-                telefono : '',
-                email : '',
-                arrayPersona : [],
+                comunicado_id: 0,
+                titulo : '',
+                descripcion : '',
+                fecha: '',                
+                atentamente : '',
+                arrayComunicado : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorPersona : 0,
-                errorMostrarMsjPersona : [],
+                errorComunicado : 0,
+                errorMostrarMsjComunicado : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -175,7 +160,7 @@
                     'to' : 0,
                 },
                 offset : 3,
-                criterio : 'nombre',
+                criterio : 'titulo',
                 buscar : ''
             }
         },
@@ -209,12 +194,12 @@
             }
         },
         methods : {
-            listarPersona (page,buscar,criterio){
+            listarComunicado (page,buscar,criterio){
                 let me=this;
-                var url= '/persona?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/comunicado?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayPersona = respuesta.personas.data;
+                    me.arrayComunicado = respuesta.comunicados.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -226,88 +211,132 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarPersona(page,buscar,criterio);
+                me.listarComunicado(page,buscar,criterio);
             },
-            registrarPersona(){
-                if (this.validarPersona()){
+    
+            registrarComunicado(){
+                if (this.validarComunicado()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/persona/registrar',{
-                    'nombre': this.nombre,
-                    'tipo_documento': this.tipo_documento,
-                    'num_documento' : this.num_documento,
-                    'direccion' : this.direccion,
-                    'telefono' : this.telefono,
-                    'email' : this.email
+                axios.post('/comunicado/registrar',{
+                    'titulo': this.titulo,
+                    'descripcion': this.descripcion,
+                    'atentamente' : this.atentamente,
+                    'fecha' :  this.fecha,
                 }).then(function (response) {
+                    swal(
+                        'Registrado!',
+                        'El Comunicado ha sido registrado con éxito.',
+                        'success'
+                        )
                     me.cerrarModal();
-                    me.listarPersona(1,'','nombre');
+                    me.listarComunicado(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarPersona(){
-               if (this.validarPersona()){
+            actualizarComunicado(){
+               if (this.validarComunicado()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/persona/actualizar',{
-                    'nombre': this.nombre,
-                    'tipo_documento': this.tipo_documento,
-                    'num_documento' : this.num_documento,
-                    'direccion' : this.direccion,
-                    'telefono' : this.telefono,
-                    'email' : this.email,
-                    'id': this.persona_id
+                axios.put('/comunicado/actualizar',{
+                    'titulo': this.titulo,
+                    'descripcion': this.descripcion,
+                    'atentamente' : this.atentamente,
+                    'fecha' :  this.fecha,
+                    'id': this.comunicado_id
                 }).then(function (response) {
+                   swal(
+                        'Actualizado!',
+                        'El comunicado ha sido actualizado con éxito.',
+                        'success'
+                        )
                     me.cerrarModal();
-                    me.listarPersona(1,'','nombre');
+                    me.listarComunicado(1,'','titulo');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },            
-            validarPersona(){
-                this.errorPersona=0;
-                this.errorMostrarMsjPersona =[];
+            validarComunicado(){
+                this.errorComunicado=0;
+                this.errorMostrarMsjComunicado =[];
 
-                if (!this.nombre) this.errorMostrarMsjPersona.push("El nombre de la persona no puede estar vacío.");
+                if (!this.titulo) this.errorMostrarMsjComunicado.push("El titulo del Comunicado no puede estar vacío.");
 
-                if (this.errorMostrarMsjPersona.length) this.errorPersona = 1;
+                if (this.errorMostrarMsjComunicado.length) this.errorComunicado = 1;
 
-                return this.errorPersona;
+                return this.errorComunicado;
             },
+              eliminarComunicado(id){
+            
+             swal({
+                title: 'Esta seguro de eliminar este Comunicado?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar!',
+                cancelButtonText: 'Cancelar',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+                }).then((result) => {
+                if (result.value) {
+                    let me = this;
+
+                    axios.put('/comunicado/eliminar',{
+                        'id': id
+                    }).then(function (response) {
+                        me.listarComunicado(1,'','titulo');
+                        swal(
+                        'Eliminado!',
+                        'El Comunicado ha sido eliminado con éxito.',
+                        'success'
+                        )
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                    
+                    
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    
+                }
+                }) 
+            },
+     
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.nombre='';
-                this.tipo_documento='DNI';
-                this.num_documento='';
-                this.direccion='';
-                this.telefono='';
-                this.email='';
-                this.errorPersona=0;
+                this.titulo='';
+                this.descripcion='';
+                this.atentamente='';
+                this.fecha='';
+                this.errorComunicado=0;
 
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "persona":
+                    case "comunicado":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Cliente';
-                                this.nombre= '';
-                                this.tipo_documento='DNI';
-                                this.num_documento='';
-                                this.direccion='';
-                                this.telefono='';
-                                this.email='';
+                                this.tituloModal = 'Registrar Comunicado';
+                                this.titulo= '';
+                                this.descripcion='';
+                                this.atentamente='';
+                                this.fecha='';
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -315,15 +344,13 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Cliente';
+                                this.tituloModal='Actualizar Comunicado';
                                 this.tipoAccion=2;
-                                this.persona_id=data['id'];
-                                this.nombre = data['nombre'];
-                                this.tipo_documento = data['tipo_documento'];
-                                this.num_documento = data['num_documento'];
-                                this.direccion = data['direccion'];
-                                this.telefono = data['telefono'];
-                                this.email = data['email'];
+                                this.comunicado_id=data['id'];
+                                this.titulo = data['titulo'];
+                                this.descripcion = data['descripcion'];
+                                this.atentamente = data['atentamente'];
+                                this.fecha=data['fecha'];
                                 break;
                             }
                         }
@@ -332,7 +359,7 @@
             }
         },
         mounted() {
-            this.listarPersona(1,this.buscar,this.criterio);
+            this.listarComunicado(1,this.buscar,this.criterio);
         }
     }
 </script>

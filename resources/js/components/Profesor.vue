@@ -7,8 +7,9 @@
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
+                    <strong><h2 class="text-center">Docentes</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Profesores
+                        <i class="fa fa-align-justify"></i> 
                         <button type="button" @click="abrirModal('profesore','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
@@ -50,7 +51,7 @@
                                     <td v-text="profesore.curso_cargo"></td>
                                           <td v-text="profesore.nivel"></td>
                                     <td>
-                                        <img :src="'imagepage/profesores/' + profesore.imagen" class="img-responsive" width="100px" height="100px">
+                                        <img :src="'imagepage/profesores' + profesore.imagen" class="img-responsive" width="100px" height="100px">
                                     </td>
                                    
                                 </tr>                                
@@ -362,7 +363,7 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Evento';
+                                this.tituloModal='Actualizar Profesor';
                                 this.tipoAccion=2;
                                 this.profesor_id=data['id'];
                                 this.nombres = data['nombres'];

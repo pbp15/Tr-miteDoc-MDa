@@ -46,12 +46,19 @@ Route::group(['middleware' => ['guest']], function(){
     //MENU CONTACTANOS
     Route::get('/contactanos','PaginaController@contactanos')->name('contactanos');
     
+    //SUBMENU NIVELES
+    Route::get('/inicial','PaginaController@inicial')->name('inicial');
+    Route::get('/primaria','PaginaController@primaria')->name('primaria');
+    Route::get('/secundaria','PaginaController@secundaria')->name('secundaria');
+
     /* METODOS DE PAGINA WEB */
     Route::get('/evento/show','EventoController@getDatos');
     Route::get('/testimonio/show','TestimonioController@getDatos');    
     Route::post('/contacto/registrar', 'ContactoController@store');
-
-    
+    Route::get('/profesores/inicial','ProfesoreController@getDatosInicial')->name('profesoresinicial');  
+    Route::get('/profesores/primaria','ProfesoreController@getDatosPrimaria')->name('profesores-primaria');
+    Route::get('/profesores/secundaria','ProfesoreController@getDatosSecundaria')->name('profesores-secundaria');
+   
 
 });
 
@@ -107,6 +114,12 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/evento/registrar', 'EventoController@store');
         Route::put('/evento/actualizar', 'EventoController@update');
         Route::put('/evento/eliminar', 'EventoController@destroy');
+
+        
+        Route::get('/comunicado','ComunicadoController@index');
+        Route::post('/comunicado/registrar', 'ComunicadoController@store');
+        Route::put('/comunicado/actualizar', 'ComunicadoController@update');
+        Route::put('/comunicado/eliminar', 'ComunicadoController@destroy');
 
         Route::get('/testimonio','TestimonioController@index');
         Route::post('/testimonio/registrar', 'TestimonioController@store');

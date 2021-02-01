@@ -29,18 +29,7 @@
 	<div id="app">
 
         @include('paginaweb.header')
-        <section class="ftco-section testimony-section">
-            <div class="container">
-                <div class="row justify-content-center mb-5 pb-2">
-                    <div class="col-md-8 text-center heading-section ftco-animate">
-                        <h2 class="mb-4">Niveles Educativos</h2>
-                        <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia. It is a paradisematic country</p>
-                    </div>
-                </div>             
-            </div>
-        
-        </section>
+    
 
         <section class="ftco-section">
             <div class="container-fluid px-4">
@@ -63,7 +52,7 @@
                             <h3 class="text-center"><a href="#">Inicial</a></h3>
                             <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
                                 regelialia. It is a paradisematic country</p>
-                            <p><a href="#" class="btn btn-primary">Apply now</a></p>
+                            <p><a href="{{route('inicial')}}" class="btn btn-primary">Apply now</a></p>
                         </div>
                     </div>
                     <div class="col-md-3 course ftco-animate">
@@ -77,7 +66,7 @@
                             <h3 class="text-center"><a href="#">Primaria</a></h3>
                             <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
                                 regelialia. It is a paradisematic country</p>
-                            <p><a href="#" class="btn btn-primary">Apply now</a></p>
+                            <p><a href="{{route('primaria')}}" class="btn btn-primary">Apply now</a></p>
                         </div>
                     </div>
                     <div class="col-md-3 course ftco-animate">
@@ -91,7 +80,7 @@
                             <h3 class="text-center"><a href="#">Secundaria</a></h3>
                             <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary
                                 regelialia. It is a paradisematic country</p>
-                            <p><a href="#" class="btn btn-primary">Apply now</a></p>
+                            <p><a href="{{route('secundaria')}}" class="btn btn-primary">Apply now</a></p>
                         </div>
                     </div>
                     <div class="col-md-3 course ftco-animate">

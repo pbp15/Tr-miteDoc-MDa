@@ -7,8 +7,9 @@
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
+               <strong><h2 class="text-center">Blog</h2></strong> 
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Blog
+                        <i class="fa fa-align-justify"></i> 
                         <button type="button" @click="abrirModal('blog','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>

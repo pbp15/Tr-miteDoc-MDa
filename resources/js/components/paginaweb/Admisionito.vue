@@ -22,7 +22,7 @@
 							<div class="d-md-flex">
 							
 								<div class="form-group ml-md-4">
-									<input type="number" v-model="telefono" class="form-control" placeholder="Celular">
+									<input type="number" v-model="telefono" class="form-control" placeholder="Celular del apoderado">
 								</div>
 
                                 <div class="form-group ml-md-4">
@@ -35,8 +35,8 @@
                             	<div class="d-md-flex">
                                
                                     <div class="form-group ml-md-4" >
-                                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                        <option selected>Selecciona el nivel educativo</option>
+                                        <label class="nivel" for="nivel">Seleccione el nivel educativo</label>
+                                        <select v-model="nivel" class="custom-select my-1 mr-sm-2" id="nivel" >
                                             <option value="inicial">Inicial</option>
                                             <option value="primaria">Primaria</option>
                                             <option value="secundaria">Secundaria</option>
@@ -140,8 +140,8 @@
         font-weight: bold;
     }
     .nivel {
-        background: rgb(181, 185, 178);
-         color: red !important;
+    
+         color: rgb(236, 226, 226) !important;
     }
 
     </style>

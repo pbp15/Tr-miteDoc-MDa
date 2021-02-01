@@ -32,6 +32,7 @@ Vue.component('testimonio', require('./components/Testimonio.vue').default);
 Vue.component('noticia', require('./components/Noticia.vue').default);
 Vue.component('profesor', require('./components/Profesor.vue').default);
 Vue.component('blog', require('./components/Blog.vue').default);
+Vue.component('admision', require('./components/Admision.vue').default);
 
 /*FIN  DEL COMPONENTES DEL PANEL ADMINISTRADOR */
 
@@ -40,7 +41,7 @@ Vue.component('eventito', require('./components/paginaweb/Eventito.vue').default
 Vue.component('testimonito', require('./components/paginaweb/Testimonito.vue').default);
 Vue.component('formularito', require('./components/paginaweb/Formularito.vue').default);
 Vue.component('admisionito', require('./components/paginaweb/Admisionito.vue').default);
-
+Vue.component('profesorsito-inicial', require('./components/paginaweb/ProfesorsitoInicial.vue').default);
 
 const app = new Vue({
     el: '#app',
