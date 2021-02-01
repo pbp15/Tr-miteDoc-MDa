@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+window.$ = window.jQuery = require('jquery'); 
 
 window.Vue = require('vue');
 
@@ -41,7 +42,7 @@ Vue.component('expedienteforuser', require('./components/viewUser/ExpedienteForU
 
 const app = new Vue({
     el: '#app',
-    data:{
+    data :{
         menu : 0
     }
 });

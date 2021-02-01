@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Expediente;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Expediente;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class ExpedienteController extends Controller
@@ -33,7 +34,7 @@ class ExpedienteController extends Controller
 
     public function store(Request $request)
     {
-        if (!$request->ajax()) return redirect('/');
+        //if (!$request->ajax()) return redirect('/');
         $expedientes = new Expediente();
         $expedientes-> codigo_expediente = $request -> codigo_expediente;
         $expedientes-> cabecera_documento = $request -> cabecera_documento;
@@ -42,11 +43,24 @@ class ExpedienteController extends Controller
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
 
-        $documento = $request->file('file');
-        $nombredoc = time().'.'.$documento->extension();
-        $documento->move(public_path('storage/documentos'), $nombredoc);
-      
-        $expedientes-> file = $documento;
+        $exploded = explode(',', $request->file);
+        $decoded = base64_decode($exploded[1]);
+        $coss = Str::contains($exploded[0], 'pdf') ;     
+        
+            if ($coss) {
+                $extension = 'pdf';
+            } elseif($coss) {    
+                $extension = 'doc';
+            } elseif($coss) {
+                $extension = 'rar';
+            } else {
+                'No es la extensión correcta';
+            }  
+        
+        $nombredoc = time().'.'.$extension;
+        $path = public_path() . '/file/docs/' . $nombredoc;
+        file_put_contents($path, $decoded);
+        $expedientes-> file = $nombredoc;
 
         $mytime = Carbon::now();
         $expedientes-> fecha_tramite = $mytime;
@@ -64,7 +78,36 @@ class ExpedienteController extends Controller
         $expedientes-> asunto = $request -> asunto;
         $expedientes-> prioridad = $request -> prioridad;
         $expedientes-> nro_folios = $request -> nro_folios;
-        $expedientes-> file = $request -> file;
+
+        $currentFile = $expedientes->file;
+        if ($request->file != $currentFile) {
+            $exploded = explode(',', $request->file);
+            $decoded = base64_decode($exploded[1]);
+
+            if (Str::contains($exploded[0], 'doc')) {
+
+                $extension = 'pdf';
+            } else {
+
+                $extension = 'rar';
+            }
+
+            $nombredoc = time() . '.' . $extension;
+
+            $path = public_path() . '/file/docs/' . $nombredoc;
+
+            file_put_contents($path, $decoded);
+
+            //inicio eliminar del servidor
+            $usuarioFile = public_path('/file/docs/') . $currentFile;
+            if (file_exists($usuarioFile)) {
+                @unlink($usuarioFile);
+            }
+            //fin eliminar del servidor
+            $expedientes->file = $nombredoc;
+        }
+
+        
         $mytime = Carbon::now();
         $expedientes-> fecha_tramite = $mytime;
         $expedientes-> condicion = '1';
@@ -87,7 +130,6 @@ class ExpedienteController extends Controller
         $expedientes-> save();
     }
 
-    //Extras
     public function documento(Request $request)
     {
         $documento = $request->file('file');
@@ -96,5 +138,4 @@ class ExpedienteController extends Controller
 
         return response()->json(['correcto'=> $nombredoc]);
     }
-
 }

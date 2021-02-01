@@ -15,6 +15,7 @@ class UserExpedienteController extends Controller
     public function registrar(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
+        /*Tabla expedientes*/
         $expedientes = new Expediente();
         $expedientes-> codigo_expediente = $request -> codigo_expediente;
         $expedientes-> cabecera_documento = $request -> cabecera_documento;
@@ -30,6 +31,7 @@ class UserExpedienteController extends Controller
         $expedientes-> condicion = '1';
         $expedientes-> save();
 
+        /*Tabla intermedia usuario_expediente*/
         $userExpedientes = new UserExpediente();
         //obtenre id usuario
         $idUser = auth()->user()->id; 
@@ -41,17 +43,5 @@ class UserExpedienteController extends Controller
         $userExpedientes-> estado = 'Enviado';
         $userExpedientes-> fecha = $mytime;
         $userExpedientes-> condicion = '1';
-    }
-
-    public function obtenerUsuario(Request $request)
-    {
-       $idUser = auth()->user()->id;
-
-       $usuario = DB::table('personas')
-                ->select('id','nombre','email')
-                ->where('id','=',$idUser)
-                ->get();
-
-       return ['usuario' => $usuario];
     }
 }

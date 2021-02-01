@@ -48,13 +48,6 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Prioridad</label>
-                                <div class="col-md-9">
-                                    <input type="text" v-model="prioridad" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">N° de folios</label>
                                 <div class="col-md-9">
                                     <input type="text" v-model="nro_folios" class="form-control">
@@ -77,7 +70,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Documento</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Subir documento</label>
                                 <div class="col-md-9">
                                     <input type="text" v-model="file" class="form-control">
                                    <!-- <input type="file" class="form-control-file" @change="obtenerDocumento" name="file"> -->

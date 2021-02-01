@@ -157,9 +157,11 @@
                         <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Documento</label>
                             <div class="col-md-9">
-                                <input type="file" class="form-control-file" @change="registrarExpediente" name="file">
+                                <input @change="subirFile"  type="file" class="form-control" placeholder="">
+                                <input type="hidden" name="documento" id="documento"> 
                             </div>
                         </div>  
+
 
                         <!-- <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone> -->
 
@@ -196,7 +198,7 @@
                 tipo_documento: '',
                 asunto: '',
                 prioridad: '',
-                nro_folios: '',
+                nro_folios: 1,
                 file: '',
                 fecha_tramite: '',
                 arrayExpediente : [],
@@ -266,6 +268,17 @@
 
                 //Envia la peticion para visualizar la data de sa pagina
                 me.listarExpediente(page);
+            },
+
+            subirFile(e){
+                let me=this;
+                let file=e.target.files[0];
+
+                let reader= new FileReader();
+                reader.onloadend=(file)=>{
+                    me.file=reader.result;
+                }
+                reader.readAsDataURL(file);
             },
             registrarExpediente(){
                 if (this.validarExpediente()){
@@ -425,7 +438,7 @@
                                 this.tipo_documento= '';
                                 this.asunto= '';
                                 this.prioridad= '';
-                                this.nro_folios= '';
+                                this.nro_folios= 1;
                                 this.file= '';
                                 this.fecha_tramite= '';
                                 this.condicion= 1;
