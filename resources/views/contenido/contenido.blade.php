@@ -28,10 +28,6 @@
                 <expediente></expediente>
             </template>
 
-            <template  v-if="menu==6">
-                <usuarioexpediente></usuarioexpediente>
-            </template>
-
             <template  v-if="menu==7">
                 <h1>Contenido Nº7 </h1>
             </template>
@@ -74,8 +70,8 @@
                 <expediente></expediente>
             </template>
 
-            <template  v-if="menu==6">
-                <usuarioexpediente></usuarioexpediente>
+            <template v-if="menu==6">
+                <h2>Listado de tramites</h2>
             </template>
             
         <!-- /Fin del contenido principal -->
@@ -89,10 +85,6 @@
             <template  v-if="menu==5">
                 <expediente></expediente>
             </template>
-
-            <template  v-if="menu==6">
-                <usuarioexpediente></usuarioexpediente>
-            </template>
             
         @elseif (Auth::user()->idrol == 4)
             <template  v-if="menu==0">
@@ -101,10 +93,6 @@
 
             <template  v-if="menu==5">
                 <expedienteforuser></expedienteforuser>
-            </template>
-
-            <template  v-if="menu==6">
-                <usuarioexpediente></usuarioexpediente>
             </template>
         @else
 

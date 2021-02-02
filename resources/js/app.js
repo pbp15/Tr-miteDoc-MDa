@@ -31,7 +31,6 @@ Vue.component('rol', require('./components/Rol.vue').default);
 Vue.component('user', require('./components/User.vue').default);
 Vue.component('oficina', require('./components/Oficina.vue').default);
 Vue.component('expediente', require('./components/Expediente.vue').default);
-Vue.component('usuarioexpediente', require('./components/UsuarioExpediente.vue').default);
 //Vista usuario
 Vue.component('expedienteforuser', require('./components/viewUser/ExpedienteForUser.vue').default);
 /**
