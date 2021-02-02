@@ -14,12 +14,6 @@
                 <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                         <div class="col-md-9 m-auto">
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Código</label>
-                                <div class="col-md-9">
-                                    <input type="text" v-model="codigo_expediente" class="form-control">
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Cabecera</label>
@@ -55,29 +49,12 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Firma</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" v-model="usuario_nombre">
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Correo electronico</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" v-model="usuario_email">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Subir documento</label>
                                 <div class="col-md-9">
-                                    <input type="text" v-model="file" class="form-control">
-                                   <!-- <input type="file" class="form-control-file" @change="obtenerDocumento" name="file"> -->
+                                    <input @change="subirFile"  type="file" class="form-control" placeholder="">
+                                    <input type="hidden" name="documento" id="documento"> 
                                 </div>
-                            </div>  
-                            <span>{{asunto}}</span>
-                            <!-- <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone> -->
+                            </div>   
 
                             <div v-show="errorExpediente" class="form-group row div-error">
                                 <div class="text-center text-error">
@@ -103,43 +80,31 @@
     export default {  
         data() {
             return {
-                expediente_id:0,
-                codigo_expediente:'',
-                cabecera_documento:'',
+                codigo_expediente: '',
+                cabecera_documento: '',
                 tipo_documento: '',
                 asunto: '',
-                prioridad: '',
                 nro_folios: 1,
                 file: '',
-                fecha_tramite: '',
+                iduser: 0,
+                idoficina: 0,
+                idexpediente: 0,
+                estado: '',
+                tipoAccion: 0,
                 errorExpediente: 0,
                 errorMostrarExpediente: [],
-                arrayUsuario: [],
-                usuario_id: 0,
-                usuario_nombre: '',
-                usuario_email: '',
             }
         },
-        methods: {
-            obtenerUsuario(){
-                let me = this;
-                var url = '/user/obtener';
-                axios.get(url).then(function (response){
-                    var respuesta = response.data;
-                    me.arrayUsuario = respuesta.usuario;
-                    me.loadUsuario();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-            },
-            loadUsuario(){
-                let me = this;
-                me.arrayUsuario.map(function (x){
-                    me.usuario_id = data['id'];
-                    me.usuario_nombre = data['nombre'];
-                    me.usuario_email = data['email'];
-                });
+        methods: {            
+            subirFile(e){
+                let me=this;
+                let file=e.target.files[0];
+
+                let reader= new FileReader();
+                reader.onloadend=(file)=>{
+                    me.file=reader.result;
+                }
+                reader.readAsDataURL(file);
             },
             registrarExpediente(){
                 if (this.validarExpediente()){
@@ -148,18 +113,20 @@
                 let me = this;
                 axios.post('/expediente/registrar',{
                     'codigo_expediente': this.codigo_expediente,
-                    'cabecera_expediente': this.cabecera_documento,
+                    'cabecera_documento': this.cabecera_documento,
                     'tipo_documento': this.tipo_documento,
                     'asunto': this.asunto,
-                    'prioridad': this.prioridad,
                     'nro_folios': this.nro_folios,
-                    'file': this.file,
-                    'condicion': this.condicion
+                    'file' :  this.file,
+                    'iduser': this.iduser,
+                    'idoficina': this.idoficina,
+                    'idexpediente': this.idexpediente
                 }).then(function (response){
-                    console.log()
+                    me.confirmarEnvio();
+                    me.cancelar();
                 }).catch(function (error){
                     console.log(error);
-                })
+                });
             },
             validarExpediente(){
                 this.errorExpediente=0;
@@ -171,9 +138,17 @@
                 
                 return this.errorExpediente;
             },
+            confirmarEnvio(){
+                Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'El archivo fue enviado con éxito',
+                showConfirmButton: false,
+                timer: 1500
+                })
+            },
             cancelar(){
                 this.codigo_expediente = '',
-                this.cabecera_documento = '',
                 this.tipo_documento = '',
                 this.asunto = '',
                 this.prioridad = '',
@@ -182,8 +157,5 @@
                 this.condicion = 0
             }
         },
-        mounted(){
-            this.loadUsuario();
-        }
     }
 </script>

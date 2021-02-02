@@ -47,6 +47,7 @@
                         <tr v-for="expediente in arrayExpediente" :key="expediente.id">
                             <td v-text="expediente.codigo_expediente"></td>
                             <td v-text="expediente.codigo_expediente"></td>
+                            <td v-text="expediente.codigo_expediente"></td>
                             <td v-text="expediente.cabecera_documento"></td>
                             <td v-text="expediente.tipo_documento"></td>
                             <td v-text="expediente.asunto"></td>

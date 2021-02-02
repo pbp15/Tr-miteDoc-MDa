@@ -15,7 +15,7 @@ class OficinaController extends Controller
     public function index(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $oficinas = Oficina::paginate(3);
+        $oficinas = Oficina::paginate(10);
         return [
             'pagination' => [
                 'total' => $oficinas->total(),

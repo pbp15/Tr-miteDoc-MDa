@@ -30,6 +30,7 @@
                         <tr>
                             <th>Opciones</th>
                             <th>Código</th>
+                            <th>Remitente</th>
                             <th>Cabecera</th>
                             <th>Tipo de documento</th>
                             <th>Asunto</th>
@@ -58,13 +59,14 @@
                                 </template>
                             </td>
                             <td v-text="expediente.codigo_expediente"></td>
+                            <td v-text="expediente.nombre"></td>
                             <td v-text="expediente.cabecera_documento"></td>
                             <td v-text="expediente.tipo_documento"></td>
                             <td v-text="expediente.asunto"></td>
                             <td v-text="expediente.prioridad"></td>
                             <td v-text="expediente.nro_folios"></td>
                             <td v-text="expediente.file"></td>
-                            <td v-text="expediente.fecha_tramite"></td>
+                            <td v-text="expediente.fecha"></td>
                             <td>
                                 <div v-if="expediente.condicion">
                                     <span class="badge badge-success">Activo</span>
@@ -108,13 +110,6 @@
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Código</label>
-                            <div class="col-md-9">
-                                <input type="text" v-model="codigo_expediente" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label class="col-md-3 form-control-label" for="text-input">Cabecera</label>
                             <div class="col-md-9">
                                 <input type="text" v-model="cabecera_documento" class="form-control">
@@ -155,7 +150,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-md-3 form-control-label" for="text-input">Documento</label>
+                            <label class="col-md-3 form-control-label" for="text-input">Subir documento</label>
                             <div class="col-md-9">
                                 <input @change="subirFile"  type="file" class="form-control" placeholder="">
                                 <input type="hidden" name="documento" id="documento"> 
@@ -200,7 +195,10 @@
                 prioridad: '',
                 nro_folios: 1,
                 file: '',
-                fecha_tramite: '',
+                iduser: 0,
+                idoficina: 0,
+                idexpediente: 0,
+                estado: '',
                 arrayExpediente : [],
                 modal: 0,
                 tituloModal: '',
@@ -269,7 +267,6 @@
                 //Envia la peticion para visualizar la data de sa pagina
                 me.listarExpediente(page);
             },
-
             subirFile(e){
                 let me=this;
                 let file=e.target.files[0];
@@ -293,7 +290,9 @@
                     'prioridad': this.prioridad,
                     'nro_folios': this.nro_folios,
                     'file' :  this.file,
-                    'condicion': this.condicion
+                    'iduser': this.iduser,
+                    'idoficina': this.idoficina,
+                    'idexpediente': this.idexpediente
                 }).then(function (response){
                     me.cerrarModal();
                     me.listarExpediente();
@@ -440,7 +439,10 @@
                                 this.prioridad= '';
                                 this.nro_folios= 1;
                                 this.file= '';
-                                this.fecha_tramite= '';
+                                this.iduser=0;
+                                this.idoficina = 0;
+                                this.idexpediente= 0;
+                                this.estado='';
                                 this.condicion= 1;
                                 this.tipoAccion= 1;
                                 break;

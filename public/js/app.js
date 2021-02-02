@@ -2139,11 +2139,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2155,7 +2150,10 @@ __webpack_require__.r(__webpack_exports__);
       prioridad: '',
       nro_folios: 1,
       file: '',
-      fecha_tramite: '',
+      iduser: 0,
+      idoficina: 0,
+      idexpediente: 0,
+      estado: '',
       arrayExpediente: [],
       modal: 0,
       tituloModal: '',
@@ -2249,7 +2247,9 @@ __webpack_require__.r(__webpack_exports__);
         'prioridad': this.prioridad,
         'nro_folios': this.nro_folios,
         'file': this.file,
-        'condicion': this.condicion
+        'iduser': this.iduser,
+        'idoficina': this.idoficina,
+        'idexpediente': this.idexpediente
       }).then(function (response) {
         me.cerrarModal();
         me.listarExpediente();
@@ -2380,7 +2380,10 @@ __webpack_require__.r(__webpack_exports__);
                   this.prioridad = '';
                   this.nro_folios = 1;
                   this.file = '';
-                  this.fecha_tramite = '';
+                  this.iduser = 0;
+                  this.idoficina = 0;
+                  this.idexpediente = 0;
+                  this.estado = '';
                   this.condicion = 1;
                   this.tipoAccion = 1;
                   break;
@@ -2740,6 +2743,7 @@ __webpack_require__.r(__webpack_exports__);
       this.nombre_oficina = '';
       this.responsable = '';
       this.condicion = '';
+      this.errorOficina = 0;
     },
     abrirModal: function abrirModal(modelo, accion) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -3972,6 +3976,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4090,68 +4095,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      expediente_id: 0,
       codigo_expediente: '',
       cabecera_documento: '',
       tipo_documento: '',
       asunto: '',
-      prioridad: '',
       nro_folios: 1,
       file: '',
-      fecha_tramite: '',
+      iduser: 0,
+      idoficina: 0,
+      idexpediente: 0,
+      estado: '',
+      tipoAccion: 0,
       errorExpediente: 0,
-      errorMostrarExpediente: [],
-      arrayUsuario: [],
-      usuario_id: 0,
-      usuario_nombre: '',
-      usuario_email: ''
+      errorMostrarExpediente: []
     };
   },
   methods: {
-    obtenerUsuario: function obtenerUsuario() {
+    subirFile: function subirFile(e) {
       var me = this;
-      var url = '/user/obtener';
-      axios.get(url).then(function (response) {
-        var respuesta = response.data;
-        me.arrayUsuario = respuesta.usuario;
-        me.loadUsuario();
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    loadUsuario: function loadUsuario() {
-      var me = this;
-      me.arrayUsuario.map(function (x) {
-        me.usuario_id = data['id'];
-        me.usuario_nombre = data['nombre'];
-        me.usuario_email = data['email'];
-      });
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      reader.onloadend = function (file) {
+        me.file = reader.result;
+      };
+
+      reader.readAsDataURL(file);
     },
     registrarExpediente: function registrarExpediente() {
       if (this.validarExpediente()) {
@@ -4161,15 +4133,17 @@ __webpack_require__.r(__webpack_exports__);
       var me = this;
       axios.post('/expediente/registrar', {
         'codigo_expediente': this.codigo_expediente,
-        'cabecera_expediente': this.cabecera_documento,
+        'cabecera_documento': this.cabecera_documento,
         'tipo_documento': this.tipo_documento,
         'asunto': this.asunto,
-        'prioridad': this.prioridad,
         'nro_folios': this.nro_folios,
         'file': this.file,
-        'condicion': this.condicion
+        'iduser': this.iduser,
+        'idoficina': this.idoficina,
+        'idexpediente': this.idexpediente
       }).then(function (response) {
-        console.log();
+        me.confirmarEnvio();
+        me.cancelar();
       })["catch"](function (error) {
         console.log(error);
       });
@@ -4181,12 +4155,18 @@ __webpack_require__.r(__webpack_exports__);
       if (this.errorMostrarExpediente.length) this.errorExpediente = 1;
       return this.errorExpediente;
     },
+    confirmarEnvio: function confirmarEnvio() {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El archivo fue enviado con éxito',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    },
     cancelar: function cancelar() {
-      this.codigo_expediente = '', this.cabecera_documento = '', this.tipo_documento = '', this.asunto = '', this.prioridad = '', this.nro_folios = 1, this.file = '', this.condicion = 0;
+      this.codigo_expediente = '', this.tipo_documento = '', this.asunto = '', this.prioridad = '', this.nro_folios = 1, this.file = '', this.condicion = 0;
     }
-  },
-  mounted: function mounted() {
-    this.loadUsuario();
   }
 });
 
@@ -39950,6 +39930,10 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", {
+                      domProps: { textContent: _vm._s(expediente.nombre) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
                       domProps: {
                         textContent: _vm._s(expediente.cabecera_documento)
                       }
@@ -39978,9 +39962,7 @@ var render = function() {
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: {
-                        textContent: _vm._s(expediente.fecha_tramite)
-                      }
+                      domProps: { textContent: _vm._s(expediente.fecha) }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -40140,41 +40122,6 @@ var render = function() {
                     }
                   },
                   [
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("Código")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-9" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.codigo_expediente,
-                              expression: "codigo_expediente"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.codigo_expediente },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.codigo_expediente = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
                     _c("div", { staticClass: "form-group row" }, [
                       _c(
                         "label",
@@ -40378,7 +40325,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Documento")]
+                        [_vm._v("Subir documento")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -40542,6 +40489,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Opciones")]),
         _vm._v(" "),
         _c("th", [_vm._v("Código")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Remitente")]),
         _vm._v(" "),
         _c("th", [_vm._v("Cabecera")]),
         _vm._v(" "),
@@ -43012,6 +42961,12 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: {
+                        textContent: _vm._s(expediente.codigo_expediente)
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: {
                         textContent: _vm._s(expediente.cabecera_documento)
                       }
                     }),
@@ -43630,41 +43585,6 @@ var render = function() {
                       staticClass: "col-md-3 form-control-label",
                       attrs: { for: "text-input" }
                     },
-                    [_vm._v("Código")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-9" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.codigo_expediente,
-                          expression: "codigo_expediente"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.codigo_expediente },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.codigo_expediente = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-3 form-control-label",
-                      attrs: { for: "text-input" }
-                    },
                     [_vm._v("Cabecera")]
                   ),
                   _vm._v(" "),
@@ -43824,105 +43744,25 @@ var render = function() {
                       staticClass: "col-md-3 form-control-label",
                       attrs: { for: "text-input" }
                     },
-                    [_vm._v("Firma")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-9" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.usuario_nombre,
-                          expression: "usuario_nombre"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.usuario_nombre },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.usuario_nombre = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-3 form-control-label",
-                      attrs: { for: "text-input" }
-                    },
-                    [_vm._v("Correo electronico")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-9" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.usuario_email,
-                          expression: "usuario_email"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.usuario_email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.usuario_email = $event.target.value
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-3 form-control-label",
-                      attrs: { for: "text-input" }
-                    },
                     [_vm._v("Subir documento")]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-9" }, [
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.file,
-                          expression: "file"
-                        }
-                      ],
                       staticClass: "form-control",
-                      attrs: { type: "text" },
-                      domProps: { value: _vm.file },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.file = $event.target.value
-                        }
+                      attrs: { type: "file", placeholder: "" },
+                      on: { change: _vm.subirFile }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "hidden",
+                        name: "documento",
+                        id: "documento"
                       }
                     })
                   ])
                 ]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(_vm.asunto))]),
                 _vm._v(" "),
                 _c(
                   "div",

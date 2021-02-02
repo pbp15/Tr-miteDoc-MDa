@@ -86,7 +86,10 @@ Route::group(['middleware' => ['auth']], function(){
     });
 
     Route::group(['middleware' => 'Usuario'], function () {
+        
+        Route::post('/expediente/registrar', 'ExpedienteController@store');
         Route::get('/user/obtener','UserExpedienteController@obtenerUsuario');
+        Route::get('/expediente/id', 'ExpedienteController@id');
     });
         
 });

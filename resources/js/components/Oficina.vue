@@ -333,6 +333,7 @@ export default {
             this.nombre_oficina='';
             this.responsable='';
             this.condicion='';
+            this.errorOficina=0;
         },
         abrirModal(modelo, accion, data = []){
             switch (modelo) {
